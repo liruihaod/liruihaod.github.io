@@ -1,0 +1,778 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,JQuery,现代魔法," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="只从离职之后，索性好好玩了一周，也没怎么看书。再拿起书的时候，反正这尼玛完全都不认识了。。。。看来做笔记还是有用的。。。以后争取每天写学习笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管中窥豹——初识Jquery">
+<meta property="og:url" content="http://yoursite.com/2016/03/20/管中窥豹——初识Jquery/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="只从离职之后，索性好好玩了一周，也没怎么看书。再拿起书的时候，反正这尼玛完全都不认识了。。。。看来做笔记还是有用的。。。以后争取每天写学习笔记">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/d6fdf415gw1f3hiyy1pg6j20zc0izjwq.jpg">
+<meta property="og:updated_time" content="2016-05-02T16:52:36.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="管中窥豹——初识Jquery">
+<meta name="twitter:description" content="只从离职之后，索性好好玩了一周，也没怎么看书。再拿起书的时候，反正这尼玛完全都不认识了。。。。看来做笔记还是有用的。。。以后争取每天写学习笔记">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/d6fdf415gw1f3hiyy1pg6j20zc0izjwq.jpg">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 管中窥豹——初识Jquery | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                管中窥豹——初识Jquery
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-20T00:38:52+08:00" content="2016-03-20">
+              2016-03-20
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/20/管中窥豹——初识Jquery/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/20/管中窥豹——初识Jquery/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><hr>
+<p>只从离职之后，索性好好玩了一周，也没怎么看书。再拿起书的时候，反正这尼玛完全都不认识了。。。。<br>看来做笔记还是有用的。。。以后争取每天写学习笔记 <a id="more"></a></p>
+<p>##初识jquery<br>jquery给我的第一个感受就是。太尼玛牛了。之前用原生JS写ajax交互,写了一个下午(当然个人因素:脑子不行占很大一部分)，结果在Jquery就就几句话就完成了。。。让我有种以后写JS 完全不需要原生JS，就用Jquery就行了的错觉。。。。</p>
+<h3 id="jquery第一印象"><a href="#jquery第一印象" class="headerlink" title="jquery第一印象"></a>jquery第一印象</h3><p>jquery的语法说到底还是很简单的。感觉怎么说呢<strong>Jquery就是原生JS的一个进化版</strong>怎么说呢。就好比：原生JS是我们的双手，而Jquery就是我们用手弄出来的斧头，锤头啥的工具。效率的确能打打提高，关键这玩意还不大。<br><strong>这里我有点不是很明白。很多人都觉得Jquery太大了</strong>，我感觉如果是单纯觉得Jquery这个库的体积大，就不用了。我不是很能理解，一个Jquery库再大，又能大到哪去，现在网上一个图片动不动就是几百K，甚至上M。一个用户网速再差，少一个Jquery库,网站又能小到哪里去？与其说觉得Jquery体积大，而不用他。还不如想想如何在其他地方优化网页。。</p>
+<hr>
+<h3 id="如何使用jquery"><a href="#如何使用jquery" class="headerlink" title="如何使用jquery"></a>如何使用jquery</h3><p>我这边是用的百度静态资源库。<br><img src="http://ww1.sinaimg.cn/large/d6fdf415gw1f3hiyy1pg6j20zc0izjwq.jpg" alt="为了兼容，就选着1.90版本"><br>然后加载的时候就用<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="库的框架的区别"><a href="#库的框架的区别" class="headerlink" title="库的框架的区别"></a>库的框架的区别</h3><ul>
+<li>从技术角度讲，抽象层次不一样；从使用角度讲，能完成的事情不一样；从学习角度讲，难易程度也是不一样的。</li>
+<li>从技术角度：<br>库：基于基础功能和算法的抽象，框架：基于通用功能和常见问题的抽象。</li>
+<li>从包含关系：<br>库：是框架的一个子集。框架：是库的一个超集。(一个框架可以只拥有一个库)。</li>
+<li>通俗来说：<br>好比造房子，库就是一个工具箱，而框架就是总体的施工方案。可以用工具箱来进行细节优化，但是还是要遵循框架的总体规划。<h3 id="jquery的基本用法"><a href="#jquery的基本用法" class="headerlink" title="jquery的基本用法"></a>jquery的基本用法</h3>juqery的基本用法这里，我一时半会也说不清。所以下面就经量用例子来说明把。</li>
+</ul>
+<h4 id="原生js和jquery之间的转换"><a href="#原生js和jquery之间的转换" class="headerlink" title="原生js和jquery之间的转换"></a>原生js和jquery之间的转换</h4><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">&lt;<span class="keyword">li</span>&gt;1&lt;/<span class="keyword">li</span>&gt;</span><br><span class="line">&lt;<span class="keyword">li</span>&gt;2&lt;/<span class="keyword">li</span>&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">例如：</span><br><span class="line"><span class="keyword">var</span> a=$(<span class="string">"ul li"</span>).<span class="keyword">eq</span>(1);<span class="comment">//这个就是jquery对象</span></span><br><span class="line"><span class="keyword">var</span> b=$(<span class="string">"ul li"</span>).[0];<span class="comment">//这就是原生JS对象。</span></span><br></pre></td></tr></table></figure>
+<p>怎么说呢。我感觉原生JS，和Jquery是两个物种- -，原生JS就只能用原生JS的方法，Jquery就只能用Jquery的方法。但是两者之间是可以相互转换的具体转换方法如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> c=$(b);<span class="comment">//此时c就变成一个Jquery对象</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="Jquery能做什么？"><a href="#Jquery能做什么？" class="headerlink" title="Jquery能做什么？"></a>Jquery能做什么？</h4><ul>
+<li>获取页面内容</li>
+<li>操作DOM</li>
+<li>绑定事件</li>
+<li>处理Ajax</li>
+<li>实现简单的动画和特效</li>
+<li>解决跨浏览器的兼容</li>
+</ul>
+<hr>
+<h4 id="jquery中如何绑定事件"><a href="#jquery中如何绑定事件" class="headerlink" title="jquery中如何绑定事件"></a>jquery中如何绑定事件</h4><p>我这边是用on,来绑定的- -不过貌似都是用on绑定的吧- -<br>这里用前面的例子写一个普通的绑定和事件代理的例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"ul"</span>).on(<span class="string">"click"</span>,<span class="string">"li"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text());</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//这里使用的事件代理，点击"ul"下面的"li",在控制台输出li里面的文本内容</span></span><br><span class="line"></span><br><span class="line">$(<span class="string">"ul&gt;li"</span>).on(<span class="string">"click"</span>,funtion()&#123;</span><br><span class="line">    <span class="built_in">console</span>.log($(<span class="keyword">this</span>).text());</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//这里用到的是绑定事件。</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="jquery如何展示-隐藏元素"><a href="#jquery如何展示-隐藏元素" class="headerlink" title="jquery如何展示/隐藏元素"></a>jquery如何展示/隐藏元素</h4><p>还是用例子吧。。总是感觉千言万语汇成一串code。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	<span class="selector-tag">div</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">100px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>: center;</span><br><span class="line">		<span class="attribute">background</span>:red;</span><br><span class="line">		<span class="attribute">color</span>:white;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">margin-top</span>:<span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn1"</span>&gt;</span>hide<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn2"</span>&gt;</span>show<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn3"</span>&gt;</span>fadeInt<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn4"</span>&gt;</span>fadeOut<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn5"</span>&gt;</span>slideDowm<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn6"</span>&gt;</span>slideUp<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn7"</span>&gt;</span>slideToggle<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">"btn8"</span>&gt;</span>animate<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span>Z-one<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">		$(<span class="string">"#btn1"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).hide();</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn2"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).show();</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn3"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).fadeIn(<span class="number">1000</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn4"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).fadeOut(<span class="number">1000</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn5"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).slideDown(<span class="number">1000</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn6"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).slideUp(<span class="number">1000</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn7"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).slideToggle(<span class="number">1000</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">		$(<span class="string">"#btn8"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"div"</span>).animate(&#123;</span><br><span class="line">				<span class="string">"left"</span>:<span class="string">"+=100px"</span>,</span><br><span class="line">				<span class="string">"height"</span>:<span class="string">"200px"</span></span><br><span class="line">			&#125;,<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				$(<span class="string">"div"</span>).animate(&#123;</span><br><span class="line">					<span class="string">"left"</span>:<span class="number">0</span>,</span><br><span class="line">					<span class="string">"height"</span>:<span class="string">"100px"</span></span><br><span class="line"></span><br><span class="line">				&#125;,<span class="number">1000</span>)</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;)</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><a href="http://1.liruihaod.applinzi.com/Jquery/Jquery1.html" target="_blank" rel="external">在线预览</a></p>
+<blockquote>
+<p>animate只能改变数值的变化，对于color等颜色变化不能实现。</p>
+</blockquote>
+<hr>
+<p>Jqeury动画的使用</p>
+<ul>
+<li>jquery动画主要是使用<code>animate({},1000)</code>这个函数<br>例如<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">".an"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">"#box"</span>).animate(&#123;</span><br><span class="line">			<span class="attribute">left</span>:<span class="string">"+=200"</span>,</span><br><span class="line">			<span class="attribute">height</span>:<span class="number">100</span>,</span><br><span class="line">		&#125;,<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="string">"#box"</span>).animate(&#123;</span><br><span class="line">				<span class="attribute">left</span>:<span class="number">0</span>,</span><br><span class="line">				<span class="attribute">height</span>:<span class="number">100</span>,</span><br><span class="line">			&#125;,<span class="number">1000</span>)</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><a href="http://1.liruihaod.applinzi.com/Jquery/animate.html" target="_blank" rel="external">效果预览</a></strong></p>
+<hr>
+<p>Jquery如何获取元素内部HTML元素，如何设置和获取元素内部元素。</p>
+<p>这里主要用到html(),和text()，两者的区别之前已经总结。这里就不在多说 和原生方法区别一直。<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span><span class="tag">&lt;<span class="name">span</span>&gt;</span>点我一下就会有图片哦<span class="tag">&lt;/<span class="name">span</span>&gt;</span><span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">""</span>  <span class="attr">id</span>=<span class="string">"img"</span> <span class="attr">alt</span>=<span class="string">""</span> <span class="attr">data-src</span>=<span class="string">"http://www.ld12.com/upimg358/allimg/c150111/142096112145N0-21106.jpg"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> text=<span class="built_in">document</span>.querySelector(<span class="string">"#text"</span>);</span><br><span class="line">	text.addEventListener(<span class="string">"keyup"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			text.value=text.value.toUpperCase()</span><br><span class="line">	&#125;)</span><br><span class="line">	$(<span class="string">"#text"</span>).on(<span class="string">"keyup"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="keyword">this</span>).val($(<span class="keyword">this</span>).val().toUpperCase())</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	$(<span class="string">".btn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$(<span class="string">"#img"</span>).attr(<span class="string">"src"</span>,$(<span class="string">"#img"</span>).attr(<span class="string">"data-src"</span>))</span><br><span class="line">	&#125;)</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><a href="http://1.liruihaod.applinzi.com/Jquery/vel.html" target="_blank" rel="external">效果预览</a></strong></p>
+<hr>
+<p>使用$(“option:cheked”)来获取selector被选中的元素</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">id</span>=<span class="string">"text"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">select</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">id</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"aad"</span>&gt;</span>宜昌<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"asdasd"</span>&gt;</span>武汉<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"asdad"</span>&gt;</span>长沙<span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"btn"</span>&gt;</span>加载更多<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	$(<span class="string">"#box"</span>).on(<span class="string">"change"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log($(<span class="string">"option:checked"</span>).text())</span><br><span class="line">	&#125;)</span><br><span class="line">	$(<span class="string">"#btn"</span>).html(<span class="string">'&lt;img src="http://img3.imgtn.bdimg.com/it/u=1375093150,714638213&amp;fm=21&amp;gp=0.jpg"&gt;'</span>)</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/JQuery/" rel="tag">#JQuery</a>
+          
+            <a href="/tags/现代魔法/" rel="tag">#现代魔法</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/15/JQ管中窥豹——轮播的各种实现/" rel="next" title="JQ管中窥豹——轮播的各种实现">
+                <i class="fa fa-chevron-left"></i> JQ管中窥豹——轮播的各种实现
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/24/管中窥豹——初识Jquery方法/" rel="prev" title="管中窥豹——初识Jquery方法">
+                管中窥豹——初识Jquery方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/03/20/管中窥豹——初识Jquery/"
+                   data-title="管中窥豹——初识Jquery" data-url="http://yoursite.com/2016/03/20/管中窥豹——初识Jquery/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery第一印象"><span class="nav-number">1.</span> <span class="nav-text">jquery第一印象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用jquery"><span class="nav-number">2.</span> <span class="nav-text">如何使用jquery</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#库的框架的区别"><span class="nav-number">3.</span> <span class="nav-text">库的框架的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jquery的基本用法"><span class="nav-number">4.</span> <span class="nav-text">jquery的基本用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原生js和jquery之间的转换"><span class="nav-number">4.1.</span> <span class="nav-text">原生js和jquery之间的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Jquery能做什么？"><span class="nav-number">4.2.</span> <span class="nav-text">Jquery能做什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery中如何绑定事件"><span class="nav-number">4.3.</span> <span class="nav-text">jquery中如何绑定事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jquery如何展示-隐藏元素"><span class="nav-number">4.4.</span> <span class="nav-text">jquery如何展示/隐藏元素</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

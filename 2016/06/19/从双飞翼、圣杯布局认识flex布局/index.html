@@ -1,0 +1,845 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,布局," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="还记得当初学布局的时候。。接触最多的就是双飞翼布局和圣杯布局，当然还有一个负margin布局。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从双飞翼、圣杯布局认识flex布局">
+<meta property="og:url" content="http://yoursite.com/2016/06/19/从双飞翼、圣杯布局认识flex布局/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="还记得当初学布局的时候。。接触最多的就是双飞翼布局和圣杯布局，当然还有一个负margin布局。">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/06e732c4-53d3-4661-a90e-850a56612522">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/4089d33e-c321-4f77-a84b-33c9899c3b28">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/29100a14-203d-49e7-809b-a914c8f89be0">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/9362e824-5bab-4afb-8fd9-03a29ba5a2c0">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/c7ab8aef-1714-4a29-9128-67dc3a2f7fd1">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/40c90f29-b7ed-4eda-b54a-c7e5b7ce333d">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/4accff07-2217-4090-9100-535256f8eaa5">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/1a89070f-008c-4ad9-ac06-a9048fa1b5ee">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/c9de14a6-0b82-4e8c-b0f8-89a73077721d">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/8d92cc76-1843-4c76-acf7-348d415bce28">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/61bc9ee4-5f43-4fbd-b54e-c53af043634f">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/74a30afd-e82a-4d8a-95fb-6ade1eaaef49">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/f4292796-39af-41b4-b685-10b39c086073">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/322c1d4f-399f-4a2f-b02b-d866a1bddbff">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/1551195f-ea43-4a80-b25f-82b4f74033ac">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/85fcd01c-89a3-4b65-ac16-e01d8a895832">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/b2f4da1f-dcd5-447b-b202-98312f43ecec">
+<meta property="og:updated_time" content="2016-06-19T14:10:06.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从双飞翼、圣杯布局认识flex布局">
+<meta name="twitter:description" content="还记得当初学布局的时候。。接触最多的就是双飞翼布局和圣杯布局，当然还有一个负margin布局。">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/06e732c4-53d3-4661-a90e-850a56612522">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 从双飞翼、圣杯布局认识flex布局 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                从双飞翼、圣杯布局认识flex布局
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-19T19:21:22+08:00" content="2016-06-19">
+              2016-06-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/布局/" itemprop="url" rel="index">
+                    <span itemprop="name">布局</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/19/从双飞翼、圣杯布局认识flex布局/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/19/从双飞翼、圣杯布局认识flex布局/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>还记得当初学布局的时候。。接触最多的就是双飞翼布局和圣杯布局，当然还有一个负<code>margin</code>布局。<a id="more"></a></p>
+<h3 id="负margin布局"><a href="#负margin布局" class="headerlink" title="负margin布局"></a>负<code>margin</code>布局</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/06e732c4-53d3-4661-a90e-850a56612522" alt="两边无缝隙，中间有间隙的负margin布局"><br><a href="http://js.jirengu.com/zeloletemu/6/edit?html,css" target="_blank" rel="external"><strong>在JSbin上查看code</strong></a></p>
+<hr>
+<h3 id="圣杯布局"><a href="#圣杯布局" class="headerlink" title="圣杯布局"></a>圣杯布局</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/4089d33e-c321-4f77-a84b-33c9899c3b28" alt="中间自适应，两边固定宽度的圣杯布局"> 中间自适应，两边固定宽度的圣杯布局<br><a href="http://js.jirengu.com/wajunekaqu/1/edit?html,output" target="_blank" rel="external"><strong>在JSbin上查看code</strong></a></p>
+<hr>
+<h3 id="双飞翼布局"><a href="#双飞翼布局" class="headerlink" title="双飞翼布局"></a>双飞翼布局</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/29100a14-203d-49e7-809b-a914c8f89be0" alt="中间自适应，两边固定宽度的双飞翼布局"><br>中间自适应，两边固定宽度的圣杯布局<br><a href="http://js.jirengu.com/lozoyasaja/1/edit?html,output" target="_blank" rel="external"><strong>在JSbin上查看code</strong></a></p>
+<hr>
+<p>每次回想起来做双飞翼和圣杯布局的时候 为了实现它都会写下不下十几行的CSS代码,感觉特别麻烦,下面给大家推荐CSS3新增加的一个布局方法————flex布局。</p>
+<hr>
+<h3 id="flex布局"><a href="#flex布局" class="headerlink" title="flex布局"></a>flex布局</h3><p>关于flex 布局阮一峰的一片博客 基本上已经是范文了。讲的特别清楚。不过为了加深印象，这里还是返璞归策划，从头总结一下。</p>
+<h4 id="什么是flex布局"><a href="#什么是flex布局" class="headerlink" title="什么是flex布局"></a>什么是flex布局</h4><p>flex布局，简单来说就是CSS3新出的一个布局方式。使用方法也很简单。根据浏览器的版本分为以下几种定义方式：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/9362e824-5bab-4afb-8fd9-03a29ba5a2c0" alt="0_1466262670353_upload-1071233b-cdbe-4265-addb-8cce2599645f"><br>这里大意就是说：一般来说<code>flex</code>布局定义方式有三种.</p>
+<ul>
+<li>第一种真的比较新的浏览器:<code>display:flex</code></li>
+<li>第二种就是版本趋于两者之间的浏览器:<code>display: flexbox</code></li>
+<li>第三种就是老版本的浏览器:<code>display:box</code></li>
+</ul>
+<hr>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/c7ab8aef-1714-4a29-9128-67dc3a2f7fd1" alt="0_1466263672128_upload-0fac61bb-1254-4034-bcce-1d991f696c1d"><br>另外从<code>canIuse</code>上面可以看到,flex对于IE浏览器基本上十分的不友好，只兼容到IE10。另外不同浏览器之间也是需要添加前缀。</p>
+<h3 id="flex的基本概念"><a href="#flex的基本概念" class="headerlink" title="flex的基本概念"></a>flex的基本概念</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/40c90f29-b7ed-4eda-b54a-c7e5b7ce333d" alt="0_1466264028594_upload-7ab23129-a68d-4aab-897f-08b9b989668f"><br>从这副图 我们可以知道一些大致的内容：</p>
+<ul>
+<li>如果把<code>flex</code>布局之后的元素定义为容器。它的子元素就自动成为它的容器成员。</li>
+<li>容器默认存在两个两根轴，一个水平方向上的<code>main axis</code>(主轴),一个垂直方向的<code>cross axis</code>(交叉轴)</li>
+</ul>
+<hr>
+<h3 id="flex的一些基本属性。"><a href="#flex的一些基本属性。" class="headerlink" title="flex的一些基本属性。"></a>flex的一些基本属性。</h3><p>这里简单总结一下flex的基本属性：</p>
+<h4 id="flex-direction-定义项目的排列方向（作用于容器）"><a href="#flex-direction-定义项目的排列方向（作用于容器）" class="headerlink" title="flex-direction 定义项目的排列方向（作用于容器）"></a><code>flex-direction</code> 定义项目的排列方向（作用于容器）</h4><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/4accff07-2217-4090-9100-535256f8eaa5" alt="0_1466264524199_upload-f5d79021-33c6-47e0-bdb1-22c454c29bf8"><br>这个看图很好理解 <code>flex-direction</code>字面意思就是（flex布局的方向）<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line"><span class="attribute">flex-direction</span>:row|row-reverse|column|column-reverse</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="order-定义项目的排列顺序。（作用于项目）"><a href="#order-定义项目的排列顺序。（作用于项目）" class="headerlink" title="order 定义项目的排列顺序。（作用于项目）"></a><code>order</code> 定义项目的排列顺序。（作用于项目）</h4><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/1a89070f-008c-4ad9-ac06-a9048fa1b5ee" alt="0_1466264755790_upload-e2d1f74e-c40a-4bf4-a643-a0fc544072ca"><br><code>order</code>是一个排序属性，可以这样理解，相当于我们平时站对一样。”个高的在后面，个字矮的在前面”<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line"><span class="attribute">order</span>:number;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h4 id="flex-grow定义项目的放大比例。（作用于项目）"><a href="#flex-grow定义项目的放大比例。（作用于项目）" class="headerlink" title="flex-grow定义项目的放大比例。（作用于项目）"></a><code>flex-grow</code>定义项目的放大比例。（作用于项目）</h4><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/c9de14a6-0b82-4e8c-b0f8-89a73077721d" alt="0_1466264956662_upload-9d07446c-4500-42a7-aae1-2172902ca8e8"><br>具体使用方法是<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line"><span class="attribute">flex-grow</span>:number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>如果项目<code>flex-grow</code>都为1，即项目均分剩余空间，如果一起为2，其他为1，则前者占据剩余空间为其他的两倍。</strong></p>
+<h5 id="额外提一点"><a href="#额外提一点" class="headerlink" title="额外提一点"></a>额外提一点</h5><p>还得及之前的例子,我们再做三列布局的时候，或者是左边固定宽度，右边自适应的的布局的时候，每次都要写很多代码。使用<code>flex</code>只需要几行代码<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/8d92cc76-1843-4c76-acf7-348d415bce28" alt="0_1466320091553_upload-8349a97c-6b6c-4438-9598-79f623a04fc2"><br><a href="http://jsbin.com/dizajemayo/1/edit?html,output" target="_blank" rel="external">JS查看源代码</a></p>
+<hr>
+<h3 id="flex-wrap定义项目如何排列（作用于容器）"><a href="#flex-wrap定义项目如何排列（作用于容器）" class="headerlink" title="flex-wrap定义项目如何排列（作用于容器）"></a><code>flex-wrap</code>定义项目如何排列（作用于容器）</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/61bc9ee4-5f43-4fbd-b54e-c53af043634f" alt="0_1466320469496_upload-2249fbc0-9103-4c8b-b205-6f0b02be6ee7"></p>
+<p>具体使用方法：<br><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.<span class="keyword">item</span>&#123;</span><br><span class="line">    flex-<span class="keyword">wrap</span>:nowrap|<span class="keyword">wrap</span>|<span class="keyword">wrap</span>-reverse</span><br><span class="line">&#125;</span><br><span class="line">nowrap:定义flex容器为当行.(项目可能会移除容器)</span><br><span class="line"><span class="keyword">wrap</span>：定义flex为多行.（第一排,排不下了，就排到第二行）</span><br><span class="line"><span class="keyword">wrap</span>-reverse:反转排行。</span><br></pre></td></tr></table></figure></p>
+<p><a href="http://jsbin.com/garicuyiko/1/edit?html,output" target="_blank" rel="external"><strong>JSbin查看源代码</strong></a></p>
+<hr>
+<h3 id="flex-flow定义项目如何排列（复合属性）"><a href="#flex-flow定义项目如何排列（复合属性）" class="headerlink" title="flex-flow定义项目如何排列（复合属性）"></a><code>flex-flow</code>定义项目如何排列（复合属性）</h3><p><code>flex-direction</code>和<code>flex-wrap</code>组合在一起的属性.这里不做演示。</p>
+<hr>
+<h3 id="flex-shrink定义项目的缩放比例-作用于项目"><a href="#flex-shrink定义项目的缩放比例-作用于项目" class="headerlink" title="flex-shrink定义项目的缩放比例(作用于项目)"></a><code>flex-shrink</code>定义项目的缩放比例(作用于项目)</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/74a30afd-e82a-4d8a-95fb-6ade1eaaef49" alt="0_1466322020365_upload-0b056342-1df6-4ee4-9a75-2391771dfcd0"></p>
+<p>具体使用方法：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.item</span>&#123;</span><br><span class="line"> <span class="attribute">flex-shrink</span>:number</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/f4292796-39af-41b4-b685-10b39c086073" alt="0_1466323097627_upload-156f442b-17ce-47a4-85d5-fe1f5354577e"><br><a href="http://jsbin.com/puwicejuyu/1/edit?html,output" target="_blank" rel="external">JSbin查看源代码</a><br>定义第二个项目<code>flex-shrink</code>的值为2,其他项目默认<code>flex-shrink</code>的值为1,则相当于容器被评分为四块。但是<br>当我们定义容器宽度<code>width:500px;</code>，然后定义项目<code>width:200px</code>这里我们看到。这三个的项目感觉都被<code>压缩</code>了。分别都各有不同程度的缩小。</p>
+<blockquote>
+<p>这里是什么原因呢？</p>
+</blockquote>
+<p>这里出现这样的情况，原因主要是:当容器被定义<code>display:flex</code>属性之后，默认不会换行，除非在容器上定义<code>flex-wrap:nowrap</code>之外的属性。那么既然默认不换行，就只能用第二种方法<code>压缩</code></p>
+<p>为了探讨压缩率，我把上面这个代码做出一个调整，让第三个项目的<code>flex-shrink:6</code>，我们发现改变后变成这样：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/322c1d4f-399f-4a2f-b02b-d866a1bddbff" alt="0_1466324164311_upload-6a6f2337-2695-48f3-912f-fcfa48d9f65d"><br>我们会发现这时候和原来相比。第一个项目的长度增长了一部分。项目2和原来项目有明显增长，项目3长度收缩到比项目2还短。<br>通过上面的例子 可以推理出</p>
+<ul>
+<li>我们看到父容器定义为<code>500px</code>，项目定义为<code>200px</code>,则相加之后为<code>600px</code>，超出父容器<code>100px</code>只能通过项目来分担了。</li>
+<li>项目1被移除的溢出量=<code>100*1/5=20px</code>;</li>
+<li>项目2被移除的溢出量=<code>100*3/5=60px</code>;</li>
+<li>项目3被移除的溢出量=<code>100*1/5=20px</code>;</li>
+</ul>
+<p><strong>另外</strong>：<code>flex-shrink</code>定义的是容器空间不足时，项目的缩放比例，让容器空间足够大的时候并不会触发此属性。</p>
+<hr>
+<h3 id="flex作用于项目-复合属性"><a href="#flex作用于项目-复合属性" class="headerlink" title="flex作用于项目(复合属性)"></a><code>flex</code>作用于项目(复合属性)</h3><p>是<code>flex-grow</code>与<code>flex-shrink</code>和<code>flex-basis</code>的复合属性。<br>其中<code>flex-basis</code>的作用于width类似.不过当两者同时存在时，优先级高于width。关于三者的区别，这篇博客已经给出了很好的说明:<br><a href="http://zhoon.github.io/css3/2014/08/23/flex.html" target="_blank" rel="external">深入理解<code>flex</code>三属性的区别</a></p>
+<hr>
+<h3 id="justify-content定义项目在主轴上的对其方式（作用于容器）"><a href="#justify-content定义项目在主轴上的对其方式（作用于容器）" class="headerlink" title="justify-content定义项目在主轴上的对其方式（作用于容器）"></a><code>justify-content</code>定义项目在主轴上的对其方式（作用于容器）</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/1551195f-ea43-4a80-b25f-82b4f74033ac" alt="0_1466337470881_upload-64117cd8-b06a-4ccd-a81d-963a06740998"></p>
+<hr>
+<h3 id="align-items定义项目在垂直轴上的对齐方式-作用于容器"><a href="#align-items定义项目在垂直轴上的对齐方式-作用于容器" class="headerlink" title="align-items定义项目在垂直轴上的对齐方式(作用于容器)"></a><code>align-items</code>定义项目在垂直轴上的对齐方式(作用于容器)</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/85fcd01c-89a3-4b65-ac16-e01d8a895832" alt="0_1466337715209_upload-f96d89e2-57e4-4db8-91a9-c2d10a4161f9"><br>另外如何要单独定义项目的排列方式.可以使用<code>align-self</code>参数和前者一致。<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/b2f4da1f-dcd5-447b-b202-98312f43ecec" alt="0_1466338643535_upload-006ad0f8-b55c-42d7-b4d3-54019b159d2a"><br><a href="http://jsbin.com/gibawevaxi/1/edit?html,output" target="_blank" rel="external">JSbin查看代码</a></p>
+<h3 id="如何让一个div元素做到垂直居中"><a href="#如何让一个div元素做到垂直居中" class="headerlink" title="如何让一个div元素做到垂直居中."></a>如何让一个div元素做到垂直居中.</h3><p>到现在 如果别人问你如何让一个div元素垂直居中。<br>html代码<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"wrap"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"show"</span>&gt;</span><br><span class="line">      我要垂直居中</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我想应该有这几种方法：</p>
+<ul>
+<li><p>(<strong>目标元素定宽高</strong>)使用table 布局：具体代码如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">border</span>:<span class="number">1px</span> solid black;</span><br><span class="line">      <span class="attribute">display</span>: table-cell;</span><br><span class="line">      <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.show</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">      <span class="attribute">background</span>:red;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(<strong>目标元素定宽高</strong>)使用定位.具体代码如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.show</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>:-<span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>:-<span class="number">25px</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>(<strong>目标元素可以不确定宽高</strong>)使用css3(兼容性不如第二个)<br>代码如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">border</span>:<span class="number">1px</span> solid black;</span><br><span class="line">    <span class="attribute">position</span>:relative;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.show</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">translate</span>(-50% -50%);</span><br><span class="line">    <span class="attribute">-ms-transform</span>: <span class="built_in">translate</span>(-50% -50%);</span><br><span class="line">    <span class="attribute">-o-transform</span>: <span class="built_in">translate</span>(-50% -50%);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">translate</span>(-50%,-50%);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用flex弹性布局(这个兼容性更差)代码如下</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">      <span class="attribute">border</span>:<span class="number">1px</span> solid black;</span><br><span class="line">      <span class="attribute">display</span>: flex;</span><br><span class="line">      <span class="attribute">justify-content</span>: center;</span><br><span class="line">      <span class="attribute">align-items</span>: center;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.show</span>&#123;</span><br><span class="line">      <span class="attribute">width</span>:<span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">height</span>:<span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">background</span>:red;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="用flex-做出一个双飞翼布局"><a href="#用flex-做出一个双飞翼布局" class="headerlink" title="用flex 做出一个双飞翼布局"></a>用flex 做出一个双飞翼布局</h3><p>html代码<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">header</span>&gt;</span></span><br><span class="line">  我来组成头部</span><br><span class="line"><span class="tag">&lt;/<span class="name">header</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">main</span>&gt;</span></span><br><span class="line">    我是主要内容，优先加载</span><br><span class="line">  <span class="tag">&lt;/<span class="name">main</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">nav</span>&gt;</span></span><br><span class="line">    我是导航栏(固定宽度)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">nav</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">side</span>&gt;</span></span><br><span class="line">    我是侧边栏,我出现在左边(固定宽度)</span><br><span class="line">  <span class="tag">&lt;/<span class="name">side</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">footer</span>&gt;</span></span><br><span class="line">  我来组成页脚</span><br><span class="line"><span class="tag">&lt;/<span class="name">footer</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>CSS代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">header</span>,<span class="selector-tag">footer</span>&#123;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">clear</span>: both;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.wrap</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">main</span>&#123;</span><br><span class="line">    <span class="attribute">flex-grow</span>:<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">background</span>:red;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.wrap</span> <span class="selector-tag">nav</span>,<span class="selector-class">.wrap</span> <span class="selector-tag">side</span>&#123;</span><br><span class="line">    <span class="attribute">flex</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>:green;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.wrap</span> <span class="selector-tag">side</span>&#123;</span><br><span class="line">    <span class="attribute">order</span>:-<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="最后提一点"><a href="#最后提一点" class="headerlink" title="最后提一点"></a>最后提一点</h3><p>设置在容器上的属性：</p>
+<ul>
+<li><code>flex-direction</code>(定义项目的排列顺序——主轴);</li>
+<li><code>flex-wrap</code>(定义项目排列是否分行——默认不分行);</li>
+<li><code>flex-flow</code>（前者的两个复合属性）;</li>
+<li><code>justify-content</code>(定义项目在主轴的对其方式);</li>
+<li><code>align-items</code>(定义项目在垂直轴的对齐方式);</li>
+<li><code>align-content</code>(多根轴线的对齐方式)</li>
+</ul>
+<p>设置在项目上的属性：</p>
+<ul>
+<li><code>order</code>项目的”牌号”顺序(小的在前面，大的在后面)</li>
+<li><code>flex-grow</code>定义项目的放大比例。</li>
+<li><code>flex-shrink</code>定义项目的缩放比例</li>
+<li><code>flex-basis</code>定义项目的<code>width</code></li>
+<li><code>flex</code>(前面三个的复合属性)</li>
+<li><code>align-self</code>(单独定义<code>align-self</code>的主轴排列方式）</li>
+</ul>
+<hr>
+<p>关于<code>flex</code>布局先总结到这里- -</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/布局/" rel="tag">#布局</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/18/git一些操作/" rel="next" title="git一些操作">
+                <i class="fa fa-chevron-left"></i> git一些操作
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/12/Es6入门到放弃①/" rel="prev" title="Es6从入门到放弃①">
+                Es6从入门到放弃① <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/06/19/从双飞翼、圣杯布局认识flex布局/"
+                   data-title="从双飞翼、圣杯布局认识flex布局" data-url="http://yoursite.com/2016/06/19/从双飞翼、圣杯布局认识flex布局/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#负margin布局"><span class="nav-number">1.</span> <span class="nav-text">负margin布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#圣杯布局"><span class="nav-number">2.</span> <span class="nav-text">圣杯布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双飞翼布局"><span class="nav-number">3.</span> <span class="nav-text">双飞翼布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex布局"><span class="nav-number">4.</span> <span class="nav-text">flex布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是flex布局"><span class="nav-number">4.1.</span> <span class="nav-text">什么是flex布局</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex的基本概念"><span class="nav-number">5.</span> <span class="nav-text">flex的基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex的一些基本属性。"><span class="nav-number">6.</span> <span class="nav-text">flex的一些基本属性。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flex-direction-定义项目的排列方向（作用于容器）"><span class="nav-number">6.1.</span> <span class="nav-text">flex-direction 定义项目的排列方向（作用于容器）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#order-定义项目的排列顺序。（作用于项目）"><span class="nav-number">6.2.</span> <span class="nav-text">order 定义项目的排列顺序。（作用于项目）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flex-grow定义项目的放大比例。（作用于项目）"><span class="nav-number">6.3.</span> <span class="nav-text">flex-grow定义项目的放大比例。（作用于项目）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#额外提一点"><span class="nav-number">6.3.1.</span> <span class="nav-text">额外提一点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-wrap定义项目如何排列（作用于容器）"><span class="nav-number">7.</span> <span class="nav-text">flex-wrap定义项目如何排列（作用于容器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-flow定义项目如何排列（复合属性）"><span class="nav-number">8.</span> <span class="nav-text">flex-flow定义项目如何排列（复合属性）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex-shrink定义项目的缩放比例-作用于项目"><span class="nav-number">9.</span> <span class="nav-text">flex-shrink定义项目的缩放比例(作用于项目)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#flex作用于项目-复合属性"><span class="nav-number">10.</span> <span class="nav-text">flex作用于项目(复合属性)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#justify-content定义项目在主轴上的对其方式（作用于容器）"><span class="nav-number">11.</span> <span class="nav-text">justify-content定义项目在主轴上的对其方式（作用于容器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#align-items定义项目在垂直轴上的对齐方式-作用于容器"><span class="nav-number">12.</span> <span class="nav-text">align-items定义项目在垂直轴上的对齐方式(作用于容器)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何让一个div元素做到垂直居中"><span class="nav-number">13.</span> <span class="nav-text">如何让一个div元素做到垂直居中.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用flex-做出一个双飞翼布局"><span class="nav-number">14.</span> <span class="nav-text">用flex 做出一个双飞翼布局</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后提一点"><span class="nav-number">15.</span> <span class="nav-text">最后提一点</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

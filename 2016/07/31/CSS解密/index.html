@@ -1,0 +1,778 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="读书笔记,css," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;CSS揭秘读书笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS揭秘">
+<meta property="og:url" content="http://yoursite.com/2016/07/31/CSS解密/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;CSS揭秘读书笔记">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/c80b998c-444b-4e26-b57d-4104487184b8">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/4c6ff0e9-420d-46e4-8818-cff32503a315">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/c0343f6d-016f-4674-89fb-96dcc2b27c1f">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/eba6ff21-8803-461e-86c4-792595267389">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/ee872870-e2b1-4e9e-bc32-71db6fb06595">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/8df1b04a-6011-4b1d-b583-188865445199">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/d2eba705-873c-4452-935e-79abdaea8d87">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/609747d1-5c02-43e3-b314-af89e2dc1a76.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/6c2cd9c5-e9c3-4e75-96a0-c5e7363d7ccc.png">
+<meta property="og:updated_time" content="2016-07-31T14:13:22.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS揭秘">
+<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;CSS揭秘读书笔记">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/c80b998c-444b-4e26-b57d-4104487184b8">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> CSS揭秘 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CSS揭秘
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-31T17:59:38+08:00" content="2016-07-31">
+              2016-07-31
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/读书笔记/css/" itemprop="url" rel="index">
+                    <span itemprop="name">css</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/31/CSS解密/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/CSS解密/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>&#160; &#160; &#160; &#160;<code>CSS揭秘读书笔记</code> <a id="more"></a>    </p>
+<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><h3 id="多重边框"><a href="#多重边框" class="headerlink" title="多重边框"></a>多重边框</h3><h4 id="box-shaodw"><a href="#box-shaodw" class="headerlink" title="box-shaodw"></a><code>box-shaodw</code></h4><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">border</span>:<span class="number">10px</span> solid black;</span><br><span class="line">            <span class="attribute">box-shadow</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> red，</span><br><span class="line">                        <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">15px</span> yellow;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这里</span></span><br></pre></td></tr></table></figure>
+<p>这里我们注意到 <code>box-shadow</code>的几个值：</p>
+<ul>
+<li>1.用来设置X轴的阴影值,可以为负</li>
+<li>2.用来设置Y轴的阴影值,可以为负</li>
+<li>3.用来设置阴影模糊成都,不能为父</li>
+<li>4.用来设置阴影外延伸值,可以为负.</li>
+<li>5.设置阴影颜色</li>
+</ul>
+<p>不过这里设置多重边框的同时还应设置一个margin值,用来给多重边框”腾位置”，另外<code>box-shadow</code>可以设置多次数值,创建多个边框. 外延伸值单独计算.</p>
+<hr>
+<h4 id="outline"><a href="#outline" class="headerlink" title="outline"></a>outline</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">            <span class="attribute">border</span>:<span class="number">10px</span> solid black;</span><br><span class="line">            <span class="attribute">background</span>:yellow;</span><br><span class="line">            <span class="attribute">outline</span>:<span class="number">1px</span> dashed red;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p>这个的好处就是 可以给第二重边框设置样式….</p>
+<hr>
+<h2 id="条纹背景"><a href="#条纹背景" class="headerlink" title="条纹背景"></a>条纹背景</h2><h3 id="水平条纹背景"><a href="#水平条纹背景" class="headerlink" title="水平条纹背景"></a>水平条纹背景</h3><h4 id="一个最基本的条纹背景"><a href="#一个最基本的条纹背景" class="headerlink" title="一个最基本的条纹背景"></a>一个最基本的条纹背景</h4><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">background</span>:<span class="built_in">linear-gradient</span>(yellow,red)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/c80b998c-444b-4e26-b57d-4104487184b8" alt="0_1469591436440_upload-395c2e5b-f976-46fa-9940-a186703c0f41"> </p>
+<h4 id="被均分的条纹背景"><a href="#被均分的条纹背景" class="headerlink" title="被均分的条纹背景"></a>被均分的条纹背景</h4><p>当多个色标具有相同的位置,它们会产生一个无限小的过渡区别，就仿佛被均分一样。例如这样：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">background</span>:<span class="built_in">linear-gradient</span>(yellow 50%,red 50%)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/4c6ff0e9-420d-46e4-8818-cff32503a315" alt="0_1469591563104_upload-54696ebe-de1f-4b78-bcb2-4ae7eda8b7ce"><br>这样我们就得到了一个 被均分的背景颜色.</p>
+<h4 id="多个被均分的条纹背景"><a href="#多个被均分的条纹背景" class="headerlink" title="多个被均分的条纹背景"></a>多个被均分的条纹背景</h4><p>如果想要得到多个被均分的条纹背景.可以这样<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">height</span>:<span class="number">100px</span>;</span><br><span class="line">           <span class="attribute">background</span>:linear-gradient(yellow <span class="number">50%</span>,red <span class="number">50%</span>);</span><br><span class="line">           <span class="attribute">background-size</span>:<span class="number">100%</span> <span class="number">30px</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//这里 30px 为条纹背景的宽度</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="平行四边形"><a href="#平行四边形" class="headerlink" title="平行四边形"></a>平行四边形</h3><h4 id="使用skew"><a href="#使用skew" class="headerlink" title="使用skew()"></a>使用<code>skew()</code></h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;</span><br><span class="line">           <span class="keyword">width</span>:<span class="number">200</span>px<span class="comment">;</span></span><br><span class="line">           height:<span class="number">100</span>px<span class="comment">;</span></span><br><span class="line">           background:red<span class="comment">;</span></span><br><span class="line">           transform:skewX(<span class="number">-45</span>deg)<span class="comment">;</span></span><br><span class="line">           margin: <span class="number">100</span>px auto<span class="comment">;</span></span><br><span class="line">       &#125;</span><br><span class="line">       .wrap&gt;p&#123;</span><br><span class="line">           height:<span class="number">100</span>px<span class="comment">;</span></span><br><span class="line">           <span class="keyword">line</span>-height:<span class="number">100</span>px<span class="comment">;</span></span><br><span class="line">           text-align:center<span class="comment">;</span></span><br><span class="line">           transform:skewX(<span class="number">45</span>deg)<span class="comment">;</span></span><br><span class="line">       &#125;</span><br><span class="line">       </span><br><span class="line">       &lt;div class=<span class="string">"wrap"</span>&gt;</span><br><span class="line">       &lt;p&gt;测试下&lt;/p&gt;</span><br><span class="line">       &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>这算一种比较笨的方法,外部容器设置<code>transform:skewX(-45deg)</code>,内部容器再设置一个<code>transfrom:skewX(45%)</code>这样一正一负抵消掉,使得容器内的字体显示正常.<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/c0343f6d-016f-4674-89fb-96dcc2b27c1f" alt="0_1469601698859_upload-11368000-e6a8-4691-8ba0-6c105eed3646"> </p>
+<h4 id="另外一种更方便的方法"><a href="#另外一种更方便的方法" class="headerlink" title="另外一种更方便的方法"></a>另外一种更方便的方法</h4><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;</span><br><span class="line">            position:relative<span class="comment">;</span></span><br><span class="line">            <span class="keyword">font</span>-size:<span class="number">14</span>px<span class="comment">;</span></span><br><span class="line">            <span class="keyword">color</span>:red<span class="comment">;</span></span><br><span class="line">            <span class="keyword">width</span>:<span class="number">200</span>px<span class="comment">;</span></span><br><span class="line">            height:<span class="number">100</span>px<span class="comment">;</span></span><br><span class="line">            margin:<span class="number">100</span>px auto<span class="comment">;</span></span><br><span class="line">            <span class="keyword">line</span>-height:<span class="number">100</span>px<span class="comment">;</span></span><br><span class="line">            text-align:center<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">        .wrap:before&#123;</span><br><span class="line">            content:<span class="string">""</span><span class="comment">;</span></span><br><span class="line">            position: absolute<span class="comment">;</span></span><br><span class="line">            top:<span class="number">0</span><span class="comment">;</span></span><br><span class="line">            left:<span class="number">0</span><span class="comment">;</span></span><br><span class="line">            display: block<span class="comment">;</span></span><br><span class="line">            z-index:<span class="number">-1</span><span class="comment">;</span></span><br><span class="line">            background:<span class="meta">#aaa;</span></span><br><span class="line">            transform:skew(<span class="number">-45</span>deg)<span class="comment">;</span></span><br><span class="line">            <span class="keyword">width</span>:<span class="number">100</span>%<span class="comment">;</span></span><br><span class="line">            height:<span class="number">100</span>%<span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        &lt;div class=<span class="string">"wrap"</span>&gt;</span><br><span class="line">            测试下</span><br><span class="line">        &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>灵活使用伪类元素,使得完成一个平行四边形<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/eba6ff21-8803-461e-86c4-792595267389" alt="0_1469602165490_upload-daf773b5-04a6-47ca-b77d-03fabead99ad"> </p>
+<hr>
+<h3 id="切角效果"><a href="#切角效果" class="headerlink" title="切角效果"></a>切角效果</h3><h4 id="单个切角效果"><a href="#单个切角效果" class="headerlink" title="单个切角效果"></a>单个切角效果</h4><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>: <span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">margin</span>: <span class="number">100px</span> auto;</span><br><span class="line">            <span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">            <span class="attribute">line-height</span>:<span class="number">200px</span>;</span><br><span class="line">            <span class="attribute">text-align</span>:center;</span><br><span class="line">            <span class="attribute">background</span>:linear-gradient(-<span class="number">45deg</span>, transparent <span class="number">15px</span> ,red <span class="number">0</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">    &lt;div class=<span class="string">"wrap"</span>&gt;</span><br><span class="line">    测试下</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">    我们这里假设切角长度为<span class="number">15px</span>;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/ee872870-e2b1-4e9e-bc32-71db6fb06595" alt="0_1469602890755_upload-f48b3c5b-ab5f-400e-8a5d-df59cf4b3b0a"> </p>
+<h4 id="多个切角效果"><a href="#多个切角效果" class="headerlink" title="多个切角效果"></a>多个切角效果</h4><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;</span><br><span class="line">            <span class="built_in">width</span>: 200px;</span><br><span class="line">            <span class="built_in">height</span>:200px;</span><br><span class="line">            margin: 100px auto;</span><br><span class="line">            <span class="built_in">background</span>:#aaa;</span><br><span class="line">            line-<span class="built_in">height</span>:200px;</span><br><span class="line">            text-align:<span class="built_in">center</span>;</span><br><span class="line">            <span class="built_in">background</span>:</span><br><span class="line">                    <span class="built_in">linear</span>-gradient(-45deg, <span class="built_in">transparent</span> 15px ,red <span class="number">0</span>)bottom right,</span><br><span class="line">                    <span class="built_in">linear</span>-gradient(45deg, <span class="built_in">transparent</span> 15px ,red <span class="number">0</span>)bottom left,</span><br><span class="line">                    <span class="built_in">linear</span>-gradient(135deg, <span class="built_in">transparent</span> 15px ,red <span class="number">0</span>)top left,</span><br><span class="line">                    <span class="built_in">linear</span>-gradient(-135deg, <span class="built_in">transparent</span> 15px ,red <span class="number">0</span>)top right;</span><br><span class="line">            <span class="built_in">background</span>-size:<span class="number">50</span><span class="symbol">%</span> <span class="number">50</span><span class="symbol">%</span>;</span><br><span class="line">            <span class="built_in">background</span>-repeat:no-repeat;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &lt;div class=<span class="string">"wrap"</span>&gt;</span><br><span class="line">    测试下</span><br><span class="line">    &lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/8df1b04a-6011-4b1d-b583-188865445199" alt="0_1469603223956_upload-032d7ece-f5c9-46b7-97e6-91998f6379b0"> </p>
+<hr>
+<p>##自定义下划线</p>
+<h3 id="使用text-decoration-underline"><a href="#使用text-decoration-underline" class="headerlink" title="使用text-decoration:underline"></a>使用<code>text-decoration:underline</code></h3><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.wrap&#123;</span><br><span class="line"><span class="symbol">            color:</span>red;</span><br><span class="line">        &#125;</span><br><span class="line">        .wrap&gt;span&#123;</span><br><span class="line">            text-decoration: underline;</span><br><span class="line"><span class="symbol">            color:</span>green;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="params">&lt;p class="wrap"&gt;</span></span><br><span class="line">        asdadasdad<span class="params">&lt;span&gt;</span>asyyyyppp<span class="params">&lt;/span&gt;</span>ppppsadad</span><br><span class="line">    <span class="params">&lt;/p&gt;</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/d2eba705-873c-4452-935e-79abdaea8d87" alt="0_1469611809347_upload-225f0e84-e6ae-4499-881a-7120ba41331b"><br>这样我们发现.有的p遮盖了一部分,这种方法感觉不是很好用</p>
+<hr>
+<h3 id="使用边框"><a href="#使用边框" class="headerlink" title="使用边框"></a>使用边框</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">           <span class="attribute">color</span>:red;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-class">.wrap</span>&gt;<span class="selector-tag">span</span>&#123;</span><br><span class="line">           <span class="attribute">display</span>:inline-block;</span><br><span class="line">           <span class="attribute">border-bottom</span>:<span class="number">1px</span> solid black;</span><br><span class="line">           <span class="attribute">color</span>:green;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/609747d1-5c02-43e3-b314-af89e2dc1a76.png" alt="0_1469974393638_1469959156426_2.png"> </p>
+<h2 id="各种文字效果"><a href="#各种文字效果" class="headerlink" title="各种文字效果"></a>各种文字效果</h2><h3 id="空心字效果"><a href="#空心字效果" class="headerlink" title="空心字效果"></a>空心字效果</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">            <span class="attribute">display</span>: inline-block;</span><br><span class="line">            <span class="attribute">background</span>:deeppink;</span><br><span class="line">            <span class="attribute">color</span>:white;</span><br><span class="line">            <span class="attribute">text-shadow</span>:<span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> black,</span><br><span class="line">            <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> black,<span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> black,</span><br><span class="line">            <span class="number">0</span> <span class="number">0</span> <span class="number">1px</span> black;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/6c2cd9c5-e9c3-4e75-96a0-c5e7363d7ccc.png" alt="示意图"> <em>*</em></p>
+<h3 id="文字发光效果"><a href="#文字发光效果" class="headerlink" title="文字发光效果"></a>文字发光效果</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrap</span>&#123;</span><br><span class="line">            <span class="attribute">display</span>: inline-block;</span><br><span class="line">            <span class="attribute">background</span>:deeppink;</span><br><span class="line">            <span class="attribute">color</span>:white;</span><br><span class="line">            <span class="attribute">text-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#fff</span>,<span class="number">0</span> <span class="number">0</span> <span class="number">10px</span> <span class="number">#fff</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        可以重复多次设置 <span class="selector-tag">text-shadow</span>的值</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/读书笔记/" rel="tag">#读书笔记</a>
+          
+            <a href="/tags/css/" rel="tag">#css</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/31/编写可维护的javaScript/" rel="next" title="编写可维护的javaScript">
+                <i class="fa fa-chevron-left"></i> 编写可维护的javaScript
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/07/移动端总结笔记/" rel="prev" title="createjs框架入门">
+                createjs框架入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/07/31/CSS解密/"
+                   data-title="CSS揭秘" data-url="http://yoursite.com/2016/07/31/CSS解密/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#边框"><span class="nav-number">1.</span> <span class="nav-text">边框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多重边框"><span class="nav-number">1.1.</span> <span class="nav-text">多重边框</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#box-shaodw"><span class="nav-number">1.1.1.</span> <span class="nav-text">box-shaodw</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#outline"><span class="nav-number">1.1.2.</span> <span class="nav-text">outline</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条纹背景"><span class="nav-number">2.</span> <span class="nav-text">条纹背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#水平条纹背景"><span class="nav-number">2.1.</span> <span class="nav-text">水平条纹背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个最基本的条纹背景"><span class="nav-number">2.1.1.</span> <span class="nav-text">一个最基本的条纹背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#被均分的条纹背景"><span class="nav-number">2.1.2.</span> <span class="nav-text">被均分的条纹背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个被均分的条纹背景"><span class="nav-number">2.1.3.</span> <span class="nav-text">多个被均分的条纹背景</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平行四边形"><span class="nav-number">2.2.</span> <span class="nav-text">平行四边形</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用skew"><span class="nav-number">2.2.1.</span> <span class="nav-text">使用skew()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另外一种更方便的方法"><span class="nav-number">2.2.2.</span> <span class="nav-text">另外一种更方便的方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#切角效果"><span class="nav-number">2.3.</span> <span class="nav-text">切角效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单个切角效果"><span class="nav-number">2.3.1.</span> <span class="nav-text">单个切角效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个切角效果"><span class="nav-number">2.3.2.</span> <span class="nav-text">多个切角效果</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用text-decoration-underline"><span class="nav-number">2.4.</span> <span class="nav-text">使用text-decoration:underline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用边框"><span class="nav-number">2.5.</span> <span class="nav-text">使用边框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种文字效果"><span class="nav-number">3.</span> <span class="nav-text">各种文字效果</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#空心字效果"><span class="nav-number">3.1.</span> <span class="nav-text">空心字效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字发光效果"><span class="nav-number">3.2.</span> <span class="nav-text">文字发光效果</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

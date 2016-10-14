@@ -1,0 +1,779 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="移动端," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta property="og:type" content="article">
+<meta property="og:title" content="平时移动端的一些总结">
+<meta property="og:url" content="http://yoursite.com/2016/09/25/平时移动端的一些总结/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/02074803-a621-4363-b3c6-8c14e8a7027c.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/631ea458-f250-4fb7-8208-19b17208862a.png">
+<meta property="og:updated_time" content="2016-09-24T16:34:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="平时移动端的一些总结">
+<meta name="twitter:description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 平时移动端的一些总结 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                平时移动端的一些总结
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-09-25T00:31:48+08:00" content="2016-09-25">
+              2016-09-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/25/平时移动端的一些总结/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/25/平时移动端的一些总结/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h1 id="说在开头"><a href="#说在开头" class="headerlink" title="说在开头"></a>说在开头</h1><p>工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0<br><a id="more"></a>    </p>
+<hr>
+<p>##移动端的一些适配<br>之前做移动端面对的适配问题很棘手。不过现在主流也就是这几种情况</p>
+<ul>
+<li>640px设计稿切320px<br>这一种一般很简单直接让UI妹子给你640的设计稿,然后如果一个元素<code>width</code>为30,则写的时候改为15px 即可。。</li>
+</ul>
+<hr>
+<ul>
+<li>等比缩放<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript">(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> w = <span class="built_in">window</span>.screen.width, s = w / <span class="number">750</span>, u = navigator.userAgent, m = <span class="string">'&lt;meta name="viewport" content="width=750,'</span>;</span><br><span class="line">            <span class="keyword">if</span> (<span class="regexp">/android (\d+\.\d+)/i</span>.test(u)) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">parseFloat</span>(<span class="built_in">RegExp</span>.$<span class="number">1</span> &gt; <span class="number">2.3</span>)) &#123;</span><br><span class="line">                    m += <span class="string">"minimum-scale = "</span> + s + <span class="string">", maximum-scale = "</span> + s + <span class="string">","</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                m += <span class="string">"user-scalable=no,"</span></span><br><span class="line">            &#125;</span><br><span class="line">            m += <span class="string">'target-densitydpi=device-dpi"&gt;'</span>;</span><br><span class="line">            <span class="built_in">document</span>.write(m)</span><br><span class="line">        &#125;());</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里我设置的是750的设计稿，这种适配的方式就是有点好处，可以直接写原始的<code>px</code>,比较方便，而且手机上面体验效果也不错。不过有的安卓机器(极少数)会有Bug。。比如我那个产品大佬的安卓手机….  解决办法不明。。。。。</p>
+<hr>
+<ul>
+<li>使用动态rem,动态改变font-size<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="built_in">var</span> width=<span class="built_in">document</span>.documentElement.clientWidth;</span><br><span class="line">            <span class="built_in">var</span> head=<span class="built_in">document</span>.getElementsByTagName(<span class="string">"head"</span>)[<span class="number">0</span>];</span><br><span class="line">            <span class="built_in">var</span> style=<span class="built_in">document</span>.createElement(<span class="string">"style"</span>);</span><br><span class="line">            <span class="keyword">if</span>(width&gt;<span class="number">640</span>)&#123;</span><br><span class="line">                style.innerHTML=<span class="string">"html,body&#123;font-size:"</span>+<span class="number">64</span>+<span class="string">"px;"</span>+<span class="string">"width:"</span>+<span class="number">640</span>+<span class="string">"px;"</span>+<span class="string">"margin:0 auto;&#125;"</span>+</span><br><span class="line">                                <span class="string">".footer-main&#123;width:640px;margin:0 auto&#125;"</span>;</span><br><span class="line">            &#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">                style.innerHTML=<span class="string">"html,body&#123;font-size:"</span>+width/<span class="number">10</span>+<span class="string">"px;&#125;"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            head.appendChild(style);</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">var</span> i=<span class="number">0</span>;i&lt;<span class="built_in">document</span>.getElementsByTagName(<span class="string">"style"</span>).length<span class="number">-1</span>;i++)&#123;</span><br><span class="line">                <span class="built_in">document</span>.getElementsByTagName(<span class="string">"style"</span>)[i].remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)()</span><br><span class="line">        <span class="built_in">window</span>.addEventListener(<span class="string">"resize"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            init();</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样只用知道 设计稿的原本大小，和元素的原本大小(px) </span><br><span class="line">然后用 </span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素高 对应 height Y <span class="comment">rem </span></span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素宽 对应 width X <span class="comment">rem </span></span><br><span class="line">然后就直接可以根据屏幕大小适配了。</span><br></pre></td></tr></table></figure>
+<p>怎么说呢？比如我一个设计稿是750,一个元素<code>width</code>为100px;<br><code>height</code>为100px。<br>转换之后<br>width= 100px<em>10/750=1.34rem;<br>height=100px</em>10/750=1.34rem;<br>当然 如果是使用<code>sass</code>这样 用一个自定义方程计算，更好。</p>
+<hr>
+<h2 id="移动端的一些常用-meta"><a href="#移动端的一些常用-meta" class="headerlink" title="移动端的一些常用 meta"></a>移动端的一些常用 meta</h2><p>这一点没啥好说的。。。可能别处别我这边更为详细一点..不过我平时也就是使用这一些<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"black"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="移动端的tap点击穿透"><a href="#移动端的tap点击穿透" class="headerlink" title="移动端的tap点击穿透"></a>移动端的<code>tap</code>点击穿透</h2><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png" alt="0_1474734469040_1474726441667_3.png"> </p>
+<p> <code>触发过程</code>：当网速良好的情况下，点击右上角抽奖.瞬间弹出模块框，然后回到首页按钮响应。页面发生跳转。回到首页</p>
+<hr>
+<p><code>解决办法</code>：</p>
+<ul>
+<li><p>针对zepto.js的<code>tap</code>办法,将<code>tap</code>事件触发改为,<code>touchend</code>,然后禁止其默认事件</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">btn.on(<span class="string">"touchend"</span>,<span class="function"><span class="keyword">function</span><span class="params">(e)</span></span>&#123;</span><br><span class="line">    e.preventDefault();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设置一个<code>setTimeout</code>延迟300ms之后响应</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">btn.on(<span class="string">"tap"</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">        todo....</span><br><span class="line">    &#125;,<span class="number">400</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h2 id="利用padding-top高度自适应占位"><a href="#利用padding-top高度自适应占位" class="headerlink" title="利用padding-top高度自适应占位"></a>利用<code>padding-top</code>高度自适应占位</h2><p><code>原理</code>:</p>
+<p>不管是<code>margin</code>还是<code>padding</code>如果百分比都是取的相对于父级的宽度。<br>例如<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"ct"</span>&gt;</span><br><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"content"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后设置<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">600px</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-class">.ct</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">50%</span>;</span><br><span class="line">           <span class="attribute">background</span>:red;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-class">.content</span>&#123;</span><br><span class="line">       <span class="comment">//这里相对于父级宽度,</span></span><br><span class="line">           <span class="attribute">padding-top</span>:<span class="number">100%</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/02074803-a621-4363-b3c6-8c14e8a7027c.png" alt="0_1474734504330_1474726440408_2.png"> </p>
+<p>如果是如要上面装有图片。一个很好的一点就是.用浮动,利用伪类元素<code>padding-top:100%</code>撑开容器。然后设置img<code>position:absolute</code></p>
+<hr>
+<h2 id="ios-input框激活后不支持position-fixedbug"><a href="#ios-input框激活后不支持position-fixedbug" class="headerlink" title="ios input框激活后不支持position:fixedbug"></a>ios input框激活后不支持<code>position:fixed</code>bug</h2><p>就好比这个情况<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/631ea458-f250-4fb7-8208-19b17208862a.png" alt="0_1474734485151_1474731464942_2.png"> </p>
+<hr>
+<p><code>触发过程</code><br>当用户使用<code>ios</code>系统点击激活input框时,此时浏览器会不在支持<code>fixed</code></p>
+<hr>
+<p><code>解决办法</code><br>两种方案：</p>
+<ul>
+<li>使用js控制，当input框激活时，改变将position状态由<code>fixed</code>改为<code>relative</code>,然后当input框失去焦点时,将position状态由<code>relative</code>恢复成<code>fixed</code>。</li>
+</ul>
+<p>不过这种办法感觉挺麻烦的。。。一般能用css解决的就经量用css解决。</p>
+<ul>
+<li>模拟<code>position:fixed</code><br>好比这样<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">header&#123;</span><br><span class="line"><span class="symbol">			height:</span><span class="number">200</span>px;</span><br><span class="line"><span class="symbol">			width:</span><span class="number">100</span>%;</span><br><span class="line"><span class="symbol">			position:</span> absolute;</span><br><span class="line"><span class="symbol">			left:</span><span class="number">0</span>;</span><br><span class="line"><span class="symbol">			top:</span><span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		section&#123;</span><br><span class="line"><span class="symbol">			position:</span> absolute;</span><br><span class="line"><span class="symbol">			width:</span><span class="number">100</span>%;</span><br><span class="line"><span class="symbol">			left:</span><span class="number">0</span>;</span><br><span class="line"><span class="symbol">			top:</span><span class="number">200</span>px;</span><br><span class="line"><span class="symbol">			bottom:</span><span class="number">200</span>px;</span><br><span class="line">			-webkit-overflow-scrolling: touch;   </span><br><span class="line">		&#125;</span><br><span class="line">		footer&#123;</span><br><span class="line"><span class="symbol">			position:</span> absolute;</span><br><span class="line"><span class="symbol">			height:</span><span class="number">200</span>px;</span><br><span class="line"><span class="symbol">			width:</span><span class="number">100</span>%;</span><br><span class="line"><span class="symbol">			left:</span><span class="number">0</span>;</span><br><span class="line"><span class="symbol">			bottom:</span><span class="number">200</span>px;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="params">&lt;header&gt;</span>我是头部<span class="params">&lt;/header&gt;</span></span><br><span class="line">    	<span class="params">&lt;section&gt;</span>我是内容<span class="params">&lt;/section&gt;</span></span><br><span class="line">    	<span class="params">&lt;footer&gt;</span>我是页脚<span class="params">&lt;/footer&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>目前 一直使用的还是第二种css的方法。让<code>section</code>内部滑动</p>
+<hr>
+<h2 id="移动端常见取消默认重置"><a href="#移动端常见取消默认重置" class="headerlink" title="移动端常见取消默认重置"></a>移动端常见取消默认重置</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*去除点击高亮效果*/</span></span><br><span class="line"><span class="selector-tag">a</span>, <span class="selector-tag">button</span>, <span class="selector-tag">input</span>, select, <span class="selector-tag">img</span>, <span class="selector-tag">label</span> &#123;</span><br><span class="line">    -webkit-tap-highlight-<span class="attribute">color</span>: transparent;</span><br><span class="line">    <span class="attribute">outline</span>: medium none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">input</span>::-moz-focus-inner &#123;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">select, <span class="selector-tag">input</span> &#123;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*去除输入框默认样式*/</span></span><br><span class="line"><span class="selector-tag">button</span>, <span class="selector-tag">input</span>[type=<span class="string">"text"</span>] &#123;</span><br><span class="line">    -webkit-appearance: <span class="attribute">none</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="文本溢出隐藏"><a href="#文本溢出隐藏" class="headerlink" title="文本溢出隐藏"></a>文本溢出隐藏</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//单行文本溢出</span></span><br><span class="line"><span class="selector-class">.xx</span>&#123;</span><br><span class="line">        <span class="attribute">overflow</span>:hidden;</span><br><span class="line">        <span class="attribute">white-space</span>:nowrap;</span><br><span class="line">        <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//多行文本溢出</span></span><br><span class="line"><span class="selector-class">.xx</span>&#123;</span><br><span class="line">        <span class="attribute">display</span>:-webkit-box !importmort;</span><br><span class="line">        <span class="attribute">overflow</span>:hidden;</span><br><span class="line">        <span class="attribute">text-overflow</span>:ellipsis;</span><br><span class="line">        <span class="attribute">word-break</span>:break-all;</span><br><span class="line">        -webkit-box-orient:vertical;</span><br><span class="line">        -webkit-line-clamp:<span class="number">2</span>;(数字2表示隐藏两行)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>暂时就想到这些啦,后面的在总结</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/移动端/" rel="tag">#移动端</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/09/04/基于angular自定义指令封装的一个富文本编辑器/" rel="next" title="基于angular自定义指令封装的一个富文本编辑器">
+                <i class="fa fa-chevron-left"></i> 基于angular自定义指令封装的一个富文本编辑器
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/15/再谈javascript闭包/" rel="prev" title="再谈javascript闭包">
+                再谈javascript闭包 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/09/25/平时移动端的一些总结/"
+                   data-title="平时移动端的一些总结" data-url="http://yoursite.com/2016/09/25/平时移动端的一些总结/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说在开头"><span class="nav-number">1.</span> <span class="nav-text">说在开头</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端的一些常用-meta"><span class="nav-number">1.1.</span> <span class="nav-text">移动端的一些常用 meta</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端的tap点击穿透"><span class="nav-number">1.2.</span> <span class="nav-text">移动端的tap点击穿透</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用padding-top高度自适应占位"><span class="nav-number">1.3.</span> <span class="nav-text">利用padding-top高度自适应占位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ios-input框激活后不支持position-fixedbug"><span class="nav-number">1.4.</span> <span class="nav-text">ios input框激活后不支持position:fixedbug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#移动端常见取消默认重置"><span class="nav-number">1.5.</span> <span class="nav-text">移动端常见取消默认重置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文本溢出隐藏"><span class="nav-number">1.6.</span> <span class="nav-text">文本溢出隐藏</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

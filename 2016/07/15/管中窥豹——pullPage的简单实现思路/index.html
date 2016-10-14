@@ -1,0 +1,797 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,js," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="今天看到一个响应式的页面，看完才感觉原来最开始学html的时候，我就会做响应式页面了。后面因为CSS+DIV网页布局的出现，才使得元素被束缚。。。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管中窥豹——pullPage的简单实现思路">
+<meta property="og:url" content="http://yoursite.com/2016/07/15/管中窥豹——pullPage的简单实现思路/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="今天看到一个响应式的页面，看完才感觉原来最开始学html的时候，我就会做响应式页面了。后面因为CSS+DIV网页布局的出现，才使得元素被束缚。。。">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/df61f385-aa58-41eb-b27c-8544b2d3b0b3.gif">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/77eecdfe-5476-490d-a857-28bb66f2991a">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/a2137890-ad76-46cb-9f52-8adf3b454ffc">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/f85ad751-283b-4aef-816e-de9f0f3f9350">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/03bdd0f7-bcc3-4eb5-a14d-c4f5fec192fc">
+<meta property="og:updated_time" content="2016-07-14T18:27:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="管中窥豹——pullPage的简单实现思路">
+<meta name="twitter:description" content="今天看到一个响应式的页面，看完才感觉原来最开始学html的时候，我就会做响应式页面了。后面因为CSS+DIV网页布局的出现，才使得元素被束缚。。。">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/df61f385-aa58-41eb-b27c-8544b2d3b0b3.gif">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 管中窥豹——pullPage的简单实现思路 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                管中窥豹——pullPage的简单实现思路
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-15T02:24:03+08:00" content="2016-07-15">
+              2016-07-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/js/" itemprop="url" rel="index">
+                    <span itemprop="name">js</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/15/管中窥豹——pullPage的简单实现思路/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/15/管中窥豹——pullPage的简单实现思路/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>今天看到一个响应式的页面，看完才感觉原来最开始学<code>html</code>的时候，我就会做响应式页面了。后面因为<code>CSS+DIV</code>网页布局的出现，才使得元素被束缚。。。 <a id="more"></a><br>感觉收获最大的就是,知道了媒体查询和rem的使用方向上面的不同：</p>
+<ul>
+<li>媒体查询：针对页面为了适应不同设备，说白了就是为了让页面在不同的设备(pc端，移动端，平板)上显示的有美感。</li>
+<li>rem :更多是针对移动端布局，只要是为了实现让页面在<strong>所有的移动端设备上看起来都是一样</strong>.</li>
+</ul>
+<p>好了，话题回到fullpage.js的实现过程中来。<br>前端时间看到很多pc段页面都是用这个插件。今天再<code>github</code>上面看了看用法，开始用自己思路想了一个小时，后面看了看源码。这里总结下fullpage.js的实现思路；</p>
+<h2 id="fullpage-js大致思路。"><a href="#fullpage-js大致思路。" class="headerlink" title="fullpage.js大致思路。"></a><code>fullpage.js</code>大致思路。</h2><p>最开始，不用说当然是一个html，然后给加上样式<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	*&#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>;&#125;</span><br><span class="line">	*&#123;<span class="attribute">box-sizing</span>: border-box;&#125;</span><br><span class="line">		*&#123;<span class="attribute">margin</span>:<span class="number">0</span>; <span class="attribute">padding</span>:<span class="number">0</span>;&#125;</span><br><span class="line">        *&#123;<span class="attribute">box-sizing</span>: border-box;&#125;</span><br><span class="line">        <span class="selector-tag">html</span>,<span class="selector-tag">body</span>,<span class="selector-tag">section</span>&#123;</span><br><span class="line">            <span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">            <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">body</span>&#123;</span><br><span class="line">        <span class="attribute">overflow</span>:hidden;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-tag">section</span>&gt;<span class="selector-tag">div</span>&#123;</span><br><span class="line">            <span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">            <span class="attribute">text-align</span>: center;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.box</span><span class="selector-pseudo">:nth-of-type(1)</span>&#123;</span><br><span class="line">            <span class="attribute">background</span>:yellow;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.box</span><span class="selector-pseudo">:nth-of-type(2)</span>&#123;</span><br><span class="line">            <span class="attribute">background</span>:green;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.box</span><span class="selector-pseudo">:nth-of-type(3)</span>&#123;</span><br><span class="line">            <span class="attribute">background</span>:red;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="selector-class">.box</span><span class="selector-pseudo">:nth-of-type(4)</span>&#123;</span><br><span class="line">            <span class="attribute">background</span>:pink;</span><br><span class="line">        &#125;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">section</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>page1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>page2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>page3<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span>page4<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">section</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line">这里为了好区分，我给每一个div都加上不同的颜色。</span><br></pre></td></tr></table></figure></p>
+<p>然后我们就会得到这样一幅图<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/df61f385-aa58-41eb-b27c-8544b2d3b0b3.gif" alt="0_1468426647980_示意图.gif"></p>
+<h3 id="如何滑动"><a href="#如何滑动" class="headerlink" title="如何滑动"></a>如何滑动</h3><p>得到这样一个图还是不行啊，到底如何让他根据我的动作动起来呢？？我这里想到了<code>JS</code></p>
+<h4 id="获取滑动的距离"><a href="#获取滑动的距离" class="headerlink" title="获取滑动的距离"></a>获取滑动的距离</h4><ul>
+<li>因为每次要滑动的距离 都是一个窗口的大小，所以很简单 这里要做的就是先确定 滑动的距离<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullHeight=<span class="built_in">document</span>.documentElement.clientHeight;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h4 id="获取滑动的方向"><a href="#获取滑动的方向" class="headerlink" title="获取滑动的方向"></a>获取滑动的方向</h4><ul>
+<li>知道了滑动距离之后，我还需要知道他到底是向上滑还是向下滑动啊，这样我也好作出与之相对应的操作对应。</li>
+</ul>
+<p>对此我当时的想法是，我能不能先一开始记录下我所对应的窗口<code>window</code>的<code>scolltop</code>值的大小，然后和我操作后的值比大小，从而判断我是想上滑动的还是向下滑动的。<br><figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">oldScrolltop=$(window).scrollTop();</span><br><span class="line">			$(window).on(<span class="string">"scroll"</span>,function()&#123;</span><br><span class="line">				<span class="keyword">var</span> newScrolrrtop=$(window).scrollTop();</span><br><span class="line">				<span class="keyword">var</span> <span class="literal">result</span>=newScrolrrtop-oldScrolltop;</span><br><span class="line">				<span class="keyword">if</span>(<span class="literal">result</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">					console.log(<span class="string">"我在向下滑动。"</span>);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					console.log(<span class="string">"我在向上滑动"</span>)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/77eecdfe-5476-490d-a857-28bb66f2991a" alt="0_1468428278945_upload-cd0921e4-18e5-4d75-a2a5-bef1c5e3f824"><br>然而结果却是，不管我上滑还是下滑，都是console.log(“我在向上滑动”),这里肯定哪里出错了。</p>
+<hr>
+<p>后面排查的时候发现。这里有个严重的错误:</p>
+<ul>
+<li>我最开始就定义了<code>oldScroll</code> 相当于我每次都是用最新的窗口滚动距离，减去初始的那个窗口滚动距离，很明显这一开始就错了。<br>后面发现 应该这样弄<figure class="highlight nimrod"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">oldScrolltop=$(window).scrollTop();</span><br><span class="line">			$(window).on(<span class="string">"scroll"</span>,function()&#123;</span><br><span class="line">				<span class="keyword">var</span> newScrolltop=$(window).scrollTop();</span><br><span class="line">				<span class="keyword">var</span> <span class="literal">result</span>=newScrolltop-oldScrolltop;</span><br><span class="line">                oldScrolltop=newScrolltop;</span><br><span class="line">				<span class="keyword">if</span>(<span class="literal">result</span>&gt;<span class="number">0</span>)&#123;</span><br><span class="line">					console.log(<span class="string">"我在向下滑动。"</span>);</span><br><span class="line">				&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">					console.log(<span class="string">"我在向上滑动"</span>)</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这样就相当于：</p>
+<ul>
+<li>我下一次的”旧数据”是我前一次的”新数据”</li>
+<li>虽然有点绕，但是我相信大家可以忽略我第一句话，直接看代码就能明白。。。。<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/a2137890-ad76-46cb-9f52-8adf3b454ffc" alt="0_1468428726088_upload-4634789a-ffe3-4332-b1e1-94e28053c0de"><br>这样就能确保我每次滑动鼠标，都会给我反馈一个正确的滑动方向。</li>
+</ul>
+<hr>
+<h3 id="获取方向之后的行动"><a href="#获取方向之后的行动" class="headerlink" title="获取方向之后的行动"></a>获取方向之后的行动</h3><p>当获取到了。每次滑动时的方向之后，我们要做什么？————当然是 让这个”玩意”上下动起来啊。难道还在控制台看我向上滚了，向下滚了。。。</p>
+<p>要使得屏幕上下滚动，第一时间想到的就是<code>$(window).srollTop()</code>,当我们知道每次<code>鼠标滑动的方向</code>和<code>元素内部的高度</code>这样就很好做了：</p>
+<ul>
+<li>如果鼠标是向上滚动，那么我们就直接让窗口的距离向下滚动一个<code>fullHeight</code>的距离;</li>
+<li>如果鼠标是向下滚动，那么我们就直接让窗口的距离向上滚动一个<code>fullHeight</code>的距离;<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">这里我们把上面的代码封装成一个函数。</span><br><span class="line">   <span class="keyword">var</span> fullHeight=<span class="built_in">document</span>.documentElement.clientHeight,</span><br><span class="line">    oldScrolltop=$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">            key;</span><br><span class="line">        $(<span class="built_in">window</span>).on(<span class="string">"scroll"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(key)<span class="keyword">return</span>;</span><br><span class="line">            key=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">var</span> response= getScrolltop();</span><br><span class="line">            <span class="keyword">if</span>(response===<span class="string">"down"</span>)&#123;</span><br><span class="line">                $(<span class="built_in">window</span>).scrollTop($(<span class="built_in">window</span>).scrollTop()+fullHeight);</span><br><span class="line">                key=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                $(<span class="built_in">window</span>).scrollTop($(<span class="built_in">window</span>).scrollTop()-fullHeight);</span><br><span class="line">                key=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="title">getScrolltop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> newScrolltop=$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">                    result=newScrolltop-oldScrolltop;</span><br><span class="line">            oldScrolltop=newScrolltop;</span><br><span class="line">            <span class="keyword">if</span>(result&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"down"</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="string">"up"</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>然后试着 试了试，却发现了问题。<br>再滑动的时候，视窗类的元素会从第一个直接滑到最后一个。很明显这不是我们想要的样子。</p>
+<hr>
+<h2 id="另一种尝试，wheel事件。"><a href="#另一种尝试，wheel事件。" class="headerlink" title="另一种尝试，wheel事件。"></a>另一种尝试，<code>wheel</code>事件。</h2><p>这里我们把监听事件的类型从，监听滚动事件<code>scroll</code>改成<code>wheel</code>监听鼠标的滚轮事件.<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">"wheel"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"我滑动了。"</span>)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>但是这样有一个问题：<br>因为我之前判断滚动方向是通过比较前后<code>$(window).scrollTop</code>值的大小来判断的，这里其实可以通过另外一个值来直接判断。省去比较前后<code>$(&quot;window&quot;).scrollTop</code>值的比较,<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">window</span>).on(<span class="string">"wheel"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(e)</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>当鼠标滑轮向下滚动时：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/f85ad751-283b-4aef-816e-de9f0f3f9350" alt="0_1468461389602_upload-f4873a89-3a7d-413d-8312-3510981f4daf"></p>
+<hr>
+<p>当鼠标滑轮向上滚动时：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/03bdd0f7-bcc3-4eb5-a14d-c4f5fec192fc" alt="0_1468461182518_upload-38ffde72-28df-4ffc-94c2-b24561f9b270"></p>
+<hr>
+<p>这样一来我们就只需要通过判断<code>e.originalEvent.deltaY</code>这个值的大小,从而就能知道鼠标是向上滚动还是向下滚动了。</p>
+<p>整理之后 我们代码就变成这样了:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullHeight=<span class="built_in">document</span>.documentElement.clientHeight,</span><br><span class="line">    oldScrolltop=$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">            key;</span><br><span class="line"></span><br><span class="line">        $(<span class="built_in">window</span>).on(<span class="string">"wheel"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(key)<span class="keyword">return</span>;</span><br><span class="line">            key=<span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">var</span> response= e.originalEvent.deltaY;</span><br><span class="line">            <span class="keyword">if</span>(response&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                $(<span class="built_in">window</span>).scrollTop($(<span class="built_in">window</span>).scrollTop()+fullHeight);</span><br><span class="line">                key=<span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                $(<span class="built_in">window</span>).scrollTop($(<span class="built_in">window</span>).scrollTop()-fullHeight);</span><br><span class="line">                key=<span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>但是这样 功能也算大致实现了。有点小问题，当鼠标滑动过快的时候，我们发现屏幕会一下子从<code>page1</code>到<code>page2</code><br>这里用<code>animate</code>稍微改进下。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fullHeight=<span class="built_in">document</span>.documentElement.clientHeight,</span><br><span class="line">   oldScrolltop=$(<span class="built_in">window</span>).scrollTop(),</span><br><span class="line">           key;</span><br><span class="line"></span><br><span class="line">       $(<span class="built_in">window</span>).on(<span class="string">"wheel"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">if</span>(key)<span class="keyword">return</span>;</span><br><span class="line">           key=<span class="literal">true</span>;</span><br><span class="line">           <span class="keyword">var</span> response= e.originalEvent.deltaY;</span><br><span class="line">           <span class="keyword">var</span> dection =response&gt;<span class="number">0</span>?<span class="string">"+="</span>:<span class="string">"-="</span>;</span><br><span class="line">           $(<span class="string">"body"</span>).animate(&#123;<span class="string">"scrollTop"</span>:dection+fullHeight&#125;,<span class="number">1000</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">               key=<span class="literal">false</span>;</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;)</span><br></pre></td></tr></table></figure></p>
+<p>到此为止.fullpage.js的大致功能就已经实现了。<br>不过既然是自己动手造轮子，就弄点稍微好一点。这里其实还可以在做一点加工，让他适应手机端和PC端。</p>
+<hr>
+<h2 id="让fullpage-js使用手机端"><a href="#让fullpage-js使用手机端" class="headerlink" title="让fullpage.js使用手机端"></a>让fullpage.js使用手机端</h2><p>我们知道手机端屏幕和PC端屏幕。最大的不同就是：</p>
+<ul>
+<li>手机端没有鼠标啊。你让我怎么用<code>wheel</code>事件.</li>
+<li>不过手机端上多了一个<code>touch</code>事件</li>
+</ul>
+<p>这样问题就很好解决了。我们同时监听这两个事件，不就是相当于完成了移动端和PC端的自适应？？</p>
+<p>在移动端中,因为有了<code>touch</code>事件，如果要监控判断用户在移动端是向上滑动，还是向下滑动(这里简单起见，不考像左右滑动ongoing的，当然判断左右滑动和上下滑动类似);而且在移动端中我更倾向于使用css3来代替animate;</p>
+<p>好了不多说，我们直接上代码<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">"body"</span>).<span class="keyword">on</span>(<span class="string">"touchstart"</span>, function(e) &#123;</span><br><span class="line">    e.preventDefault()<span class="comment">;</span></span><br><span class="line">     startY = e.originalEvent.changedTouches[<span class="number">0</span>].pageY<span class="comment">;</span></span><br><span class="line">&#125;)<span class="comment">;</span></span><br><span class="line">$(<span class="string">"body"</span>).<span class="keyword">on</span>(<span class="string">"touchend"</span>, function(e) &#123;</span><br><span class="line">    e.preventDefault()<span class="comment">;</span></span><br><span class="line">            moveEndY = e.originalEvent.changedTouches[<span class="number">0</span>].pageY<span class="comment">;</span></span><br><span class="line">            Y = moveEndY - startY<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(Y&gt;<span class="number">0</span>) &#123;</span><br><span class="line">        console.log(<span class="string">"向下滑"</span>)<span class="comment">;</span></span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        console.log(<span class="string">"向上滑"</span>)<span class="comment">;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)<span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<pre><code>这样我就直接可以在`touch`事件开始之前，记录一个值，然后在`touch`事件结束的时候,再记录一个值。
+然后比较两者之间的大小，当大于某个值的时候，作出相对应的动作(当然这个值的大小我们可以规定)
+</code></pre></span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/js/" rel="tag">#js</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/12/Es6入门到放弃①/" rel="next" title="Es6从入门到放弃①">
+                <i class="fa fa-chevron-left"></i> Es6从入门到放弃①
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/25/ES6从入门到放弃/" rel="prev" title="ES6从入门到放弃">
+                ES6从入门到放弃 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/07/15/管中窥豹——pullPage的简单实现思路/"
+                   data-title="管中窥豹——pullPage的简单实现思路" data-url="http://yoursite.com/2016/07/15/管中窥豹——pullPage的简单实现思路/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fullpage-js大致思路。"><span class="nav-number">1.</span> <span class="nav-text">fullpage.js大致思路。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何滑动"><span class="nav-number">1.1.</span> <span class="nav-text">如何滑动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取滑动的距离"><span class="nav-number">1.1.1.</span> <span class="nav-text">获取滑动的距离</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取滑动的方向"><span class="nav-number">1.1.2.</span> <span class="nav-text">获取滑动的方向</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取方向之后的行动"><span class="nav-number">1.2.</span> <span class="nav-text">获取方向之后的行动</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#另一种尝试，wheel事件。"><span class="nav-number">2.</span> <span class="nav-text">另一种尝试，wheel事件。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#让fullpage-js使用手机端"><span class="nav-number">3.</span> <span class="nav-text">让fullpage.js使用手机端</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

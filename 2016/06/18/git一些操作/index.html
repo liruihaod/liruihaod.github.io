@@ -1,0 +1,795 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端工具,git," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="先声明一点。。我真的不是只会用git pull，和git push。。。这里总结下git的一些基本使用方法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git一些操作">
+<meta property="og:url" content="http://yoursite.com/2016/06/18/git一些操作/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="先声明一点。。我真的不是只会用git pull，和git push。。。这里总结下git的一些基本使用方法">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/19d9626f-4cc8-43f0-a234-a8dd8c8296fb">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/db274bd4-2d3d-451c-b450-9c86dd41404a">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/9bace19a-359f-4d70-a183-473bfd947efd">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/7541c373-45d5-4f19-9cdc-5ae3f230abab">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/5a79617e-604c-4868-9899-fe82e2841a48">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/9557fed0-4a5e-4014-a012-95c68c62bf26">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/7b3187ee-7daa-4829-8c4b-e96bed115ca9">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/80213be9-4ea9-491b-a264-ecc45f730c43">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/98f8608d-35fb-4705-a831-64328265348a">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/41a6ef3e-a0fc-4240-9a90-d71f4d0ea8b2">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/fa266e45-1966-4f4f-9a77-137528006f28">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/ec48c49c-d5e0-4737-a494-7e162e94bfdf">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/10830ffa-4258-4e34-a6a7-b00c3777524f">
+<meta property="og:updated_time" content="2016-06-18T11:15:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git一些操作">
+<meta name="twitter:description" content="先声明一点。。我真的不是只会用git pull，和git push。。。这里总结下git的一些基本使用方法">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/19d9626f-4cc8-43f0-a234-a8dd8c8296fb">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> git一些操作 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git一些操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-06-18T19:57:49+08:00" content="2016-06-18">
+              2016-06-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端工具/" itemprop="url" rel="index">
+                    <span itemprop="name">前端工具</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端工具/git/" itemprop="url" rel="index">
+                    <span itemprop="name">git</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/06/18/git一些操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/git一些操作/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>先声明一点。。我真的不是只会用<code>git pull</code>，和<code>git push</code>。。。这里总结下git的一些基本使用方法 <a id="more"></a></p>
+<h2 id="如何回复被删除的文件"><a href="#如何回复被删除的文件" class="headerlink" title="如何回复被删除的文件"></a>如何回复被删除的文件</h2><blockquote>
+<p>git删除文件一般也就包含下列四种情况</p>
+</blockquote>
+<ul>
+<li>删除本地文件，但是未添加到暂存区。</li>
+<li>删除本地文件，已经添加到了暂存区。</li>
+<li>把暂存区的操作提交到了本地git库。</li>
+<li>把本地git库的删除记录推送到了远程服务器的github。</li>
+</ul>
+<hr>
+<p>差不多平时我们接触的主要也就是这四类。下面用四个例子来针对上面四种情况来进行恢复操作。</p>
+<h3 id="删除本地文件，但是未添加到暂存区"><a href="#删除本地文件，但是未添加到暂存区" class="headerlink" title="删除本地文件，但是未添加到暂存区"></a>删除本地文件，但是未添加到暂存区</h3><p>这一种是我们经常遇到的一种情况。在操作git的时候，不小心把本地的文件给删除了。比如这样：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/19d9626f-4cc8-43f0-a234-a8dd8c8296fb" alt="0_1466234157912_upload-16ec2425-2478-4ee9-8b63-e098b23d08b7"><br>使用<code>rm zone-resume.doc</code>删掉之后：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/db274bd4-2d3d-451c-b450-9c86dd41404a" alt="0_1466234177084_upload-a16b1c1c-c25f-4ef0-8a3b-d865031fdc28"><br>这时候我们应该怎么办呢？</p>
+<hr>
+<blockquote>
+<p>恢复操作方法<br>这里使用<code>git</code>的一条指令<code>git checkout zone-resume.doc</code>来恢复操作</p>
+</blockquote>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/9bace19a-359f-4d70-a183-473bfd947efd" alt="0_1466234582125_upload-4884d8fe-6fe7-4dfe-ab7c-9d409afd10e0"></p>
+<hr>
+<h3 id="删除本地文件，已经添加到了暂存区-即已git-add"><a href="#删除本地文件，已经添加到了暂存区-即已git-add" class="headerlink" title="删除本地文件，已经添加到了暂存区(即已git add.)"></a>删除本地文件，已经添加到了暂存区(即已<code>git add.</code>)</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/7541c373-45d5-4f19-9cdc-5ae3f230abab" alt="0_1466234766204_upload-8334ca7a-608d-438b-b93b-18fc11b0ca25"><br>这时候我们应该怎么办呢？</p>
+<blockquote>
+<p>恢复操作方法</p>
+</blockquote>
+<p>这里我们通过<code>git status</code>可以知道 我的简历已经被删除。而且已经通过<code>git add .</code>添加到了暂存区<br>如果此时要撤销操作。方法上面已经告知我们。<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/5a79617e-604c-4868-9899-fe82e2841a48" alt="0_1466234962832_upload-dda64bcd-e844-451a-9a63-8c93052e3e23"></p>
+<p>我们这里使用<code>git reset HEAD zone-resume.doc</code>让其从”前线”暂存区退到”后方”,再用<code>git checkout zone-resume.doc</code> 让其恢复。<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/9557fed0-4a5e-4014-a012-95c68c62bf26" alt="0_1466235163009_upload-c633d1ce-2519-43a7-bb8b-94ea0703553c"></p>
+<hr>
+<h3 id="删除本地文件，但是已经提交到了本地git仓库-即已做git-commit-am-quot-xxx-quot-操作"><a href="#删除本地文件，但是已经提交到了本地git仓库-即已做git-commit-am-quot-xxx-quot-操作" class="headerlink" title="删除本地文件，但是已经提交到了本地git仓库(即已做git commit -am&quot;xxx&quot;操作)"></a>删除本地文件，但是已经提交到了本地git仓库(即已做<code>git commit -am&quot;xxx&quot;</code>操作)</h3><p>还是之前那个例子:<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/7b3187ee-7daa-4829-8c4b-e96bed115ca9" alt="0_1466235313766_upload-59a6fe30-8315-497d-ab0f-709f4f9269d2"><br>这里我们可以看到。通过<code>git status</code>可以查看：他说xxxxxx by 1 commit 估摸意思就是有一个提交记录。</p>
+<blockquote>
+<p>恢复操作方法</p>
+</blockquote>
+<p>这时候如果要恢复就必须对<code>git</code>进行版本回滚了。</p>
+<h4 id="恢复方法"><a href="#恢复方法" class="headerlink" title="恢复方法"></a>恢复方法</h4><ul>
+<li>1.通过<code>git log</code>查看git库的的提交记录.<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/80213be9-4ea9-491b-a264-ecc45f730c43" alt="0_1466236061158_upload-b76dfdce-c2a5-4651-85c5-4ce73852a868"><br>这里可以看出,最近的一次提交就是我们刚刚的那次”acorn”</li>
+<li>然后直接用<code>git reset --hard 7cbf603</code>这里取错误提交版本之前的一个版本的前7位ID。进行回滚<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/98f8608d-35fb-4705-a831-64328265348a" alt="0_1466236317774_upload-3d274271-4d9f-4d54-9296-90389152746f"></li>
+<li>这样文件就恢复了。<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/41a6ef3e-a0fc-4240-9a90-d71f4d0ea8b2" alt="0_1466236389862_upload-a395e765-7ab8-4fe7-af97-1cac9fb2d485"></li>
+</ul>
+<hr>
+<h3 id="把本地git库的删除记录推送到了远程服务器的github。"><a href="#把本地git库的删除记录推送到了远程服务器的github。" class="headerlink" title="把本地git库的删除记录推送到了远程服务器的github。"></a>把本地git库的删除记录推送到了远程服务器的github。</h3><p>还是之前那个例子：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/fa266e45-1966-4f4f-9a77-137528006f28" alt="0_1466236556621_upload-db11cd4b-ed5b-4e9e-bf9e-b074bdfd2d10"><br>我们这时候发现。在github上面已经没有我的简历文件了。这时候应该如何恢复呢？</p>
+<hr>
+<blockquote>
+<p>恢复操作</p>
+</blockquote>
+<p>这里的方法还是和第三种类似</p>
+<ul>
+<li>1.先通过<code>git log</code>回去到提交记录</li>
+<li>2.然后通过<code>git reset --hard 7位ID</code>来回滚到上一次提交前面的一个版本</li>
+<li>3.然后通过git push 来同步git 线上仓库</li>
+</ul>
+<hr>
+<p>但是我们这里<code>git push</code>的时候却报错了：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/ec48c49c-d5e0-4737-a494-7e162e94bfdf" alt="0_1466247506826_upload-c238d7d6-2abd-4f8e-8176-309a80b52b6e"></p>
+<p><strong>解决办法</strong><br>这里使用一个黑科技<code>git push -f</code>直接暴力提交就行。<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/10830ffa-4258-4e34-a6a7-b00c3777524f" alt="0_1466247847792_upload-847e3980-454d-453b-b91a-e12e9cb479d8"></p>
+<h2 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h2><p>关于 一些切换分支的指令 感觉都挺简单。这里就不详细总结了（主要还是人懒…..）</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端工具/" rel="tag">#前端工具</a>
+          
+            <a href="/tags/git/" rel="tag">#git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/15/管中窥豹-Gulp入门/" rel="next" title="管中窥豹---Gulp入门">
+                <i class="fa fa-chevron-left"></i> 管中窥豹---Gulp入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/06/19/从双飞翼、圣杯布局认识flex布局/" rel="prev" title="从双飞翼、圣杯布局认识flex布局">
+                从双飞翼、圣杯布局认识flex布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/06/18/git一些操作/"
+                   data-title="git一些操作" data-url="http://yoursite.com/2016/06/18/git一些操作/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何回复被删除的文件"><span class="nav-number">1.</span> <span class="nav-text">如何回复被删除的文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#删除本地文件，但是未添加到暂存区"><span class="nav-number">1.1.</span> <span class="nav-text">删除本地文件，但是未添加到暂存区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除本地文件，已经添加到了暂存区-即已git-add"><span class="nav-number">1.2.</span> <span class="nav-text">删除本地文件，已经添加到了暂存区(即已git add.)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除本地文件，但是已经提交到了本地git仓库-即已做git-commit-am-quot-xxx-quot-操作"><span class="nav-number">1.3.</span> <span class="nav-text">删除本地文件，但是已经提交到了本地git仓库(即已做git commit -am"xxx"操作)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#恢复方法"><span class="nav-number">1.3.1.</span> <span class="nav-text">恢复方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#把本地git库的删除记录推送到了远程服务器的github。"><span class="nav-number">1.4.</span> <span class="nav-text">把本地git库的删除记录推送到了远程服务器的github。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#未完待续"><span class="nav-number">2.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,755 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,面向对象," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="这段时间看了下构造函数的使用和面向对象编程实现，特地看了几天前人的博客。在这总结下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="面向对象思想">
+<meta property="og:url" content="http://yoursite.com/2016/05/22/面向对象思想/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="这段时间看了下构造函数的使用和面向对象编程实现，特地看了几天前人的博客。在这总结下">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/14dc3b25-daa2-476b-b65d-4c3ac95b9167">
+<meta property="og:updated_time" content="2016-05-24T15:47:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="面向对象思想">
+<meta name="twitter:description" content="这段时间看了下构造函数的使用和面向对象编程实现，特地看了几天前人的博客。在这总结下">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/14dc3b25-daa2-476b-b65d-4c3ac95b9167">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 面向对象思想 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                面向对象思想
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-22T23:39:55+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/OOP/" itemprop="url" rel="index">
+                    <span itemprop="name">OOP</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/22/面向对象思想/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/面向对象思想/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>这段时间看了下构造函数的使用和面向对象编程实现，特地看了几天前人的博客。在这总结下<a id="more"></a></p>
+<h3 id="OOP指什么？"><a href="#OOP指什么？" class="headerlink" title="OOP指什么？"></a>OOP指什么？</h3><p>OPP OOP全称（Object Oriented Programming），即面向对象编程；<br>举一个简单的例子。面对对象和面对过程的区别：<br>好比做一件事<br>面向过程是：如何去做这件事,改怎么做，然后一个人埋头去做<br>面向对象时：该让谁来做？,然后这个”谁”就是对象，他要怎么做就是他自己的事，反正最后一群对象合力把事情做好就行。</p>
+<hr>
+<h4 id="面对对象的三大特性"><a href="#面对对象的三大特性" class="headerlink" title="面对对象的三大特性"></a>面对对象的三大特性</h4><h5 id="1-继承"><a href="#1-继承" class="headerlink" title="1.继承"></a>1.继承</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">age,name</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age=age;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.height=<span class="number">190</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"获取姓名:"</span>+<span class="keyword">this</span>.name+<span class="string">",获取年龄"</span>+<span class="keyword">this</span>.age+<span class="string">"岁"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> p1=<span class="keyword">new</span> person(<span class="number">12</span>,<span class="string">"acorn"</span>);</span><br><span class="line">	<span class="built_in">console</span>.log(p1.height)</span><br><span class="line">	这里创建p1 对象的时候只传入了年龄和名字。但是仍然可以获取person.height的信息。</span><br></pre></td></tr></table></figure>
+<h4 id="2-封装"><a href="#2-封装" class="headerlink" title="2.封装"></a>2.封装</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//面向对象</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">name,age</span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"获取姓名:"</span>+name+<span class="string">",获取年龄"</span>+age+<span class="string">"岁"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	person(<span class="string">"z-one"</span>,<span class="number">21</span>);</span><br><span class="line"><span class="comment">//面向过程</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">age,name</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age=age;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.height=<span class="number">190</span>;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">"获取姓名:"</span>+<span class="keyword">this</span>.name+<span class="string">",获取年龄"</span>+<span class="keyword">this</span>.age+<span class="string">"岁"</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> p1=<span class="keyword">new</span> person(<span class="number">12</span>,<span class="string">"acorn"</span>);</span><br></pre></td></tr></table></figure>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p>组件的引用和类集会涉及到其它许多不同类型的组件，而且引用组件所产生的结果依据实际调用的类型。</p>
+<hr>
+<h3 id="通过构造函数的方式创建一个拥有属性和方法的对象"><a href="#通过构造函数的方式创建一个拥有属性和方法的对象" class="headerlink" title="通过构造函数的方式创建一个拥有属性和方法的对象?"></a>通过构造函数的方式创建一个拥有属性和方法的对象?</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">age,name</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.age=age;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.height=<span class="number">190</span>;</span><br><span class="line">		<span class="keyword">this</span>.say=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"获取姓名:"</span>+<span class="keyword">this</span>.name+<span class="string">",获取年龄"</span>+<span class="keyword">this</span>.age+<span class="string">"岁"</span>)</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> p1=<span class="keyword">new</span> person(<span class="number">12</span>,<span class="string">"acorn"</span>);</span><br><span class="line">	p1.say()<span class="comment">//获取姓名:acorn,获取年龄12岁</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="prototype-是什么？有什么特性"><a href="#prototype-是什么？有什么特性" class="headerlink" title="prototype 是什么？有什么特性"></a>prototype 是什么？有什么特性</h3><p>JavaScript中创建的每一个函数都有一个<code>prototype</code>（原型） 属性，这个属性是一个指针，指向一个原型对象，这个对象拥有一系列属性和方法且能被所有特定类型的实例共享。</p>
+<p>特性：让特定对象的所有实例共享<code>prototype</code> (原型对象)包含的属性和方法。</p>
+<hr>
+<h3 id="画出如下代码的原型图"><a href="#画出如下代码的原型图" class="headerlink" title="画出如下代码的原型图"></a>画出如下代码的原型图</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">People</span> (<span class="params">name</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name = name;</span><br><span class="line">  <span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'my name is:'</span> + <span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">People.prototype.walk = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name + <span class="string">' is walking'</span>);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> People(<span class="string">'饥人谷'</span>);</span><br><span class="line"><span class="keyword">var</span> p2 = <span class="keyword">new</span> People(<span class="string">'前端'</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/14dc3b25-daa2-476b-b65d-4c3ac95b9167" alt="0_1463981437775_upload-5a01b0fb-9c9a-4de2-aa79-d7ca4ee17e2e"></p>
+<hr>
+<h3 id="以下代码中的变量name有什么区别"><a href="#以下代码中的变量name有什么区别" class="headerlink" title="以下代码中的变量name有什么区别"></a>以下代码中的变量name有什么区别</h3><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">function People ()&#123;</span><br><span class="line">  var <span class="built_in">name</span> = <span class="string">"饥人谷"</span></span><br><span class="line">  this.<span class="built_in">name</span> = <span class="string">"我"</span>;</span><br><span class="line">&#125;</span><br><span class="line">People.<span class="built_in">name</span> = <span class="string">"jscode"</span>;</span><br><span class="line"></span><br><span class="line">People.prototype.<span class="built_in">name</span> = <span class="string">"学前端"</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">这里第一个 var <span class="built_in">name</span> = <span class="string">"饥人谷"</span> 生成了一个局部变量.</span><br><span class="line">第二个 this.<span class="built_in">name</span>=<span class="string">"我"</span> 是一个实例对象。绑定在对象的实例上</span><br><span class="line">第三个 People.<span class="built_in">name</span> = <span class="string">"jscode"</span>; 是People这个对象的静态属性。绑定在这个People上面</span><br><span class="line">第四个 People.prototype.<span class="built_in">name</span> = <span class="string">"学前端"</span>;  是在people的原型对象上添加一个<span class="built_in">name</span>属性，以后用people为构造函数，构造出来的实例都会带有这个属性。</span><br></pre></td></tr></table></figure>
+<h3 id="一个简单的构造函数"><a href="#一个简单的构造函数" class="headerlink" title="一个简单的构造函数"></a>一个简单的构造函数</h3><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">car</span>(<span class="params">name,color,status</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.name=name;</span><br><span class="line">		<span class="keyword">this</span>.color=<span class="built_in">color</span>;</span><br><span class="line">		<span class="keyword">this</span>.status=status;</span><br><span class="line">		<span class="keyword">this</span>.run=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"车上有空调，上车说把"</span>);</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="keyword">this</span>.stop=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"我的名字是:"</span>+<span class="keyword">this</span>.name+<span class="string">"  这车的颜色是："</span>+<span class="keyword">this</span>.color);</span><br><span class="line">		&#125;;</span><br><span class="line">		<span class="keyword">this</span>.getStatus=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">"获取状态:"</span>+<span class="keyword">this</span>.status)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">var</span> p1=<span class="keyword">new</span> car(<span class="string">"name"</span>,<span class="string">"red"</span>,<span class="string">"OK"</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"><a href="#创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法" class="headerlink" title="创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"></a>创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">GoTop</span>(<span class="params">$ct</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">this</span>.ct=$ct</span><br><span class="line">	<span class="keyword">this</span>.target=$(<span class="string">"&lt;button&gt;回到顶部&lt;/button&gt;"</span>);</span><br><span class="line">	<span class="keyword">this</span>.creatNode=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.ct.append($(<span class="keyword">this</span>.target));</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">this</span>.bindEvent=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.target.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			$(<span class="built_in">window</span>).scrollTop(<span class="number">0</span>);</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">this</span>.creatNode();</span><br><span class="line">	<span class="keyword">this</span>.bindEvent();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> go=<span class="keyword">new</span> GoTop($(<span class="string">"body"</span>));</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="最后把自己以前写的轮播-用构造函数的方式写出来，不得不说的确好用"><a href="#最后把自己以前写的轮播-用构造函数的方式写出来，不得不说的确好用" class="headerlink" title="最后把自己以前写的轮播 用构造函数的方式写出来，不得不说的确好用"></a>最后把自己以前写的轮播 用构造函数的方式写出来，不得不说的确好用</h3><p><strong>轮播</strong><br><a href="http://1.liruihaod.applinzi.com/level-35/5.55.html" target="_blank" rel="external">轮播(渐隐渐现)在线演示</a><br><a href="http://1.liruihaod.applinzi.com/level-35/5.23B.html" target="_blank" rel="external">轮播(操作DOM)在线演示</a><br><a href="http://1.liruihaod.applinzi.com/level-35/5.23B.html" target="_blank" rel="external">轮播(不操作DOM)在线演示</a></p>
+<p><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E6%9D%8E%E7%91%9E/level-35" target="_blank" rel="external">github地址</a></p>
+<hr>
+<p><strong>tab切换</strong><br><a href="http://1.liruihaod.applinzi.com/level-35/tab.html" target="_blank" rel="external">在线演示</a><br><a href="https://github.com/jirengu-inc/jrg-tehui2/tree/master/homework/%E6%9D%8E%E7%91%9E/level-35" target="_blank" rel="external">github地址</a></p>
+<p>就先到这里吧。明天继续看原型链</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/面向对象/" rel="tag">#面向对象</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/22/管中窥豹——HTTP/" rel="next" title="管中窥豹——HTTP">
+                <i class="fa fa-chevron-left"></i> 管中窥豹——HTTP
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/25/原型链/" rel="prev" title="原型链">
+                原型链 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/05/22/面向对象思想/"
+                   data-title="面向对象思想" data-url="http://yoursite.com/2016/05/22/面向对象思想/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OOP指什么？"><span class="nav-number">1.</span> <span class="nav-text">OOP指什么？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#面对对象的三大特性"><span class="nav-number">1.1.</span> <span class="nav-text">面对对象的三大特性</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-继承"><span class="nav-number">1.1.1.</span> <span class="nav-text">1.继承</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-封装"><span class="nav-number">1.2.</span> <span class="nav-text">2.封装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">1.3.</span> <span class="nav-text">多态</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过构造函数的方式创建一个拥有属性和方法的对象"><span class="nav-number">2.</span> <span class="nav-text">通过构造函数的方式创建一个拥有属性和方法的对象?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prototype-是什么？有什么特性"><span class="nav-number">3.</span> <span class="nav-text">prototype 是什么？有什么特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#画出如下代码的原型图"><span class="nav-number">4.</span> <span class="nav-text">画出如下代码的原型图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#以下代码中的变量name有什么区别"><span class="nav-number">5.</span> <span class="nav-text">以下代码中的变量name有什么区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一个简单的构造函数"><span class="nav-number">6.</span> <span class="nav-text">一个简单的构造函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个-GoTop-对象，当-new-一个-GotTop-对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法"><span class="nav-number">6.1.</span> <span class="nav-text">创建一个 GoTop 对象，当 new 一个 GotTop 对象则会在页面上创建一个回到顶部的元素，点击页面滚动到顶部。拥有以下属性和方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后把自己以前写的轮播-用构造函数的方式写出来，不得不说的确好用"><span class="nav-number">7.</span> <span class="nav-text">最后把自己以前写的轮播 用构造函数的方式写出来，不得不说的确好用</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

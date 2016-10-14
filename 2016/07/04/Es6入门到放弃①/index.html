@@ -1,0 +1,753 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端博客" />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="title: Es6从入门到放弃①date: 2016-07-12 21:10:18tags:
+
+前端
+Es6categories:
+前端
+JS近来闲来无事，一直在看阮一峰的ES6入门。在此做下笔记，记录所学内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简明的现代魔法">
+<meta property="og:url" content="http://yoursite.com/2016/07/04/Es6入门到放弃①/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="title: Es6从入门到放弃①date: 2016-07-12 21:10:18tags:
+
+前端
+Es6categories:
+前端
+JS近来闲来无事，一直在看阮一峰的ES6入门。在此做下笔记，记录所学内容。">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/0041ceb4-1839-4d3d-962a-f6fecbe7da4e">
+<meta property="og:updated_time" content="2016-07-14T18:28:44.674Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="简明的现代魔法">
+<meta name="twitter:description" content="title: Es6从入门到放弃①date: 2016-07-12 21:10:18tags:
+
+前端
+Es6categories:
+前端
+JS近来闲来无事，一直在看阮一峰的ES6入门。在此做下笔记，记录所学内容。">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/0041ceb4-1839-4d3d-962a-f6fecbe7da4e">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title>  | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-04T21:42:37+08:00" content="2016-07-04">
+              2016-07-04
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/04/Es6入门到放弃①/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/04/Es6入门到放弃①/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>title: Es6从入门到放弃①<br>date: 2016-07-12 21:10:18<br>tags:</p>
+<ul>
+<li>前端</li>
+<li>Es6<br>categories:</li>
+<li>前端</li>
+<li>JS<br>近来闲来无事，一直在看阮一峰的ES6入门。<br>在此做下笔记，记录所学内容。 <a id="more"></a></li>
+</ul>
+<h2 id="Let命令"><a href="#Let命令" class="headerlink" title="Let命令"></a><code>Let</code>命令</h2><p>一直觉得<code>let</code>这个和<code>var</code> 长得最像了，不过两者还是有很大的差别。</p>
+<h3 id="特性-1-变量只在当前作用域下有效-生成一个块级作用域"><a href="#特性-1-变量只在当前作用域下有效-生成一个块级作用域" class="headerlink" title="特性-1.变量只在当前作用域下有效(生成一个块级作用域)"></a>特性-1.变量只在当前作用域下有效(生成一个块级作用域)</h3><p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> a=<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">let</span> b=<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">abn</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">var</span> c=<span class="number">3</span>;</span><br><span class="line">&#125;)()</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure></p>
+<p>我们这里可以发现.当<code>console.log(b)</code>和<code>console.log(c)</code>的时候，都报错了。显示<code>a,b is not defiend</code>对于c 是<code>undefied</code>的原因我们知道，是因为：</p>
+<ul>
+<li>这里<code>(function(){})()</code> 这里创建了一个块级作用域。</li>
+<li>和<code>c</code>类似这里<code>Let</code>的作用也是创建块级作用域，相当于我这里声明的变量只在我这个”花括号”之内执行.出了这个”花括号”,对不起，我就不认识你了。</li>
+</ul>
+<h3 id="特性2-不存在变量提升。"><a href="#特性2-不存在变量提升。" class="headerlink" title="特性2.不存在变量提升。"></a>特性2.不存在变量提升。</h3><p>比如下面这个例子<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">console.log(a)<span class="comment">;</span></span><br><span class="line">console.log(b)<span class="comment">;</span></span><br><span class="line">var a=<span class="number">1</span><span class="comment">;</span></span><br><span class="line">let b=<span class="number">2</span><span class="comment">;</span></span><br></pre></td></tr></table></figure></p>
+<p>这里运行结果显示<code>b is not defined</code>，这里<code>var a=1</code>发生了变量提升，相当于 一开始我就已经默认运行了这一条指令<code>var a</code>已经声明了a，只是还未定义值，这里第一个<code>console.log(a)</code>会输出<code>undefined</code>。</p>
+<h3 id="额外提一点：暂时性死区。"><a href="#额外提一点：暂时性死区。" class="headerlink" title="额外提一点：暂时性死区。"></a>额外提一点：暂时性死区。</h3><p>我们来看这一段代码：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="string">"zone"</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">  a=<span class="string">"赵日天"</span>;</span><br><span class="line">  <span class="keyword">let</span> a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里情况是,一开始<code>a</code>被赋值为<code>zone</code>，但是在<code>if</code>语句中偶遇了 <code>let a</code>；这时候 <code>a</code>开始被<code>var</code>结果又会怎么样呢？我运行了一下。<br>结果结果竟然是<code>a is not undefined</code>这里我开始的猜测是:<br><strong><code>let a</code>基本上很强势，在他的地盘（花括号之内）,不管你在其它地方是如何，但是在这里，就必须从新按照我的规则来，这里我定义了 a，但是并不存在变量提升，所以就报错了</strong><br>我们把代码改一下:<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="string">"zone"</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> a;</span><br><span class="line">   a=<span class="string">"赵日天"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就能正常运行了。不过 在全局作用域中,<code>a</code>的值还是<code>zone</code>,原因我在第一点就已经说过了。</p>
+<h3 id="let不允许在相同的作用域内，连续声明两次同一个变量。"><a href="#let不允许在相同的作用域内，连续声明两次同一个变量。" class="headerlink" title="let不允许在相同的作用域内，连续声明两次同一个变量。"></a><code>let</code>不允许在相同的作用域内，连续声明两次同一个变量。</h3><p>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="string">"赵日天"</span>;</span><br><span class="line">  <span class="keyword">let</span> a = <span class="string">"zone"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>恩，这样会报错的。就算你是赵日天也不能连续声明两次。。。不过我想一般学到ES6的，也不会傻到在同一个作用域中连续声明两次同一个变量。。。。</p>
+<hr>
+<h2 id="ES6中新增的块级作用域"><a href="#ES6中新增的块级作用域" class="headerlink" title="ES6中新增的块级作用域"></a>ES6中新增的块级作用域</h2><p>对于当初学JS的时候，我就很好奇，为什么JS不存在块级作用域，而只有全局作用域和函数作用域。这样有时候会照成一些不合理的情况。<br>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> tmp =<span class="string">"赵日天"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(tmp);</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">false</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> tmp = <span class="string">"hello world"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br></pre></td></tr></table></figure></p>
+<p>当函数执行的时候，这里在控制台却输出<code>undefined</code>这里，主要是原因是发生了变量提升。整体流程应该是：</p>
+<ul>
+<li><code>var tmp</code>;//这里记过是undefined 未定义</li>
+<li><code>console.log(tmp)</code> 这里自然输出<code>undefined</code>咯。</li>
+</ul>
+<p>而<code>let</code>实际作用相当于为<code>javascript</code>新增了块级作用域。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> n = <span class="number">5</span>;</span><br><span class="line">  <span class="keyword">if</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(n);</span><br><span class="line">    <span class="built_in">console</span>.log(b)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">console</span>.log(n);</span><br><span class="line">  <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;</span><br><span class="line">这里就是ES6 <span class="keyword">let</span>创建作用域的一个很好的例子.</span><br><span class="line">相当于嵌套了两层块级作用域，</span><br><span class="line">执行结果依次输出：</span><br><span class="line"> <span class="number">5</span>;</span><br><span class="line"> <span class="number">10</span>;</span><br><span class="line"> <span class="number">5</span>;</span><br><span class="line"> b is not <span class="literal">undefined</span>;</span><br><span class="line"> 原因很简单，这里就不做过多解释了。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>这样一来 在ES5所使用的创建块级作用域的方法：利用自运行函数来创建一个块级作用域，有些情况可以用<code>let</code>来代替了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line"> <span class="keyword">var</span> a=<span class="string">"zone"</span>;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">let</span> a=<span class="string">"zone"</span>;</span><br><span class="line"> &#125;</span><br><span class="line">  两者的效果是一样的。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="const命令"><a href="#const命令" class="headerlink" title="const命令"></a><code>const</code>命令</h2><p>前面提到 <code>Let</code>和<code>var</code>，这里介绍下第三种声明变量的方式.<code>const</code><br>和前面两个不同是：<code>const</code>是个只读的常量，用一句话来说就是：当这个常量一旦声明，常量的值就不能改变了。是不是觉得很坑爹。。。。<br>例如<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a=<span class="string">"zone"</span>;</span><br><span class="line"> a=<span class="string">"赵日天"</span>；<span class="comment">//这里会报错</span></span><br></pre></td></tr></table></figure></p>
+<p>另外<strong>因为<code>const</code>一旦声明之后，取值不能改变，所以，一般对于<code>const</code>来说，只声明不赋值就会报错，因为他只有一次赋值的机会，就是声明的那一次</strong></p>
+<h3 id="const与let的相同点"><a href="#const与let的相同点" class="headerlink" title="const与let的相同点"></a><code>const</code>与<code>let</code>的相同点</h3><ul>
+<li>作用域相同，都存在块级作用域，声明的变量只在块级作用域中有效。</li>
+<li>都不支持变量提升，也同样存在暂时性死区。</li>
+<li>当然还有 都不能重复声明，这一点已经很明显了。</li>
+<li>在全局变量中申明的时候,两者皆不算在全局变量中<br>例如：<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/0041ceb4-1839-4d3d-962a-f6fecbe7da4e" alt="0_1468396336369_upload-ea091323-01ae-4347-839f-1b793828a246"></li>
+</ul>
+<hr>
+<h3 id="对于复合型变量"><a href="#对于复合型变量" class="headerlink" title="对于复合型变量"></a>对于复合型变量</h3><p>对于复合型变量，变量名不指向数据，而是指向数据所在的地址（<strong>相当于对于简单变量，赋值的一个具体数字，而对于引用类型的变量，赋值的是一个指针，指向储存这个变量的地址</strong>）这点和ES5的简单类型和引用类型相似。<br>例如<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">const a=&#123;&#125;;</span><br><span class="line">a.<span class="built_in">name</span>=<span class="string">"zone"</span>;</span><br><span class="line">console.<span class="built_in">log</span>(a.<span class="built_in">name</span>);</span><br><span class="line">a=&#123;<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"other"</span>:<span class="string">"yicheng"</span>&#125;</span><br></pre></td></tr></table></figure></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/19/从双飞翼、圣杯布局认识flex布局/" rel="next" title="从双飞翼、圣杯布局认识flex布局">
+                <i class="fa fa-chevron-left"></i> 从双飞翼、圣杯布局认识flex布局
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/15/管中窥豹——pullPage的简单实现思路/" rel="prev" title="管中窥豹——pullPage的简单实现思路">
+                管中窥豹——pullPage的简单实现思路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/07/04/Es6入门到放弃①/"
+                   data-title="" data-url="http://yoursite.com/2016/07/04/Es6入门到放弃①/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">34</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Let命令"><span class="nav-number">1.</span> <span class="nav-text">Let命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特性-1-变量只在当前作用域下有效-生成一个块级作用域"><span class="nav-number">1.1.</span> <span class="nav-text">特性-1.变量只在当前作用域下有效(生成一个块级作用域)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特性2-不存在变量提升。"><span class="nav-number">1.2.</span> <span class="nav-text">特性2.不存在变量提升。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#额外提一点：暂时性死区。"><span class="nav-number">1.3.</span> <span class="nav-text">额外提一点：暂时性死区。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#let不允许在相同的作用域内，连续声明两次同一个变量。"><span class="nav-number">1.4.</span> <span class="nav-text">let不允许在相同的作用域内，连续声明两次同一个变量。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ES6中新增的块级作用域"><span class="nav-number">2.</span> <span class="nav-text">ES6中新增的块级作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const命令"><span class="nav-number">3.</span> <span class="nav-text">const命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#const与let的相同点"><span class="nav-number">3.1.</span> <span class="nav-text">const与let的相同点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于复合型变量"><span class="nav-number">3.2.</span> <span class="nav-text">对于复合型变量</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

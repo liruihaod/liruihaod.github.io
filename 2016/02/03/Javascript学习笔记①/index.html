@@ -1,0 +1,888 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="javascript,作用域,基本类型与引用类型," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;对比犀牛书那本厚厚的“字典”，《javascript高级程序设计》可以算是一本由浅入深的好读物。。这段时间翻了前几章的内容。顺便今天mark做个总结。距离解放还有两天">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript学习笔记①">
+<meta property="og:url" content="http://yoursite.com/2016/02/03/Javascript学习笔记①/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;对比犀牛书那本厚厚的“字典”，《javascript高级程序设计》可以算是一本由浅入深的好读物。。这段时间翻了前几章的内容。顺便今天mark做个总结。距离解放还有两天">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1650863-8fa3647a6b97fa8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2016-04-09T04:40:10.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript学习笔记①">
+<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;对比犀牛书那本厚厚的“字典”，《javascript高级程序设计》可以算是一本由浅入深的好读物。。这段时间翻了前几章的内容。顺便今天mark做个总结。距离解放还有两天">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1650863-8fa3647a6b97fa8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> Javascript学习笔记① | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Javascript学习笔记①
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-02-03T23:10:18+08:00" content="2016-02-03">
+              2016-02-03
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/02/03/Javascript学习笔记①/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/03/Javascript学习笔记①/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>&#160; &#160; &#160; &#160;对比犀牛书那本厚厚的“字典”，《javascript高级程序设计》可以算是一本由浅入深的好读物。。这段时间翻了前几章的内容。顺便今天mark做个总结。距离解放还有两天<a id="more"></a></p>
+<h1 id="Javascript基础知识速查表"><a href="#Javascript基础知识速查表" class="headerlink" title="Javascript基础知识速查表"></a>Javascript基础知识速查表</h1><hr>
+<h2 id="写在JavaScript语法之前"><a href="#写在JavaScript语法之前" class="headerlink" title="写在JavaScript语法之前"></a>写在JavaScript语法之前</h2><h3 id="javaScript应该放在哪？"><a href="#javaScript应该放在哪？" class="headerlink" title="javaScript应该放在哪？"></a>javaScript应该放在哪？</h3><p> <strong>JS文件应该放在后面</strong><br>其实这是一个很笼统的说法。一般来我们都知道CSS和JS的文件放置顺序都是。CSS在前，JS在后。这里涉及到一个网页的渲染机制：</p>
+<h4 id="网页渲染机制"><a href="#网页渲染机制" class="headerlink" title="网页渲染机制"></a>网页渲染机制</h4><ul>
+<li>1.浏览器解析代码：<pre><code>这里主要分为①浏览器解析HTML代码生成DOM树，②浏览器解析CSS文件生成CSS树，③浏览器解析JS文件。生成JS树(不过我更愿意成为渲染树)。
+</code></pre></li>
+<li>2.布局：<br>   在屏幕上绘制渲染树中的所有节点的几何属性，比如： 位置，宽高，大小等等<ul>
+<li>3.绘制元素：<br> 绘制所有节点的可视属性，比如：颜色，背景，边框等.(这里可能会出现多个图层。和PS有点像)</li>
+<li>4.将重叠的图层合并。<br>这时候把CSS文件放在前面就很好理解了，因为加载文件是一步步来的，如果CSS文件放在后面，很有可能出现白屏现象或者，样式很丑等很久之后突然变了一下。所有CSS文件一般放在前面。</li>
+</ul>
+</li>
+</ul>
+<p>JS文件放在后面，主要是因为涉及到一个JS的加载阻塞，如果这个JS文件特别大，会使得页面加载速度很慢。影响用户体验。</p>
+<hr>
+<h3 id="白屏和无样式内容闪烁"><a href="#白屏和无样式内容闪烁" class="headerlink" title="白屏和无样式内容闪烁"></a>白屏和无样式内容闪烁</h3><p>之前看浏览器网页的渲染机制的时候正好看到这个。用自己话试着说一说：</p>
+<ul>
+<li><p>白屏主要是针对于IE浏览器。<br>因为IE浏览器的渲染机制是等样式表全部加载完之后才才呈现整个页面，不是和FF浏览器一样采用逐步呈现，这样就导致如果把样式表放在底部。中间就会有一个等待的时间，会出现白屏。<br><em>就好比IE觉得在所有的样式还没加载完之前，就“刷墙”,那万一后面要的不是这个颜色，岂不是还要再刷一道墙？索性我就等后面具体怎么弄的总方案下来之后，再做。这样就只用做一次。</em>不过我觉得白屏让我更难受- -，如果一个网站白屏时间长了，我就退了。</p>
+</li>
+<li><p>无样式内容闪烁主要是针对于firefox。<br>出现无样式内容闪烁，这点主要是与firefox的加载机制有关，firefox主要是采用逐步呈现的方式加载，就是得到什么指令我就做什么指令，这样就使得，如何某些元素的效果和我们最终想要效果一致的时候就会出现一直闪动。</p>
+</li>
+<li><p>解决方法：用link标签将样式表放置在head标签中。</p>
+</li>
+</ul>
+<hr>
+<h3 id="JavaScirpt的加载机制"><a href="#JavaScirpt的加载机制" class="headerlink" title="JavaScirpt的加载机制"></a>JavaScirpt的加载机制</h3><p>之前说到JavaScript的加载阻塞这个特性，<em>JavaScript具有加载阻塞这个特性，所以一般都讲JS文件放置在页面底部</em><br>那有没有什么能改善这种问题的方法呢？看下面：<br><strong>async与defer</strong></p>
+<p>由于才接触JS不久，这里就直接用例子说明吧。<br><code>&lt;script src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><br>没有 defer 或async，浏览器会立即加载并执行指定的脚本，“立即”指的是在渲染该 script 标签之下的文档元素之前，也就是说不等待后续载入的文档元素，读到就加载并执行。</p>
+<p><code>&lt;script async src=&quot;script.js&quot;&gt;&lt;/script&gt;</code><br>有 async，加载和渲染后续文档元素的过程将和 script.js 的加载与执行并行进行（异步）。</p>
+<p><code>&lt;script defer src=&quot;myscript.js&quot;&gt;&lt;/script&gt;</code><br>有 defer，加载后续文档元素的过程将和 script.js 的加载并行进行（异步），但是 script.js 的执行要在所有元素解析完成之后，DOMContentLoaded事件触发之前完成。然后从实用角度来说呢，首先把所有脚本都丢到  之前是最佳实践，因为对于旧浏览器来说这是唯一的优化选择，此法可保证非脚本的其他一切元素能够以最快的速度得到加载和解析。<br><img src="http://upload-images.jianshu.io/upload_images/1650863-8fa3647a6b97fa8b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="defer和async的区别"><br>这就很好理解defer和async的特点了:</p>
+<ul>
+<li>两者作用对于下载来说，都是异步。</li>
+<li>而defer是等所有文件都下载完全后，再进行加载，async则是，下载异步，但是我下载完之后就立马执行，等不了。</li>
+</ul>
+<h2 id="JavaScript语言介绍"><a href="#JavaScript语言介绍" class="headerlink" title="JavaScript语言介绍"></a>JavaScript语言介绍</h2><h3 id="标识符"><a href="#标识符" class="headerlink" title="标识符"></a>标识符</h3><p>什么是标识符？<br><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var new;//不是标识符</span><br><span class="line">var _new;//标识符 _new</span><br><span class="line">var $new; //标识符$new</span><br></pre></td></tr></table></figure></p>
+<p>标识符的三个特征：</p>
+<ul>
+<li>区分大小写</li>
+<li>首字符必须为字母，$，和_和下划线</li>
+<li>关键字和保留字不能当标识符</li>
+</ul>
+<hr>
+<h3 id="弱类型语言"><a href="#弱类型语言" class="headerlink" title="弱类型语言"></a>弱类型语言</h3><p>对于JAVA C语言之类的逻辑性比较强的计算机语言而言，JS可谓是有点弱。弱在哪？主要是以下几点：</p>
+<ul>
+<li>变量声明很松散:<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> arr</span>=<span class="number">1</span>;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> arr</span>=<span class="string">"1"</span>;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> arr</span>=[<span class="number">1</span>,<span class="string">"23"</span>,<span class="number">3</span>];</span><br><span class="line"><span class="variable"><span class="keyword">var</span> arr</span>=function()&#123;&#125;;</span><br><span class="line">相比于JAVA需要声明变量的时候带上变量的类型，JS相当于 先占坑，谁来谁上车一样，先声明一个变量在这，谁第一个来，就是什么类型的变量。而不用先声明是什么样类型的变量，再选择变量的值。</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="JS的数据类型："><a href="#JS的数据类型：" class="headerlink" title="JS的数据类型："></a>JS的数据类型：</h2><p>JS的数据类型主要分为两类，一类是基本数据类型，一类是引用数据类型:</p>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li><p>Undefined类型</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> z_one=<span class="literal">undefined</span>;</span><br><span class="line"><span class="keyword">var</span> z_one1;</span><br><span class="line"><span class="comment">//两者都是undefined；</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Null 类型</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> z_none</span>=<span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>这里说一点null和undefined的区别：<br>null表明这个变量是空。就是什么都没有,而undefined表明这个元素没主啊,快来个“东西”把这个坑填了。</p>
+</blockquote>
+<p>*Boolean类型：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> z-one</span>=<span class="literal">true</span>;</span><br></pre></td></tr></table></figure></p>
+<p>*Number类型：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> z_one</span>=<span class="number">1</span>;</span><br></pre></td></tr></table></figure></p>
+<h4 id="number类型数据的转换"><a href="#number类型数据的转换" class="headerlink" title="number类型数据的转换"></a>number类型数据的转换</h4><p>涉及到number类型数据的转换有三个函数：</p>
+<ul>
+<li>Number()； </li>
+<li>parseInt();</li>
+<li><p>parseFloat()；</p>
+<p>对于Number()；我还是举个例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> num1=<span class="built_in">Number</span>(<span class="string">"123"</span>); <span class="comment">//123;</span></span><br><span class="line"><span class="keyword">var</span> num2=<span class="built_in">Number</span>(<span class="literal">true</span>)；<span class="comment">//1；</span></span><br><span class="line"><span class="keyword">var</span> num3=<span class="built_in">Number</span>(<span class="string">" "</span>);<span class="comment">//0;</span></span><br><span class="line"><span class="keyword">var</span> num4=<span class="built_in">Number</span>(<span class="string">"hello world"</span>) <span class="comment">//NaN;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这里我总结的很简单。我感觉主要就围绕下面这几点：</p>
+<ul>
+<li><p>字符串类型：</p>
+<ul>
+<li><p>“123”这样的直接转换为123。</p>
+</li>
+<li><p>“0123”这样的转换为123(可以理解为忽略了首位为0不转换？)</p>
+</li>
+<li><p>“ “这样的转换为0；</p>
+</li>
+<li><p>“x12”或”0012x2” 这种的转换为NaN(not a number)还是挺形象的。</p>
+</li>
+</ul>
+</li>
+<li><p>布尔值类型：</p>
+<ul>
+<li><p>true 为1</p>
+</li>
+<li><p>false 为0（这点貌似所有计算机语言都通用，1为真，0为假）</p>
+</li>
+</ul>
+</li>
+<li><p>null 传入0</p>
+</li>
+<li><p>undefined 传入NaN(我理解是因为undefined是未定义的，什么都有可能，就用NaN 作为传入，保险一点。)</p>
+</li>
+<li><p>引用类型：先用valueOf();调用按上面方法传入，如果是NaN,再用tostring()方法调用，当然规律和上面一样。</p>
+</li>
+</ul>
+<h4 id="parseInt-，和parseFloat"><a href="#parseInt-，和parseFloat" class="headerlink" title="parseInt()，和parseFloat();"></a>parseInt()，和parseFloat();</h4><p>看int和float理解也知道一个是传入整数，一个是传入小数。使用方法是：</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a="12x3'</span><br><span class="line"><span class="keyword">var</span> b="12.3'</span><br><span class="line"><span class="keyword">var</span> num1=parseInt(a);<span class="comment">//12</span></span><br><span class="line"><span class="keyword">var</span> num2=parseInt(b);<span class="comment">//12</span></span><br><span class="line"><span class="keyword">var</span> num3=parseFloat(a);<span class="comment">//12</span></span><br><span class="line"><span class="keyword">var</span> num4=parseFloat(b);<span class="comment">//12.3</span></span><br></pre></td></tr></table></figure>
+<h4 id="Number-和parseInt-的区别"><a href="#Number-和parseInt-的区别" class="headerlink" title="Number()和parseInt()的区别"></a>Number()和parseInt()的区别</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span><span class="built_in">Number</span>() 和<span class="built_in">parseInt</span>()如果是遇到<span class="string">"x123"</span>都转换为<span class="literal">NaN</span>，</span><br><span class="line">但是对于<span class="string">"12x3"</span><span class="built_in">Number</span>()转换为<span class="literal">NaN</span>,而<span class="built_in">parseInt</span>()则转换为<span class="number">12</span>。</span><br></pre></td></tr></table></figure>
+<p>*String类型：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> z_one</span>=<span class="string">"12"</span>;</span><br></pre></td></tr></table></figure></p>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> b=<span class="function"><span class="keyword">function</span> <span class="title">obj</span><span class="params">()</span></span>&#123;&#125;;</span><br></pre></td></tr></table></figure>
+<p>引用数据类型如果需要转换为number数据类型。可以用valueOf()，或者tostring()；转换为字符串，数值，布尔类型，然后再根据规则转换为number数据类型。</p>
+<hr>
+<h3 id="如何知道这个变量是什么类型变量？"><a href="#如何知道这个变量是什么类型变量？" class="headerlink" title="如何知道这个变量是什么类型变量？"></a>如何知道这个变量是什么类型变量？</h3><p>这里就需要用到：</p>
+<ul>
+<li>typeof()；</li>
+<li>instanceof()；</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span>() 主要是针对于：<span class="built_in">Number</span>,<span class="built_in">String</span>,<span class="built_in">Boolean</span>,Undefined,和Null类型的函数；</span><br><span class="line"><span class="keyword">var</span> a=<span class="keyword">typeof</span>(<span class="string">"123"</span>) <span class="comment">//a="string"  *这里要注意虽然是String类型，但返回值却为string*</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="keyword">typeof</span>(<span class="literal">true</span>)  <span class="comment">//a ="boolean"</span></span><br><span class="line"><span class="keyword">var</span> a=<span class="keyword">typeof</span>([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])<span class="comment">//a="object"</span></span><br><span class="line">如果出现引用类型函数，则只会显示<span class="string">"object"</span>这里算<span class="keyword">typeof</span>的一个弊端把。这时候</span><br><span class="line">我们就需要用到下面这个函数：<span class="keyword">instanceof</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a= ([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="keyword">instanceof</span> <span class="built_in">Array</span>); <span class="comment">//a=true;</span></span><br><span class="line">这里就用<span class="keyword">instanceof</span> 来判断引用类型的函数 是属于哪一个类型的函数。依据返回值</span><br><span class="line">的结果<span class="literal">true</span> or <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h3><p>操作运算这里弄几个比较有代表性的总结</p>
+<h4 id="“-”运算符"><a href="#“-”运算符" class="headerlink" title="“+”运算符"></a>“+”运算符</h4><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>.在两个操作数都是数字的时候，会做加法运算</span><br><span class="line"><span class="number">2</span>.两个参数都是字符串或在有一个参数是字符串的情况下会把另外一个参数转换为字符串做字符串拼接</span><br><span class="line"><span class="number">3</span>.在参数有对象的情况下会调用其valueOf或<span class="built_in">toString</span></span><br><span class="line"><span class="number">4</span>.在只有一个字符串参数的时候会尝试将其转换为数字</span><br><span class="line"><span class="number">5</span>.在只有一个数字参数的时候返回其正数值</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="变量与作用域"><a href="#变量与作用域" class="headerlink" title="变量与作用域"></a>变量与作用域</h2><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><ul>
+<li>基本类型变量——存放在栈内存</li>
+<li>引用类型变量——存放在堆内存</li>
+</ul>
+<hr>
+<p>这里基本类型变量和引用类型变量的区别主要在于：<br><strong> 复制变量值的时候</strong></p>
+<p>对于基本类型函数<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> a</span>=<span class="number">10</span>;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> b</span>=a;</span><br><span class="line"><span class="variable"><span class="keyword">var</span> a</span>=<span class="number">11</span>;</span><br><span class="line">这时候a=<span class="number">11</span>，但是a还是等于<span class="number">10</span>；</span><br></pre></td></tr></table></figure></p>
+<p><strong>对于基本函数的复制，我感觉更加倾向于是“分裂”，把a的值赋值给b的时候，就相当于一个人一分为二，以后我再发生什么，都和你没关系了 0.0 两者互不影响的</strong></p>
+<p>对于引用类型变量<br><figure class="highlight dns"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]<span class="comment">;</span></span><br><span class="line">var b=a<span class="comment">;</span></span><br><span class="line">a.push(<span class="number">1</span>)<span class="comment">;</span></span><br><span class="line">a=[<span class="number">1,2,3,1</span>]</span><br><span class="line">b=[<span class="number">1,2,3,1</span>]</span><br><span class="line">这时候如何a发生变化 比也会随之发生变化。</span><br></pre></td></tr></table></figure></p>
+<p>**对于引用类型的复制，官方的解释是以为引用型变量存储的并不是变量本身，而是一个指针，这个指针指向储存在堆内存中的一个对象，我的理解就是，相当于基本类型变量复制的时候，就是给了一个“指南针”，两个“指南针”给的都是一个“宝藏”的图，如果A发现变化，就相当于”宝藏“发生变化了,B的值理所当然也会发生变化。</p>
+<p><strong> 传递参数的时候</strong><br>不多说，直接看例子;</p>
+<ul>
+<li>对于基本类型变量传递<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exa</span>(<span class="params">num</span>)</span>&#123;</span><br><span class="line">      <span class="comment">//num=a=10;</span></span><br><span class="line">        num+=<span class="number">10</span>;</span><br><span class="line">        <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a=<span class="number">10</span>;</span><br><span class="line"><span class="keyword">var</span> b= exa(a);</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//20</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>对于基本类型函数 ,在传递参数的时候，我感觉还是用到了复制，如果给上面一个例子加上<code>num=a=10</code>感觉就很好理解了，我把这个值复制给你，你要遵守我们基本函数复制的”规矩”,——以后出了什么事都和我没关系，所有就很好理解为什么a的值还是10了。</strong></p>
+<ul>
+<li>对于引用类型变量传递<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">exa</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">      <span class="comment">//arr=a=&#123;name:"zero"&#125;；</span></span><br><span class="line">        arr.name=<span class="string">"one"</span>;</span><br><span class="line">          <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> a=&#123;name：<span class="string">"zero"</span>&#125;；</span><br><span class="line"><span class="built_in">var</span> b=exa(a);</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//Object &#123;name: "one"&#125;</span></span><br><span class="line"><span class="built_in">var</span> a=&#123;<span class="attribute">name</span>:<span class="string">"two"</span>&#125;;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//Object &#123;name: "two"&#125;</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//Object &#123;name: "one"&#125;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>**对于引用型的变量传递，相当于开始的时候会有一个arr=a={name:”zero”}这么一个过程，然后在进行操作。规则和引用型变量复制一致,上面例子中，前后A变量不一样，但第二次A变量发生改变后，B的值却没发生改版，主要原因是，第二次A发生改变的时候，我感觉还是一个赋值操作，而不是在原本基础上的一个操作。就相当于从新给了你一个“指南针”,让你去找另外一个地方的“宝藏”。所以B的值不会发生变化.</p>
+<hr>
+<h3 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h3><p>函数的作用域相当于一个函数的执行环境。这里提一个作用域链的概念，我感觉作用域链的作用就是一个铁链，连着相关变量和函数，让他们有序的进行。</p>
+<hr>
+<h4 id="没有块级作用域"><a href="#没有块级作用域" class="headerlink" title="没有块级作用域"></a>没有块级作用域</h4><p>JavaSript 是没有块级作用域的，只有函数作用域。怎么说呢。就好比：只有函数中才存在局部变量，而for，if 条件语句中不存在局部变量。<br>举个例子：<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line">console.log(a);<span class="comment">//1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr</span><span class="params">(a)</span><span class="comment">&#123;</span><br><span class="line">    a++;</span><br><span class="line">     return a;</span><br><span class="line">&#125;</span></span><br><span class="line"><span class="title">arr</span><span class="params">(a)</span>;</span></span><br><span class="line">console.log(a);<span class="comment">//1</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)<span class="comment">&#123;</span><br><span class="line"> a++;</span><br><span class="line">&#125;</span></span><br><span class="line">console.log(a);<span class="comment">//11</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr1</span><span class="params">(a)</span><span class="comment">&#123;</span><br><span class="line">   var a;</span><br><span class="line">   for(var i=0;i&lt;10;i++)&#123;</span><br><span class="line">       a++;</span><br><span class="line">    &#125;</span></span><br><span class="line"><span class="title">console</span>.<span class="title">log</span><span class="params">(a)</span>;</span><span class="comment">//21</span></span><br><span class="line">     return a;</span><br><span class="line">&#125;</span><br><span class="line">arr1(a);</span><br><span class="line">console.log(a);<span class="comment">//11</span></span><br></pre></td></tr></table></figure></p>
+<p>可以看到在进行arr2函数运算的时候，虽然也有for循环最后得到21并且返回了，但是因为JS存在函数作用域，相当于是一个局部变量，函数内的变量可以访问函数上一级的变量，但函数上一级的并不能访问到他，我的理解就是这里可以使用上一级a=11值，但是外面的全局变量并不能访问到函数内，所以a的值还是11。</p>
+<hr>
+<h3 id="声明提升"><a href="#声明提升" class="headerlink" title="声明提升"></a>声明提升</h3><p>变量声明前置主要分为：</p>
+<ul>
+<li>函数的声明提升。 </li>
+<li>变量的声明提升。</li>
+</ul>
+<hr>
+<h4 id="函数的声明前置："><a href="#函数的声明前置：" class="headerlink" title="函数的声明前置："></a>函数的声明前置：</h4><p>函数的声明前置 主要是……先看例子吧。。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">一个很经典的例子：</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">foo();</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> <span class="comment">&#123;</span><br><span class="line">       if (!a) </span><br><span class="line">      &#123; </span><br><span class="line">        var a = 2; </span><br><span class="line">      &#125;</span> </span><br><span class="line">      <span class="title">alert</span><span class="params">(a)</span>;</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>这里开始我的理解就是，直接报错啊。函数都没定义，就运行了。后面自己试着运行下，果不其然运行成功了。还输出2！</p>
+<p>如果学了声明前置，这例子就很好理解了。<br><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">我们把例子转换下：</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">foo</span><span class="params">()</span> <span class="comment">&#123;</span><br><span class="line">        var a;</span><br><span class="line">       if (!a) </span><br><span class="line">      &#123; </span><br><span class="line">      //变量a的声明前置并非在这，而是在最顶部。</span><br><span class="line">       a = 2; </span><br><span class="line">      &#125;</span> </span><br><span class="line">      <span class="title">alert</span><span class="params">(a)</span>;</span></span><br><span class="line">&#125;;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<p>这样就很好理解了，因为函数foo声明前置，和变量a声明前置，函数变成这幅德行。当运行到foo()的时候，这时候有var a；就不会使用上一级的a元素，而是直接使用这里定义的a元素(有现成的为什么不拿？还要跑上一级去要？的感觉。。。)这里涉及到一个标识符的搜索，这个下面一会说;这时候a的值是undefined;if判断为假，进行赋值操作，a=2.警告框输出a=2;</p>
+<p>这里有点要说明的是：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1.声明前置，只针对于变量和函数定义式，而非函数表达式。</span><br><span class="line">2.声明前置，是提升到这个作用域的最顶层。</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="标识符-1"><a href="#标识符-1" class="headerlink" title="标识符"></a>标识符</h3><figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">先画个草图.....</span><br><span class="line">搜索标识符<span class="keyword">a</span></span><br><span class="line">      <span class="keyword">if</span>(局部环境找到了<span class="keyword">a</span>)&#123;</span><br><span class="line">          好的，就用这个啦</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">         再在全局找找，<span class="keyword">if</span>(全局找到了<span class="keyword">a</span>)&#123;</span><br><span class="line">          总算找到了，用这个吧，这时候因为是全局变量<span class="keyword">a</span>，所以使用后</span><br><span class="line">          全局变量<span class="keyword">a</span>也会同步发生变化，(需要考虑作用域。)</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">          实在是找不到就只能报错了。</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">	<span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line"><span class="keyword">var</span> a=<span class="number">3</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">arr(a);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">0</span>)&#123;</span><br><span class="line"><span class="keyword">var</span> a=<span class="number">3</span>;</span><br><span class="line">a++;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//4</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(a&gt;<span class="number">0</span>)&#123;</span><br><span class="line">a++;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//5</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//5</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr1</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">a++;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//6</span></span><br><span class="line"><span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line">arr1(a);</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//5</span></span><br></pre></td></tr></table></figure></p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javascript/" rel="tag">#javascript</a>
+          
+            <a href="/tags/作用域/" rel="tag">#作用域</a>
+          
+            <a href="/tags/基本类型与引用类型/" rel="tag">#基本类型与引用类型</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/01/05/由清浮动想到的BFC/" rel="next" title="由清浮动想到的BFC">
+                <i class="fa fa-chevron-left"></i> 由清浮动想到的BFC
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/02/04/cler的一点思考/" rel="prev" title="clear的一点思考">
+                clear的一点思考 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/02/03/Javascript学习笔记①/"
+                   data-title="Javascript学习笔记①" data-url="http://yoursite.com/2016/02/03/Javascript学习笔记①/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Javascript基础知识速查表"><span class="nav-number">1.</span> <span class="nav-text">Javascript基础知识速查表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#写在JavaScript语法之前"><span class="nav-number">1.1.</span> <span class="nav-text">写在JavaScript语法之前</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#javaScript应该放在哪？"><span class="nav-number">1.1.1.</span> <span class="nav-text">javaScript应该放在哪？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#网页渲染机制"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">网页渲染机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#白屏和无样式内容闪烁"><span class="nav-number">1.1.2.</span> <span class="nav-text">白屏和无样式内容闪烁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScirpt的加载机制"><span class="nav-number">1.1.3.</span> <span class="nav-text">JavaScirpt的加载机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript语言介绍"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript语言介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符"><span class="nav-number">1.2.1.</span> <span class="nav-text">标识符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#弱类型语言"><span class="nav-number">1.2.2.</span> <span class="nav-text">弱类型语言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JS的数据类型："><span class="nav-number">1.3.</span> <span class="nav-text">JS的数据类型：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本数据类型"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#number类型数据的转换"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">number类型数据的转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#parseInt-，和parseFloat"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">parseInt()，和parseFloat();</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Number-和parseInt-的区别"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Number()和parseInt()的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引用数据类型"><span class="nav-number">1.3.2.</span> <span class="nav-text">引用数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何知道这个变量是什么类型变量？"><span class="nav-number">1.3.3.</span> <span class="nav-text">如何知道这个变量是什么类型变量？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#操作符"><span class="nav-number">1.3.4.</span> <span class="nav-text">操作符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#“-”运算符"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">“+”运算符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量与作用域"><span class="nav-number">1.4.</span> <span class="nav-text">变量与作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量"><span class="nav-number">1.4.1.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域"><span class="nav-number">1.4.2.</span> <span class="nav-text">作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#没有块级作用域"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">没有块级作用域</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#声明提升"><span class="nav-number">1.4.3.</span> <span class="nav-text">声明提升</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数的声明前置："><span class="nav-number">1.4.3.1.</span> <span class="nav-text">函数的声明前置：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#标识符-1"><span class="nav-number">1.4.4.</span> <span class="nav-text">标识符</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

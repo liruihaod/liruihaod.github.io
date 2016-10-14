@@ -1,0 +1,778 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,JQuery," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="最近看书学到JQ写轮播，这里总结下常用JQ写轮播的方式。代码已经上传至gitHub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JQ管中窥豹——轮播的各种实现">
+<meta property="og:url" content="http://yoursite.com/2016/03/15/JQ管中窥豹——轮播的各种实现/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="最近看书学到JQ写轮播，这里总结下常用JQ写轮播的方式。代码已经上传至gitHub">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/d6fdf415gw1f390h7ppj0j21kw16o4hy.jpg">
+<meta property="og:image" content="http://ww4.sinaimg.cn/large/d6fdf415gw1f39x41pa83j20mr0csglr.jpg">
+<meta property="og:updated_time" content="2016-04-26T03:21:52.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JQ管中窥豹——轮播的各种实现">
+<meta name="twitter:description" content="最近看书学到JQ写轮播，这里总结下常用JQ写轮播的方式。代码已经上传至gitHub">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/d6fdf415gw1f390h7ppj0j21kw16o4hy.jpg">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> JQ管中窥豹——轮播的各种实现 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JQ管中窥豹——轮播的各种实现
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-03-15T02:02:25+08:00" content="2016-03-15">
+              2016-03-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/jQuery/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/15/JQ管中窥豹——轮播的各种实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/JQ管中窥豹——轮播的各种实现/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>最近看书学到JQ写轮播，这里总结下常用JQ写轮播的方式。代码已经上传至<a href="https://github.com/liruihaod" target="_blank" rel="external">gitHub</a><a id="more"></a></p>
+<h3 id="淡入淡出的写法"><a href="#淡入淡出的写法" class="headerlink" title="淡入淡出的写法"></a>淡入淡出的写法</h3><p>这个差不多是最简单的，直接是用到fadeIn和fadeOut。具体例子如下：<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Z-one简单淡入淡出轮播<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	<span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">li</span>,<span class="selector-tag">h1</span>&#123;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">		<span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">a</span>&#123;</span><br><span class="line">		<span class="attribute">text-decoration</span>: none;</span><br><span class="line">		<span class="attribute">color</span>:black;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">list-style</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">250px</span>;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">		<span class="attribute">right</span>:<span class="number">0</span>;</span><br><span class="line">		<span class="attribute">display</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">250px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">		<span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">margin-top</span>:-<span class="number">15px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>: center;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">		<span class="attribute">display</span>: none;</span><br><span class="line">		<span class="attribute">font-weight</span>: bolder;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span><span class="selector-pseudo">:hover</span> &gt;<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">display</span>: block;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.prev</span>&#123;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.next</span>&#123;</span><br><span class="line">		<span class="attribute">right</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">		<span class="attribute">bottom</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">transform</span>:<span class="built_in">translateX</span>(-50%);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">float</span>:left;</span><br><span class="line">		<span class="attribute">padding</span>:<span class="number">8px</span>;</span><br><span class="line">		<span class="attribute">margin-right</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">8px</span>;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">		<span class="attribute">cursor</span>:pointer;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span> <span class="selector-tag">li</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#head</span>&#123;</span><br><span class="line">		<span class="attribute">text-align</span>:center;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#head</span> <span class="selector-tag">h1</span>&#123;</span><br><span class="line">		<span class="attribute">margin-bottom</span>:<span class="number">40px</span>;</span><br><span class="line">		<span class="attribute">margin-top</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"head"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>简单淡入淡出轮播<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ct"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img1.cache.netease.com/catchpic/3/35/35ABB48BBD56C5EF7C3145B5F454CC43.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片1"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://h.hiphotos.baidu.com/zhidao/pic/item/8cb1cb1349540923820e17559358d109b3de49b1.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片2"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://i-7.vcimg.com/trim/9e31eba64ca3460d72688e7c96ecd741328963/trim.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片3"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://p17.qhimg.com/bdm/1600_900_85/d/_open360/game1012/8.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片4"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span>  <span class="attr">class</span>=<span class="string">"arrow prev"</span><span class="string">href="#"</span>&gt;</span><span class="tag">&lt;&lt;/<span class="attr">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span>  <span class="attr">class</span>=<span class="string">"arrow next"</span><span class="string">href="#"</span>&gt;</span>&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">		<span class="keyword">var</span> $ct=$(<span class="string">".ct"</span>);</span><br><span class="line">		<span class="keyword">var</span> $prev=$(<span class="string">".prev"</span>);</span><br><span class="line">		<span class="keyword">var</span> $next=$(<span class="string">".next"</span>);</span><br><span class="line">		<span class="keyword">var</span> $btn=$(<span class="string">".btn"</span>);</span><br><span class="line">		<span class="keyword">var</span> num=<span class="number">0</span>;<span class="comment">//设置初始值</span></span><br><span class="line">		<span class="keyword">var</span> key=<span class="literal">false</span>;<span class="comment">//设定一个状态锁</span></span><br><span class="line">		<span class="keyword">var</span> imgnum=$ct.children().size();<span class="comment">//获取图片的个数</span></span><br><span class="line">		play(<span class="number">0</span>)</span><br><span class="line">		autoplay();</span><br><span class="line">    <span class="comment">//设置上一个点击事件</span></span><br><span class="line">	$prev.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playPrev();</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">//设置下一个点击事件</span></span><br><span class="line">	$next.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playNext();</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="comment">//设置下面4个小按钮的点击事件(这里使用事件代理)</span></span><br><span class="line">	$btn.on(<span class="string">"click"</span>,<span class="string">"li"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> tem=$(<span class="keyword">this</span>).index();</span><br><span class="line">		play(tem);</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playNext</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		play((num+<span class="number">1</span>)%imgnum);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playPrev</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		play((imgnum+num<span class="number">-1</span>)%imgnum);<span class="comment">//确保值在一定的范围</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">play</span>(<span class="params">tem</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(key===<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		key=<span class="literal">true</span>;</span><br><span class="line">		<span class="comment">//这里用淡入淡出设置</span></span><br><span class="line">		$ct.children().eq(num).fadeOut(<span class="number">1000</span>);</span><br><span class="line">		$ct.children().eq(tem).fadeIn(<span class="number">1000</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;	</span><br><span class="line">			key=<span class="literal">false</span>;</span><br><span class="line">		&#125;);</span><br><span class="line">		num=tem;</span><br><span class="line">		setButton();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//底部小圆点Button的变化</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setButton</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$btn.children().removeClass(<span class="string">'active'</span>);</span><br><span class="line">		$btn.children().eq(num).addClass(<span class="string">'active'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//设置定时装置</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autoplay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		auto=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			playNext();</span><br><span class="line">		&#125;,<span class="number">1000</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//取消定时</span></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autostop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		clearInterval(auto);</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><a href="http://1.liruihaod.applinzi.com/level-27/level-26-1.html" target="_blank" rel="external">效果图</a></p>
+</blockquote>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a><strong>总结：</strong></h4><p>这个是个很简单的淡入淡出效果的一个实现，CSS和HTML布局这里就不说了。很简单，不过有几点需要注意的</p>
+<ul>
+<li><p>这里我设置li为绝对定位，那么他的父级#wrap就需要设置为相对定位,然后设置li 里面图片的宽高，li设置为<code>display:none</code></p>
+</li>
+<li><p>Button<code>那几个小圆点，我设置的flaot，他的父级.btn设置绝对定位。这里并没有设置.btn的宽高，让内容自动撑开。定位的时候用到</code>transfrom:translateX(-50%)`也可以达到水平居中的效果。另外.btn设置了绝对定位，内部形成了一个<a href="http://liruihaod.github.io/2016/01/05/%E7%94%B1%E6%B8%85%E6%B5%AE%E5%8A%A8%E6%83%B3%E5%88%B0%E7%9A%84BFC/" target="_blank" rel="external">BFC</a>,这样也能达到清除浮动的效果。</p>
+</li>
+<li><p>JS部分感觉整体思路就是——确定图片个数,——设置好点击事件——三个点击事件弄到play(）函数中——确定好要跳转图片的索引值——先判断状态锁，然后当前图片设置fadeOut(),然后跳转图片设置fadeIn()——然后设置按钮Button()方法，将当前索引值赋值为num——button()方法里面，所有的子元素都removeClass(“active”),然后和当前索引值对于的子元素addClass(“active”),——然后设置定时方法。</p>
+</li>
+</ul>
+<h3 id="无缝轮播"><a href="#无缝轮播" class="headerlink" title="无缝轮播"></a>无缝轮播</h3><p>上面这个只是一个很简单的入门轮播- -，下面写一个无缝轮播(<strong>这里有两种方法：一种是操作DOM顺序，一种是不用操作DOM顺序的，两种方法我都写出来</strong>)</p>
+<h4 id="操作DOM方式"><a href="#操作DOM方式" class="headerlink" title="操作DOM方式"></a>操作DOM方式</h4><p>原理：<br><img src="http://ww1.sinaimg.cn/large/d6fdf415gw1f390h7ppj0j21kw16o4hy.jpg" alt="示意图"><br>差不多就是类似这样的一个意思。当我们在向前向后移动的时候，直接先操作DOM，如果是想转换到前N个图片，就先把当前图片后面的N个图片一次添加到这个ul的开头位置。然后再利用left把图片移动到当前位置。(让我们感觉仿佛什么都没有发生一样)，然后在就是向前移动N个图片的位置。<br>好了具体还是看例子吧：<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>无缝轮播<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	<span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">a</span>&#123;</span><br><span class="line">		<span class="attribute">text-decoration</span>: none;</span><br><span class="line">		<span class="attribute">color</span>:black;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">list-style</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#head</span>&#123;</span><br><span class="line">		<span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>: center;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">		<span class="attribute">border</span>:<span class="number">10px</span> solid black;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">overflow</span>: hidden;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>:absolute;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">float</span>:left;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">		<span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">margin-top</span>:-<span class="number">15px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>:center;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">		<span class="attribute">display</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span><span class="selector-pseudo">:hover</span> &gt;<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">display</span>: block;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.prev</span>&#123;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.next</span>&#123;</span><br><span class="line">		<span class="attribute">right</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>:absolute;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">transform</span>:<span class="built_in">translateX</span>(-50%);</span><br><span class="line">		<span class="attribute">bottom</span>:<span class="number">20px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span>&gt;<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">float</span>:left;</span><br><span class="line">		<span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">		<span class="attribute">cursor</span>: pointer;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span> <span class="selector-tag">li</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"head"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>无缝轮播(操作DOM顺序)<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ct"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ct-img"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img1.cache.netease.com/catchpic/3/35/35ABB48BBD56C5EF7C3145B5F454CC43.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片1"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://h.hiphotos.baidu.com/zhidao/pic/item/8cb1cb1349540923820e17559358d109b3de49b1.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片2"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://i-7.vcimg.com/trim/9e31eba64ca3460d72688e7c96ecd741328963/trim.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片3"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://p17.qhimg.com/bdm/1600_900_85/d/_open360/game1012/8.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片4"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"arrow prev"</span><span class="string">href="javascript:void(0)"</span>&gt;</span><span class="tag">&lt;&lt;/<span class="attr">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"arrow next"</span><span class="string">href="javascript:void(0)"</span>&gt;</span>&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> $ct=$(<span class="string">".ct-img"</span>);</span><br><span class="line">	<span class="keyword">var</span> $prev=$(<span class="string">".prev"</span>);</span><br><span class="line">	<span class="keyword">var</span> $next=$(<span class="string">".next"</span>);</span><br><span class="line">	<span class="keyword">var</span> $btn=$(<span class="string">".btn"</span>);</span><br><span class="line">	<span class="keyword">var</span> num=<span class="number">0</span><span class="comment">//初始值设置为0;</span></span><br><span class="line">	<span class="keyword">var</span> key=<span class="literal">false</span><span class="comment">//设置状态锁</span></span><br><span class="line">	<span class="keyword">var</span> imgWidth=$(<span class="string">".ct-img"</span>).find(<span class="string">"img"</span>).width();<span class="comment">//图片宽度</span></span><br><span class="line">	<span class="keyword">var</span> imgNum=$(<span class="string">".ct-img"</span>).children().size();<span class="comment">//图片个数</span></span><br><span class="line">	</span><br><span class="line">	autopaly();</span><br><span class="line"></span><br><span class="line">	$(<span class="string">"#wrap"</span>).on(<span class="string">"mouseenter"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		autostop()</span><br><span class="line">	&#125;);</span><br><span class="line">	$(<span class="string">"#wrap"</span>).on(<span class="string">"mouseout"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		autopaly()</span><br><span class="line">	&#125;);</span><br><span class="line"></span><br><span class="line">	$ct.css(<span class="string">"width"</span>,imgWidth*imgNum);</span><br><span class="line"></span><br><span class="line">	$prev.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playPrev();</span><br><span class="line">	&#125;)</span><br><span class="line">	$next.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playNext();</span><br><span class="line">	&#125;)</span><br><span class="line">	$btn.on(<span class="string">"click"</span>,<span class="string">"li"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> tem=$(<span class="keyword">this</span>).index();</span><br><span class="line">		<span class="keyword">if</span>(tem&gt;num)&#123;</span><br><span class="line">			playNext(tem-num);</span><br><span class="line">		&#125;<span class="keyword">if</span>(tem&lt;num)&#123;</span><br><span class="line">			playPrev(num-tem);</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(tem===num)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playNext</span>(<span class="params">tem</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> idx=tem||<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key===<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		key=<span class="literal">true</span>;</span><br><span class="line">		$ct.animate(&#123;</span><br><span class="line">			<span class="string">"left"</span>:<span class="string">"-="</span>+imgWidth*idx</span><br><span class="line">		&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			num=(num+idx)%imgNum</span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;idx;i++)&#123;</span><br><span class="line">				$ct.append($ct.children().first())</span><br><span class="line">			&#125;</span><br><span class="line">			$ct.css(<span class="string">"left"</span>,<span class="number">0</span>)</span><br><span class="line">			key=<span class="literal">false</span>;</span><br><span class="line">			setButton();</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playPrev</span>(<span class="params">tem</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> idx=tem ||<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key ===<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		key=<span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;idx;i++)&#123;</span><br><span class="line">			$ct.prepend($ct.children().last())</span><br><span class="line">		&#125;</span><br><span class="line">		$ct.css(<span class="string">"left"</span>,<span class="number">0</span>-imgWidth*idx)</span><br><span class="line">		$ct.animate(&#123;</span><br><span class="line">			<span class="string">"left"</span>:<span class="string">"+="</span>+imgWidth*idx</span><br><span class="line">		&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			num=(imgNum+num-idx)%imgNum;</span><br><span class="line">			key=<span class="literal">false</span>;</span><br><span class="line">			setButton();</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setButton</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$btn.children().removeClass(<span class="string">'active'</span>);</span><br><span class="line">		$btn.children().eq(num).addClass(<span class="string">'active'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autopaly</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		auto=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			playNext();</span><br><span class="line">		&#125;,<span class="number">2000</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autostop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		clearInterval(auto)</span><br><span class="line">	&#125;</span><br><span class="line"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br></pre></td></tr></table></figure></p>
+<h5 id="总结：-1"><a href="#总结：-1" class="headerlink" title="总结："></a><strong>总结：</strong></h5><p>我感觉用这种操作DOM的方法的时候只要思路理清楚，之后还是很简单的。<br>总体思路就是：</p>
+<ul>
+<li>假定只有4个图片,我们操作向前一页，向后一页就相当于用<code>left</code>把<code>ul</code>向前向后移动。<code>ul</code>向后移动，我们感觉就是上一页图片，<code>ul</code>向前移动，我们感觉就是下一页图片</li>
+<li>当向后移动的时候，先移动，然后再确定移动后的位置，把这个位置前面的所有图片，都移动到最后面。这时候图片的位置发生了变化。就需要用<code>left</code>操作，让我们感觉没有发生变化。因为这时，移动后的图片前面的图片都到后面去了。他就是第一位，所有只要用<code>$ct.css(&quot;left&quot;,0)</code>这样我们看到的就是第一副图片了。</li>
+<li>当向前移动的时候，这时候先操作DOM。把当前图片后面的图片移动到最前面(要移动几幅图，就搬运几幅图),这时候图片位置就发生了变化，图片就相对于原来往右便宜了N个图片的距离，这时候用<code>$ct.css(&quot;left&quot;,0-imgWidth*N)</code>让整体往左边移动N个图片的距离，让我们感觉仿佛什么都没有发生一样，然后在用<code>$ct.animate()</code>操作。</li>
+<li>当向前移动后，确定num值的时候要注意用<code>num=(imgNum+num-n)%imgNum</code>这样可以避免num值出现负数的尴尬情况。</li>
+</ul>
+<hr>
+<blockquote>
+<p><a href="http://1.liruihaod.applinzi.com/level-27/level-27-4.html" target="_blank" rel="external">示意图</a></p>
+</blockquote>
+<h4 id="不操作DOM的方法"><a href="#不操作DOM的方法" class="headerlink" title="不操作DOM的方法"></a>不操作DOM的方法</h4><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>无缝轮播<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span><br><span class="line">	<span class="selector-tag">body</span>,<span class="selector-tag">ul</span>,<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">padding</span>:<span class="number">0</span>;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">a</span>&#123;</span><br><span class="line">		<span class="attribute">text-decoration</span>: none;</span><br><span class="line">		<span class="attribute">color</span>:black;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">list-style</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#head</span>&#123;</span><br><span class="line">		<span class="attribute">margin-bottom</span>: <span class="number">50px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>: center;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">		<span class="attribute">margin</span>:<span class="number">0</span> auto;</span><br><span class="line">		<span class="attribute">border</span>:<span class="number">10px</span> solid black;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">20px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>: relative;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">		<span class="attribute">overflow</span>: hidden;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>:absolute;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span> <span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">float</span>:left;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.ct-img</span> <span class="selector-tag">img</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">400px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">300px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">position</span>: absolute;</span><br><span class="line">		<span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">margin-top</span>:-<span class="number">15px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">text-align</span>:center;</span><br><span class="line">		<span class="attribute">line-height</span>: <span class="number">30px</span>;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">		<span class="attribute">display</span>: none;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.arrow</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">		<span class="attribute">opacity</span>: <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-id">#wrap</span><span class="selector-pseudo">:hover</span> &gt;<span class="selector-class">.arrow</span>&#123;</span><br><span class="line">		<span class="attribute">display</span>: block;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.prev</span>&#123;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.next</span>&#123;</span><br><span class="line">		<span class="attribute">right</span>:<span class="number">10px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span>&#123;</span><br><span class="line">		<span class="attribute">position</span>:absolute;</span><br><span class="line">		<span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">		<span class="attribute">transform</span>:<span class="built_in">translateX</span>(-50%);</span><br><span class="line">		<span class="attribute">bottom</span>:<span class="number">20px</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span>&gt;<span class="selector-tag">li</span>&#123;</span><br><span class="line">		<span class="attribute">width</span>:<span class="number">20px</span>;</span><br><span class="line">		<span class="attribute">height</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">border-radius</span>:<span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">float</span>:left;</span><br><span class="line">		<span class="attribute">margin-right</span>: <span class="number">10px</span>;</span><br><span class="line">		<span class="attribute">background</span>:<span class="number">#aaa</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="selector-class">.btn</span> <span class="selector-tag">li</span><span class="selector-class">.active</span>&#123;</span><br><span class="line">		<span class="attribute">background</span>:white;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"head"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>无缝轮播(操作DOM顺序)<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"wrap"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"ct"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"ct-img"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://img1.cache.netease.com/catchpic/3/35/35ABB48BBD56C5EF7C3145B5F454CC43.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片1"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://h.hiphotos.baidu.com/zhidao/pic/item/8cb1cb1349540923820e17559358d109b3de49b1.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片2"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://i-7.vcimg.com/trim/9e31eba64ca3460d72688e7c96ecd741328963/trim.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片3"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"javascript:void(0)"</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://p17.qhimg.com/bdm/1600_900_85/d/_open360/game1012/8.jpg"</span> <span class="attr">alt</span>=<span class="string">"图片4"</span>&gt;</span><span class="tag">&lt;/<span class="name">a</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"arrow prev"</span><span class="string">href="javascript:void(0)"</span>&gt;</span><span class="tag">&lt;&lt;/<span class="attr">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"arrow next"</span><span class="string">href="javascript:void(0)"</span>&gt;</span>&gt;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">ul</span> <span class="attr">class</span>=<span class="string">"btn"</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span> <span class="attr">class</span>=<span class="string">"active"</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"http://apps.bdimg.com/libs/jquery/1.9.1/jquery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span><br><span class="line">	<span class="keyword">var</span> $ct=$(<span class="string">".ct-img"</span>);</span><br><span class="line">	<span class="keyword">var</span> $prev=$(<span class="string">".prev"</span>);</span><br><span class="line">	<span class="keyword">var</span> $next=$(<span class="string">".next"</span>);</span><br><span class="line">	<span class="keyword">var</span> $btn=$(<span class="string">".btn"</span>);</span><br><span class="line">	<span class="keyword">var</span> num=<span class="number">0</span><span class="comment">//初始值设置为0;</span></span><br><span class="line">	<span class="keyword">var</span> key=<span class="literal">false</span><span class="comment">//设置状态锁</span></span><br><span class="line">	<span class="keyword">var</span> imgWidth=$(<span class="string">".ct-img"</span>).find(<span class="string">"img"</span>).width();<span class="comment">//图片宽度</span></span><br><span class="line">	<span class="keyword">var</span> imgNum=$(<span class="string">".ct-img"</span>).children().size();<span class="comment">//图片个数</span></span><br><span class="line"></span><br><span class="line">	$ct.prepend($ct.children().last().clone());<span class="comment">//把最后一个元素克隆后弄到第一个</span></span><br><span class="line">	$ct.append($ct.children().eq(<span class="number">1</span>).clone())<span class="comment">//把第二个元素克隆后弄到最后一个。</span></span><br><span class="line">	<span class="keyword">var</span> newNum=$ct.children().size();<span class="comment">//克隆后图片的数量。</span></span><br><span class="line">	$ct.css(&#123;</span><br><span class="line">		<span class="string">"width"</span>:imgWidth*newNum,</span><br><span class="line">		<span class="string">"left"</span>:<span class="number">0</span>-imgWidth<span class="comment">//整体向左移动一个图片的距离，让我们看到的还是之前的那副图片</span></span><br><span class="line">	&#125;)</span><br><span class="line">	autoplay();</span><br><span class="line">	$(<span class="string">".ct"</span>).on(<span class="string">"mouseenter"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		autostop();</span><br><span class="line">	&#125;)</span><br><span class="line">	$(<span class="string">".ct"</span>).on(<span class="string">"mouseout"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		autoplay();</span><br><span class="line">	&#125;)</span><br><span class="line">	$prev.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playPrev();</span><br><span class="line">	&#125;)</span><br><span class="line">	$next.on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		playNext();</span><br><span class="line">	&#125;)</span><br><span class="line">	$btn.on(<span class="string">"click"</span>,<span class="string">"li"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> tem=$(<span class="keyword">this</span>).index();</span><br><span class="line">		<span class="keyword">if</span>(tem&gt;num)&#123;</span><br><span class="line">			playNext(tem-num);</span><br><span class="line">		&#125;<span class="keyword">if</span>(tem&lt;num)&#123;</span><br><span class="line">			playPrev(num-tem);</span><br><span class="line">		&#125;<span class="keyword">if</span>(tem=num)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playNext</span>(<span class="params">tem</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> idx=tem||<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key===<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		key=<span class="literal">true</span>;</span><br><span class="line">		$ct.animate(&#123;</span><br><span class="line">			<span class="string">"left"</span>:<span class="string">"-="</span>+imgWidth*idx</span><br><span class="line">		&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			num=(num+idx)%imgNum;</span><br><span class="line">			<span class="keyword">if</span>(num===<span class="number">0</span>)&#123;</span><br><span class="line">				$ct.css(<span class="string">"left"</span>,<span class="number">0</span>-imgWidth)</span><br><span class="line">			&#125;</span><br><span class="line">			key=<span class="literal">false</span>;</span><br><span class="line">			setButton();</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">playPrev</span>(<span class="params">tem</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> idx=tem||<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span>(key===<span class="literal">true</span>)&#123;</span><br><span class="line">			<span class="keyword">return</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		key=<span class="literal">true</span>;</span><br><span class="line">		$ct.animate(&#123;<span class="string">"left"</span>:<span class="string">"+="</span>+imgWidth*idx&#125;,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			num=(imgNum+num-idx)%imgNum;</span><br><span class="line">			<span class="keyword">if</span>(num===(imgNum<span class="number">-1</span>))&#123;</span><br><span class="line">				$ct.css(<span class="string">"left"</span>,<span class="number">0</span>-imgWidth*imgNum)</span><br><span class="line">			&#125;</span><br><span class="line">			key=<span class="literal">false</span>;</span><br><span class="line">			setButton();</span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">setButton</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		$btn.children().removeClass(<span class="string">'active'</span>);</span><br><span class="line">		$btn.children().eq(num).addClass(<span class="string">'active'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autostop</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		clearInterval(auto);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">autoplay</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		auto=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">			playNext();</span><br><span class="line">		&#125;,<span class="number">3000</span>)</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h5 id="总结：总体思路"><a href="#总结：总体思路" class="headerlink" title="总结：总体思路"></a><strong>总结：总体思路</strong></h5><ul>
+<li><p>这种不擦做DOM的方式，就相当于在左右两边分别克隆了一个，好比这样<br><img src="http://ww4.sinaimg.cn/large/d6fdf415gw1f39x41pa83j20mr0csglr.jpg" alt="示意图"></p>
+</li>
+<li><p>克隆后把<code>ul</code>的宽度设为</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var newNum=$ct.children().size();</span><br><span class="line">$ct.left(&#123;</span><br><span class="line"><span class="string">"width"</span>:imgWidth*newNum,</span><br><span class="line"><span class="string">"left"</span>:<span class="number">0</span>-imngWidth</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>移动原理和上一个类似，只是这里有点区别。当移动到最开始那个位置的时候，这时<code>num=(num+imgNum-idx)%imgNum;</code>num等于<code>imgNum-1</code>的时候，就需要让这个<code>ul</code>,移动到原来<code>imgNum-1</code>对应的地方，相当于把<code>ul</code>整体向左移动<code>imgNum个</code>位置用<code>$ct.css(&quot;left&quot;,0-imgNum*imgWidth)</code>实现.</p>
+</li>
+<li>当移动到克隆那个0的时候，用同样的方法吧<code>ul</code>移动到原来0对应的位置。<code>$ct.css(&quot;left&quot;,imgWidth)</code></li>
+</ul>
+<hr>
+<h4 id="首页全屏轮播"><a href="#首页全屏轮播" class="headerlink" title="首页全屏轮播"></a>首页全屏轮播</h4><p>原理和上面的类似，有点不同的就是：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>,<span class="selector-id">#wrap</span>,<span class="selector-id">#wrap</span> <span class="selector-class">.ct</span>,<span class="selector-id">#wrap</span> <span class="selector-class">.ct-img</span>,<span class="selector-id">#wrap</span> <span class="selector-class">.ct-img</span> div&#123;</span><br><span class="line">			<span class="attribute">width</span>:<span class="number">100%</span>;</span><br><span class="line">			<span class="attribute">height</span>:<span class="number">100%</span>;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后我用的是<code>background</code>因为<code>bakcground</code>有个属性<code>background-size:cover</code>做全屏的大图很方便</p>
+<blockquote>
+<p><a href="http://1.liruihaod.applinzi.com/level-27/level-27-5.html" target="_blank" rel="external">效果图</a></p>
+</blockquote>
+<hr>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>JQ的轮播花了一天时间弄懂原理，然后花了一天时间去实现代码。在实现的时候还是感觉要多写，懂的原理和实现出来完全不是一个概念- -。。。。。<br>作为一个待业青年的人。。这段时间好好归纳整体下jQ的用法。</p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/JQuery/" rel="tag">#JQuery</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/10/如何把数组中的不同项去掉/" rel="next" title="如何把数组中的重复项除去">
+                <i class="fa fa-chevron-left"></i> 如何把数组中的重复项除去
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/03/20/管中窥豹——初识Jquery/" rel="prev" title="管中窥豹——初识Jquery">
+                管中窥豹——初识Jquery <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/03/15/JQ管中窥豹——轮播的各种实现/"
+                   data-title="JQ管中窥豹——轮播的各种实现" data-url="http://yoursite.com/2016/03/15/JQ管中窥豹——轮播的各种实现/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#淡入淡出的写法"><span class="nav-number">1.</span> <span class="nav-text">淡入淡出的写法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结："><span class="nav-number">1.1.</span> <span class="nav-text">总结：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无缝轮播"><span class="nav-number">2.</span> <span class="nav-text">无缝轮播</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#操作DOM方式"><span class="nav-number">2.1.</span> <span class="nav-text">操作DOM方式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结：-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">总结：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不操作DOM的方法"><span class="nav-number">2.2.</span> <span class="nav-text">不操作DOM的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#总结：总体思路"><span class="nav-number">2.2.1.</span> <span class="nav-text">总结：总体思路</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#首页全屏轮播"><span class="nav-number">2.3.</span> <span class="nav-text">首页全屏轮播</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

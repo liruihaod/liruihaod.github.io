@@ -1,0 +1,806 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,Es6," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="数组的解构赋值。新的赋值方式还记得以前的时候,对于一些元素的赋值.一般常用方法就是：123var a=&quot;zone&quot;,    b=&quot;acorn&quot;,    c=&quot;赵日天&quot;;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ES6从入门到放弃">
+<meta property="og:url" content="http://yoursite.com/2016/07/25/ES6从入门到放弃/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="数组的解构赋值。新的赋值方式还记得以前的时候,对于一些元素的赋值.一般常用方法就是：123var a=&quot;zone&quot;,    b=&quot;acorn&quot;,    c=&quot;赵日天&quot;;">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/9d833961-44d8-443b-88f1-93ad8f1ead1b">
+<meta property="og:updated_time" content="2016-07-25T14:31:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="ES6从入门到放弃">
+<meta name="twitter:description" content="数组的解构赋值。新的赋值方式还记得以前的时候,对于一些元素的赋值.一般常用方法就是：123var a=&quot;zone&quot;,    b=&quot;acorn&quot;,    c=&quot;赵日天&quot;;">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/9d833961-44d8-443b-88f1-93ad8f1ead1b">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> ES6从入门到放弃 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                ES6从入门到放弃
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-07-25T22:02:40+08:00" content="2016-07-25">
+              2016-07-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/25/ES6从入门到放弃/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/25/ES6从入门到放弃/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="数组的解构赋值。"><a href="#数组的解构赋值。" class="headerlink" title="数组的解构赋值。"></a>数组的解构赋值。</h2><h3 id="新的赋值方式"><a href="#新的赋值方式" class="headerlink" title="新的赋值方式"></a>新的赋值方式</h3><p>还记得以前的时候,对于一些元素的赋值.一般常用方法就是：<br><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable"><span class="keyword">var</span> a</span>=<span class="string">"zone"</span>,</span><br><span class="line">    b=<span class="string">"acorn"</span>,</span><br><span class="line">    c=<span class="string">"赵日天"</span>;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>而现在 我们在<code>Es6</code>中可以使用一种新的赋值方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [a,b,c]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a)<span class="comment">//1;</span></span><br><span class="line"><span class="built_in">console</span>.log(b)<span class="comment">//2;</span></span><br><span class="line"><span class="built_in">console</span>.log(c)<span class="comment">//3;</span></span><br></pre></td></tr></table></figure></p>
+<p>感觉写法还是听酷炫的。</p>
+<hr>
+<h3 id="新增的默认值"><a href="#新增的默认值" class="headerlink" title="新增的默认值"></a>新增的默认值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> [a,b=<span class="string">"12"</span>,c]=[<span class="number">1</span>,,<span class="number">2</span>]</span><br><span class="line"><span class="built_in">console</span>.log(a);</span><br><span class="line"><span class="built_in">console</span>.log(b);</span><br><span class="line"><span class="built_in">console</span>.log(c);</span><br></pre></td></tr></table></figure>
+<p>不过有点需要注意的是：<br><strong>只有当这个元素对应的值严格相等(即为===)<code>undefined</code>的时候，默认值才会生效</strong>例如下面这个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [a,b,c=<span class="string">"zone"</span>]=[<span class="number">1</span>,<span class="literal">undefined</span>,<span class="literal">null</span>];</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//undefined</span></span><br><span class="line"><span class="built_in">console</span>.log(c)<span class="comment">//null</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="数值的扩展"><a href="#数值的扩展" class="headerlink" title="数值的扩展"></a>数值的扩展</h2><p>在ES6中,提供了一种<code>二进制</code>和<code>八机制</code>数值的新的写法，分别是用前缀<code>0b</code>(Binary)和<code>0o</code>(octal);<br>例如<br><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0b1110</span>===<span class="number">14</span>;</span><br><span class="line"><span class="number">0o110</span>===<span class="number">72</span>;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/9d833961-44d8-443b-88f1-93ad8f1ead1b" alt="0_1468811198915_upload-e2631f36-c526-4ac6-9153-52facc3369c5"> </p>
+<hr>
+<h3 id="Math对象的扩展"><a href="#Math对象的扩展" class="headerlink" title="Math对象的扩展"></a>Math对象的扩展</h3><p>在ES5中，我们几个常用的<code>Math</code>的方法主要是：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">随机数: <span class="selector-tag">Math</span><span class="selector-class">.random</span>();</span><br><span class="line">向上取值：<span class="selector-tag">Math</span><span class="selector-class">.floor</span>();</span><br><span class="line">向上取值：<span class="selector-tag">Math</span><span class="selector-class">.ceil</span>();</span><br></pre></td></tr></table></figure></p>
+<p>在ES6中,我们又新增了几个<code>Math</code>的方法:</p>
+<h4 id="Math-trunc"><a href="#Math-trunc" class="headerlink" title="Math.trunc()"></a>Math.trunc()</h4><p><code>Math.trunc()</code>用于去除一个数的小数部分,返回整数部分。(感觉与<code>Math.floor()</code>作用类似)</p>
+<h4 id="Math-sign"><a href="#Math-sign" class="headerlink" title="Math.sign()"></a>Math.sign()</h4><p><code>Math.sign()</code>用来判断一个数到底是正数、负数、还是零.例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Math</span>.sign(<span class="number">2</span>);<span class="comment">//1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">-0</span>);<span class="comment">//-0</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">-2</span>);<span class="comment">//-1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="number">0</span>);<span class="comment">//0</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="string">"2"</span>);<span class="comment">//1</span></span><br><span class="line"><span class="built_in">Math</span>.sign(<span class="string">"2a1"</span>);<span class="comment">//NAN</span></span><br></pre></td></tr></table></figure></p>
+<p>这样 对于<code>Math.sign()</code>的几个返回值大致就是</p>
+<ul>
+<li>参数为正数,返回<code>1</code>;</li>
+<li>参数为负数,返回<code>-1</code>;</li>
+<li>参数为0,返回<code>-0</code>;</li>
+<li>参数为-0返回<code>-0</code>;</li>
+<li>参数为其他值时，会先转换成number类型，然后再作判断。</li>
+</ul>
+<hr>
+<h4 id="Math-cbrt"><a href="#Math-cbrt" class="headerlink" title="Math.cbrt()"></a>Math.cbrt()</h4><p><code>Math.cbrt()</code> 用于计算一个数的平方根。</p>
+<h2 id="函数的拓展"><a href="#函数的拓展" class="headerlink" title="函数的拓展"></a>函数的拓展</h2><h3 id="函数新增的默认值"><a href="#函数新增的默认值" class="headerlink" title="函数新增的默认值"></a>函数新增的默认值</h3><p>在ES5中,其实是不能直接为函数的参数指定默认值的,要想设置默认值，一般是采取这种变通的方式,例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">zone</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name||<span class="string">"赵日天"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">zone(<span class="string">"acorn"</span>); <span class="comment">//acorn</span></span><br><span class="line">zone();        <span class="comment">//赵日天</span></span><br></pre></td></tr></table></figure>
+<p>在ES6中,可以为参数设置默认值,直接写在参数定义的后面。例如：<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">zone</span><span class="params">(name=<span class="string">"赵日天"</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    console.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">zone();<span class="comment">//赵日天</span></span><br><span class="line">zone(<span class="string">"acorn"</span>);<span class="comment">//acorn</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="函数的Length属性"><a href="#函数的Length属性" class="headerlink" title="函数的Length属性"></a>函数的Length属性</h3><p>指定了默认属性以后,函数的<code>length</code>属性,将返回<strong>没有指定默认值的参数个数</strong>,也就是说指定了默认值以后,<code>length</code>属性将失真。<br>例如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a =<span class="function"><span class="keyword">function</span> (<span class="params">name,a,b,c</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name||<span class="string">"赵日天"</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">&#125;</span><br><span class="line">a.length;<span class="comment">//4 </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b=<span class="function"><span class="keyword">function</span> (<span class="params">name="赵日天",ba,sad,as,d,asd,a,ada</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">b.length;<span class="comment">//0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c=<span class="function"><span class="keyword">function</span>(<span class="params">a,s,sd,sa,name="acorn"</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.name=name;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">c.length;<span class="comment">//4</span></span><br></pre></td></tr></table></figure></p>
+<p>通过上面的例子。我们可以发现.对于对于有<strong>指定了默认值</strong>的函数参列表,<code>length</code>在取值的时候，会<code>触碰到</code>就停止。</p>
+<hr>
+<h2 id="新增的数据类型————Symbol"><a href="#新增的数据类型————Symbol" class="headerlink" title="新增的数据类型————Symbol"></a>新增的数据类型————<code>Symbol</code></h2><p>在ES5中,一般常见的数据类型也就以下6种：</p>
+<ul>
+<li>Undefined</li>
+<li>Null</li>
+<li>Boolean</li>
+<li>String</li>
+<li>Number</li>
+<li>Object</li>
+</ul>
+<p>在ES6中，新增加了一种数据类型————<code>symbol</code><br>例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="built_in">Symbol</span>();</span><br><span class="line">    <span class="keyword">typeof</span> a<span class="comment">//"symbol"</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<p>##<code>set</code>与<code>map</code><br><code>set</code>方法就是<code>ES6</code>提供的新的数据结构,类似于数组,但是成员的值都是唯一的,没有重复的。<br>怎么说呢。比如我们要清除一个数组中的多余项，在ES5中我们需要这样做：<br><figure class="highlight hsp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> var a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">12</span>,<span class="number">3</span>,<span class="number">566</span>,<span class="number">7</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="number">2</span>,<span class="number">3</span>]<span class="comment">;</span></span><br><span class="line"></span><br><span class="line">function play(arr)&#123;</span><br><span class="line">    var now=[]<span class="comment">;</span></span><br><span class="line">    <span class="keyword">for</span>(var i=<span class="number">0</span><span class="comment">;i&lt; arr.length;i++)&#123;</span></span><br><span class="line">        <span class="keyword">if</span>(now.indexOf(arr[i])===<span class="number">-1</span>)&#123;</span><br><span class="line">            now[now.<span class="keyword">length</span>]= arr[i]<span class="comment">;</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span><span class="comment">;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> now<span class="comment">;</span></span><br><span class="line">&#125;</span><br><span class="line">play(a)<span class="comment">;//[1, 2, 3, 12, 566, 7, 89, 0, "1", "2"]</span></span><br></pre></td></tr></table></figure></p>
+<p>现在 有了ES6 又有了一种更加简便的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>,<span class="number">12</span>,<span class="number">3</span>,<span class="number">566</span>,<span class="number">7</span>,<span class="number">89</span>,<span class="number">0</span>,<span class="string">"1"</span>,<span class="string">"2"</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dedupe</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(array));</span><br><span class="line">&#125;</span><br><span class="line">dedupe(a);<span class="comment">//[1, 2, 3, 12, 566, 7, 89, 0, "1", "2"]</span></span><br></pre></td></tr></table></figure></p>
+<p>###<code>set</code>的属性和方法<br><code>set</code>结构的实例有以下属性：</p>
+<ul>
+<li><code>Set.prototype.constructor</code>:构造函数,默认即时<code>set</code>函数;</li>
+<li><code>Set.prototype.size</code>:返回<code>Set</code>实例成员总数;</li>
+</ul>
+<p>Set实例的方法分为操作方法(用于操作数据)与遍历方法(用于遍历成员)。</p>
+<p>操作方法：</p>
+<ul>
+<li><code>add(value)</code>:添加某个值,返回Set结构本身.</li>
+<li><code>delete(value)</code>:删除某个值,返回以一个布尔值,表示删除是否成功。</li>
+<li><code>has(value)</code>:返回一个布尔值，表示改值是否是<code>Set</code>的成员。</li>
+<li><code>clear()</code>:清楚所有成员,没有返回值。</li>
+</ul>
+<hr>
+<h3 id="Map的基本用法"><a href="#Map的基本用法" class="headerlink" title="Map的基本用法"></a><code>Map</code>的基本用法</h3><p><code>javascript</code>对象本质上就是,键值对的集合,但是在ES5中，对象的键名只能由<code>字符串</code>来担任。例如：<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> zone=<span class="built_in">document</span>.getelementById(<span class="string">"zone"</span>);</span><br><span class="line"><span class="built_in">var</span> a=&#123;</span><br><span class="line">    <span class="attribute">zone</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="attribute">name</span>:<span class="string">"asdasd"</span></span><br><span class="line">&#125;</span><br><span class="line">这里的zone代表的是 一个对象，但是在 a这个对象中，也会被转换成字符串。</span><br></pre></td></tr></table></figure></p>
+<p>这里是因为。在ES5中。一个对象只接受 字符串作为其<code>键名</code>,上面的例子中<code>zone</code>会制动转换为<code>&quot;zone&quot;</code>;<br>在ES6中引入了<code>Map</code>这种数据结构,类似于对象,也是键值对的集合。但是这里面<code>键名</code>不仅限于字符串，各种类型的值都可以当做<code>键名</code>,简直碉堡了。例如下面这个例子<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=&#123;zone:<span class="string">"赵日天"</span>&#125;;</span><br><span class="line"><span class="keyword">var</span> b=&#123;</span><br><span class="line">     a:<span class="string">"a"</span>,</span><br><span class="line">     b:<span class="string">"b"</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> <span class="built_in">c</span>= new <span class="type">Map</span>();</span><br><span class="line"><span class="built_in">c</span>.<span class="keyword">set</span>(a,<span class="string">"hello"</span>);</span><br><span class="line"><span class="built_in">c</span>.<span class="keyword">set</span>(<span class="string">"acorn"</span>,<span class="string">"三大赵日天"</span>)</span><br><span class="line"><span class="built_in">c</span><span class="comment">//Map &#123;Object &#123;zone: "赵日天"&#125; =&gt; "hello", "acorn" =&gt; "三大赵日天"&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Map实例的属性和操作方法"><a href="#Map实例的属性和操作方法" class="headerlink" title="Map实例的属性和操作方法"></a>Map实例的属性和操作方法</h3><ul>
+<li><p><code>size</code>属性<br><code>size</code>属性会返回Map结构的成员总数(类似于length)</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zone=<span class="literal">new</span> <span class="built_in">Map</span>();</span><br><span class="line">zone.<span class="built_in">set</span>(<span class="string">"zone"</span>,<span class="literal">true</span>);</span><br><span class="line">zone.<span class="built_in">set</span>(<span class="string">"a"</span>,<span class="string">"日天"</span>);</span><br><span class="line">zone.size<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>set(key,value)</code>属性<br><code>set</code>顾名思义,就是设置<code>key</code>所对应的键值,然后返回整个Map结构,如果<code>key</code>值已经存在,后者会覆盖前者</p>
+<figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> zone=<span class="keyword">new</span> Map();</span><br><span class="line">zone.<span class="keyword">set</span>(<span class="string">"zone"</span>,<span class="keyword">true</span>);</span><br><span class="line">zone.<span class="keyword">get</span>(<span class="string">"zone"</span>);<span class="comment">//true;</span></span><br><span class="line">zone.<span class="keyword">set</span>(<span class="string">"zone"</span>,<span class="keyword">false</span>);</span><br><span class="line">zone.<span class="keyword">get</span>(<span class="string">"zone"</span>); <span class="comment">//false;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>get(key)<br><code>get</code>方法读取<code>key</code>对应的键值,如果找不到<code>key</code>,返回<code>undefined</code></p>
+</li>
+<li>has(key)<br><code>has</code>方法返回一个布尔值,表示某个值是否出现在Map数据结构中。</li>
+<li>delete(key)<br><code>delete</code>方法删除某个值,返回一个布尔值,表示删除是否成功。</li>
+<li>clear()<br><code>clear()</code>方法清除所有成员,并没有返回值.</li>
+</ul>
+<hr>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/Es6/" rel="tag">#Es6</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/15/管中窥豹——pullPage的简单实现思路/" rel="next" title="管中窥豹——pullPage的简单实现思路">
+                <i class="fa fa-chevron-left"></i> 管中窥豹——pullPage的简单实现思路
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/31/编写可维护的javaScript/" rel="prev" title="编写可维护的javaScript">
+                编写可维护的javaScript <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/07/25/ES6从入门到放弃/"
+                   data-title="ES6从入门到放弃" data-url="http://yoursite.com/2016/07/25/ES6从入门到放弃/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#数组的解构赋值。"><span class="nav-number">1.</span> <span class="nav-text">数组的解构赋值。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#新的赋值方式"><span class="nav-number">1.1.</span> <span class="nav-text">新的赋值方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新增的默认值"><span class="nav-number">1.2.</span> <span class="nav-text">新增的默认值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数值的扩展"><span class="nav-number">2.</span> <span class="nav-text">数值的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Math对象的扩展"><span class="nav-number">2.1.</span> <span class="nav-text">Math对象的扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Math-trunc"><span class="nav-number">2.1.1.</span> <span class="nav-text">Math.trunc()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Math-sign"><span class="nav-number">2.1.2.</span> <span class="nav-text">Math.sign()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Math-cbrt"><span class="nav-number">2.1.3.</span> <span class="nav-text">Math.cbrt()</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的拓展"><span class="nav-number">3.</span> <span class="nav-text">函数的拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数新增的默认值"><span class="nav-number">3.1.</span> <span class="nav-text">函数新增的默认值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的Length属性"><span class="nav-number">3.2.</span> <span class="nav-text">函数的Length属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新增的数据类型————Symbol"><span class="nav-number">4.</span> <span class="nav-text">新增的数据类型————Symbol</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Map的基本用法"><span class="nav-number">4.1.</span> <span class="nav-text">Map的基本用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Map实例的属性和操作方法"><span class="nav-number">4.2.</span> <span class="nav-text">Map实例的属性和操作方法</span></a></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

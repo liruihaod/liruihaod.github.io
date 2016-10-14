@@ -1,0 +1,770 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="前端,JS,原型链," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="prototype和proto弄明白原型链，我感觉首先要明白这几点：
+
+任何函数都有prototype:  这个属性指向的是一个对象的引用，对已每一个函数（类）的实例都会从prototype属性指向的对象上继承属性用一句话说就是同一个函数创建的所有的对象，都会继承一个相同的对象。
+任何对象都有一个proto:怎么说呢。看这个例子；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="原型链">
+<meta property="og:url" content="http://yoursite.com/2016/05/25/原型链/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="prototype和proto弄明白原型链，我感觉首先要明白这几点：
+
+任何函数都有prototype:  这个属性指向的是一个对象的引用，对已每一个函数（类）的实例都会从prototype属性指向的对象上继承属性用一句话说就是同一个函数创建的所有的对象，都会继承一个相同的对象。
+任何对象都有一个proto:怎么说呢。看这个例子；">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/bac23618-758d-4730-a1b1-f08db7ba43e6">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/18fd7863-ece2-4786-828d-0e2955d785ba">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/57db8450-9f57-4f98-abcd-e7e4c098fac0">
+<meta property="og:updated_time" content="2016-05-25T12:22:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="原型链">
+<meta name="twitter:description" content="prototype和proto弄明白原型链，我感觉首先要明白这几点：
+
+任何函数都有prototype:  这个属性指向的是一个对象的引用，对已每一个函数（类）的实例都会从prototype属性指向的对象上继承属性用一句话说就是同一个函数创建的所有的对象，都会继承一个相同的对象。
+任何对象都有一个proto:怎么说呢。看这个例子；">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/bac23618-758d-4730-a1b1-f08db7ba43e6">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 原型链 | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                原型链
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-25T18:34:15+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/面对对象/" itemprop="url" rel="index">
+                    <span itemprop="name">面对对象</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/25/原型链/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/25/原型链/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><h2 id="prototype和proto"><a href="#prototype和proto" class="headerlink" title="prototype和proto"></a>prototype和<strong>proto</strong></h2><p>弄明白原型链，我感觉首先要明白这几点：</p>
+<ul>
+<li>任何函数都有prototype:<br>  这个属性指向的是一个对象的引用，对已每一个函数（类）的实例都会从prototype属性指向的对象上继承属性用一句话说就是同一个函数创建的所有的对象，都会继承一个相同的对象。</li>
+<li>任何对象都有一个<strong>proto</strong>:<br>怎么说呢。看这个例子；<a id="more"></a><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">&#125;</span><br><span class="line">show.prototype=&#123;</span><br><span class="line">    sayName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"my name is:"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> show(<span class="string">"acorn"</span>)</span><br><span class="line">p.sayName();</span><br><span class="line"><span class="comment">//这里输出 my name is:acorn</span></span><br><span class="line">我们知道 p 本身是没有sayName 这个方法的。</span><br><span class="line">这里就要说到__proto__这个属性，简单来说，每个对象都会在内部初始化一个属性，就是__proto__,当我们访问一个对象的属性，如果这个对象本身没有，就在__proto__里面找，这个__proto__指向的就是他的上一级的prototype 这里p.__proto__即为show.pertotype</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>如果有点绕，可以我们可以画一个原型图来更好的理解。<br>还是这例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">&#125;</span><br><span class="line">show.prototype=&#123;</span><br><span class="line">    sayName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"my name is:"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> show(<span class="string">"acorn"</span>)</span><br><span class="line">p.sayName();</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/bac23618-758d-4730-a1b1-f08db7ba43e6" alt="0_1464152267898_upload-ad9ef3d3-57ba-44e5-b2fa-a457fb06802b"></p>
+<p>这里Person  是一个构造函数也是一个对象，就存在prototype,和<strong>proto</strong>属性。<br>p 这个对象是对Person这个函数 <code>new</code>生成， 所以p对象中的<strong>proro</strong>jiu指向<code>Person</code>这个构造函数中的prototype,<br>而 constructor 是这个<code>Person</code>这个构造函数中prototype这个属性中的一个属性，指向这个构造函数本身。</p>
+<hr>
+<h2 id="什么是原型链。"><a href="#什么是原型链。" class="headerlink" title="什么是原型链。"></a>什么是原型链。</h2><p>经过上面的例子，但是还是发现了一个很有趣的事情。</p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/18fd7863-ece2-4786-828d-0e2955d785ba" alt="0_1464152922849_upload-cdb68dd0-91d5-4524-bb42-523dd0be664b"><br>在chrome浏览器中p这个对象 除了可以使用sayName 这个方法还能使用很多方法，但是prototype中只写有一个sayName 方法。其他方法是从哪来的？</p>
+<p>我们把上个例子中的图补充完整<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/57db8450-9f57-4f98-abcd-e7e4c098fac0" alt="0_1464160653429_upload-51bb8280-8d35-4ec6-9e76-c192ab8f6298"><br>让我们在还原下当时的情况。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params">name</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=name;</span><br><span class="line">&#125;<span class="comment">//生成一个构造函数</span></span><br><span class="line">show.prototype=&#123;</span><br><span class="line">    sayName:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"my name is:"</span>+<span class="keyword">this</span>.name)</span><br><span class="line">&#125;</span><br><span class="line">&#125;<span class="comment">//定义构造函数show的一个原型属性</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> p=<span class="keyword">new</span> show(<span class="string">"acorn"</span>)<span class="comment">//生成一个对象实例</span></span><br><span class="line">p.toString();<span class="comment">//调用这个对象实例的方法。</span></span><br></pre></td></tr></table></figure></p>
+<p>当我们在从调用到运行经历的过程是</p>
+<ul>
+<li>现在这个对象本身寻找这个属性，发现没有</li>
+<li>只好通过p.<strong>proto</strong> 前往Person.prototype里面寻找，发现并没有</li>
+<li>只好顺着Person.prototype.<strong>proto</strong>找到Object.prototype 里面 找到了toString()这个方法</li>
+</ul>
+<p>所以就能看到<code>p.</code>后面会跟很多方法了。</p>
+<hr>
+<h2 id="关于原型链的几个例子"><a href="#关于原型链的几个例子" class="headerlink" title="关于原型链的几个例子"></a>关于原型链的几个例子</h2><h3 id="对String做扩展，实现如下方式获取字符串中频率最高的字符"><a href="#对String做扩展，实现如下方式获取字符串中频率最高的字符" class="headerlink" title="对String做扩展，实现如下方式获取字符串中频率最高的字符"></a>对String做扩展，实现如下方式获取字符串中频率最高的字符</h3><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.getMostOften=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">var</span> num,</span><br><span class="line">         maxNum=<span class="number">0</span>,</span><br><span class="line">         arr=&#123;&#125;;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">var</span> i=<span class="number">0</span>;i&lt;<span class="keyword">this</span>.length;i++)&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr[<span class="keyword">this</span>[i]])&#123;</span><br><span class="line">         arr[<span class="keyword">this</span>[i]]+=<span class="number">1</span>;</span><br><span class="line">       &#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">         arr[<span class="keyword">this</span>[i]]=<span class="number">1</span>;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     <span class="keyword">for</span>(<span class="built_in">var</span> key <span class="keyword">in</span> arr)&#123;</span><br><span class="line">       <span class="keyword">if</span>(arr[key]&gt;maxNum)&#123;</span><br><span class="line">         maxNum=arr[key];</span><br><span class="line">         num=key;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   <span class="keyword">return</span> (<span class="string">"出现次数最多的数是:"</span>+num+<span class="string">"    出现次数为:"</span>+maxNum)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">var</span> str = <span class="string">'ahbbccdeddddfg'</span>;</span><br><span class="line">   <span class="built_in">var</span> ch = str.getMostOften();</span><br><span class="line">   <span class="built_in">console</span>.log(ch);</span><br><span class="line">   <span class="comment">//出现次数最多的数是:d    出现次数为:5</span></span><br></pre></td></tr></table></figure>
+<h3 id="instanceOf有什么作用？内部逻辑是如何实现的？"><a href="#instanceOf有什么作用？内部逻辑是如何实现的？" class="headerlink" title="instanceOf有什么作用？内部逻辑是如何实现的？"></a>instanceOf有什么作用？内部逻辑是如何实现的？</h3><p>instanceOf 用于判断当前引用类型对象是不是某个构造函数的实例。例如<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],</span><br><span class="line">    b=&#123;<span class="string">"acorn"</span>:<span class="number">1</span>,<span class="string">"z-one"</span>:<span class="number">2</span>&#125;,</span><br><span class="line">    c=<span class="string">"acorn"</span>;</span><br><span class="line"></span><br><span class="line">a <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">//true</span></span><br><span class="line">b <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">//false</span></span><br><span class="line">b <span class="keyword">instanceof</span> <span class="built_in">Object</span> <span class="comment">//true</span></span><br><span class="line">c <span class="keyword">instanceof</span> <span class="built_in">Array</span> <span class="comment">//false 对象C不是引用类型，</span></span><br></pre></td></tr></table></figure></p>
+<p>其实 instanceOf 内部逻辑就是判断 当前引用类型对象的<strong>proto</strong> 与 目标对象的prototype是否为同一个。从而判断是否为当前对象的实例.<br>代码如下<br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">show</span>(<span class="params">obj,node</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(obj.__proto__===node.prototype)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;<span class="decorator"><span class="keyword">else</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="built_in">var</span> a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">show(a,<span class="built_in">Array</span>)<span class="comment">//true</span></span><br><span class="line">这里我们发现可以。但是如果遇到这种情况?</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">abc</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>]</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">var</span> p=<span class="keyword">new</span> abc();</span><br><span class="line"><span class="built_in">var</span> c=p.name;</span><br><span class="line">show(c.Objecet)<span class="comment">//false</span></span><br><span class="line">这里却为 <span class="literal">false</span>.这是什么原因？</span><br></pre></td></tr></table></figure></p>
+<h4 id="insranceOf-正确判断逻辑"><a href="#insranceOf-正确判断逻辑" class="headerlink" title="insranceOf 正确判断逻辑"></a>insranceOf 正确判断逻辑</h4><p>inStanceOf 内部逻辑判断为：先判断当前引用对象的<strong>proto</strong>是否和目标构造函数的prototype相等，如果不相等在判断引用对象的<strong>proto</strong>.<strong>proto</strong> 是否相等</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function show(obj,<span class="keyword">node</span><span class="title">)&#123;</span><br><span class="line">        if</span>(obj.<span class="attr">__proto__=</span>==<span class="keyword">node</span>.<span class="title">prototype</span>)&#123;</span><br><span class="line">            return <span class="literal">true</span>;</span><br><span class="line">        &#125;else if(obj.__proto__.<span class="attr">__proto__=</span>==<span class="keyword">node</span>.<span class="title">prototype</span>)&#123;</span><br><span class="line">          return <span class="literal">true</span>;</span><br><span class="line">        &#125;else return <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag">#前端</a>
+          
+            <a href="/tags/JS/" rel="tag">#JS</a>
+          
+            <a href="/tags/原型链/" rel="tag">#原型链</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/22/面向对象思想/" rel="next" title="面向对象思想">
+                <i class="fa fa-chevron-left"></i> 面向对象思想
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/26/源于原型链的那点事/" rel="prev" title="关于原型链的那点事">
+                关于原型链的那点事 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/05/25/原型链/"
+                   data-title="原型链" data-url="http://yoursite.com/2016/05/25/原型链/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#prototype和proto"><span class="nav-number">1.</span> <span class="nav-text">prototype和proto</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是原型链。"><span class="nav-number">2.</span> <span class="nav-text">什么是原型链。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于原型链的几个例子"><span class="nav-number">3.</span> <span class="nav-text">关于原型链的几个例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对String做扩展，实现如下方式获取字符串中频率最高的字符"><span class="nav-number">3.1.</span> <span class="nav-text">对String做扩展，实现如下方式获取字符串中频率最高的字符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instanceOf有什么作用？内部逻辑是如何实现的？"><span class="nav-number">3.2.</span> <span class="nav-text">instanceOf有什么作用？内部逻辑是如何实现的？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#insranceOf-正确判断逻辑"><span class="nav-number">3.2.1.</span> <span class="nav-text">insranceOf 正确判断逻辑</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,899 @@
+<!doctype html>
+<html class="theme-next use-motion theme-next-mist">
+<head>
+  
+
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5"/>
+
+
+
+  
+    <link href='//fonts.lug.ustc.edu.cn/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+  
+
+
+<link rel="stylesheet" type="text/css" href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" />
+
+<link rel="stylesheet" type="text/css" href="/css/main.css?v=0.4.5.2"/>
+
+
+
+
+  <meta name="keywords" content="现代魔法,HTTP,缓存," />
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
+
+
+<meta name="description" content="这里简单总结一下http的相关知识笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="管中窥豹——HTTP">
+<meta property="og:url" content="http://yoursite.com/2016/05/22/管中窥豹——HTTP/index.html">
+<meta property="og:site_name" content="简明的现代魔法">
+<meta property="og:description" content="这里简单总结一下http的相关知识笔记">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/f63554b0-7ab7-42f5-8715-97a6c17bdfb4">
+<meta property="og:image" content="leanote://file/getImage?fileId=5740746c678db945dd000000">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/7adfed0a-d46b-45ca-9cfe-68bdfdd6c217.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/67396ec3-08b0-45a6-a301-7b3f8a733588">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/f354c53e-f24a-4712-adb7-a78f6df6ebed">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/b569112d-d951-4188-bf9a-87b3f768d35b">
+<meta property="og:image" content="http://images.cnblogs.com/cnblogs_com/skynet/201211/201211281402437422.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/ba02a717-5fe8-4854-8310-c66438bf1cd9.png">
+<meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/ff57a0b4-53c3-4461-8093-789dc5743206">
+<meta property="og:updated_time" content="2016-05-22T07:43:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="管中窥豹——HTTP">
+<meta name="twitter:description" content="这里简单总结一下http的相关知识笔记">
+<meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/f63554b0-7ab7-42f5-8715-97a6c17bdfb4">
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: 'post'
+  };
+</script>
+
+
+
+  <title> 管中窥豹——HTTP | 简明的现代魔法 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!--[if lte IE 8]>
+  <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;margin:0 auto;'>
+    <a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
+      <img src="http://7u2nvr.com1.z0.glb.clouddn.com/picouterie.jpg" border="0" height="42" width="820"
+           alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today or use other browser ,like chrome firefox safari."
+           style='margin-left:auto;margin-right:auto;display: block;'/>
+    </a>
+  </div>
+<![endif]-->
+  
+
+
+
+
+
+
+  <div class="container one-column page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">简明的现代魔法</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu menu-left">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  
+  <form class="site-search-form">
+    <input type="text" id="st-search-input" class="st-search-input st-default-search-input" />
+  </form>
+
+
+<script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+    (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+    e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+  _st('install', 'tmmugri7igzcm9zeGY8i','2.0.0');
+</script>
+
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div id="content" class="content"> 
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                管中窥豹——HTTP
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            发表于
+            <time itemprop="dateCreated" datetime="2016-05-22T14:55:56+08:00" content="2016-05-22">
+              2016-05-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp; 分类于
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/前端/浏览器/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/22/管中窥豹——HTTP/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/22/管中窥豹——HTTP/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body">
+
+      
+      
+
+      
+        <span itemprop="articleBody"><p>这里简单总结一下http的相关知识笔记<a id="more"></a></p>
+<h3 id="OSI七层模型指的是什么？"><a href="#OSI七层模型指的是什么？" class="headerlink" title="OSI七层模型指的是什么？"></a>OSI七层模型指的是什么？</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/f63554b0-7ab7-42f5-8715-97a6c17bdfb4" alt="OSI七层模型草图"><br>一台计算机操作系统中的网络过程包括从应用请求(在协议栈的顶部)到网络介质(底部)，OSI参考模型把功能分成七个分立的层次。<br>网络：</p>
+<ul>
+<li>第一层：物理层：为数据端设备提供原始比特流的传输的通路(原始比特流的传输)<ul>
+<li>常见：中继器，集线器，网线等</li>
+</ul>
+</li>
+<li>第二层：链路层：在通信的实体间建立数据链路连接<ul>
+<li>常见：网卡，网桥，两层交换器</li>
+</ul>
+</li>
+<li>第三层：网络层：为数据在结点之间传输创建逻辑链路，并分组转发数据(数据包)<ul>
+<li>常见：路由器，多层交换器， 防火墙 </li>
+</ul>
+</li>
+</ul>
+<p>主机：</p>
+<ul>
+<li>第四层：传输层： 提供应用进程之间的逻辑通信<ul>
+<li>常见：TCP协议、UDP协议</li>
+</ul>
+</li>
+<li>第五层：会话层:建立端连接并提供访问验证和会话管理；<ul>
+<li>常见：服务器验证用户登录、断电传输</li>
+</ul>
+</li>
+<li>第六层：表示层：提供数据格式转换服务,解密和加密、图片解码和编码，数据的压缩和解压缩<ul>
+<li>常见：URL加密，口令加密、图片编解码。 </li>
+</ul>
+</li>
+<li>第七层：应用层：访问网络服务的接口，为操作系统或网络应用程序提供访问网络接口<ul>
+<li>常见：HTTP、DNS等 </li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP的工作原理是什么"><a href="#HTTP的工作原理是什么" class="headerlink" title="HTTP的工作原理是什么"></a>HTTP的工作原理是什么</h3><p>详细可参考之前写的一个总结<a href="http://liruihaod.github.io/2016/02/27/%E5%BD%93%E6%88%91%E4%BB%AC%E8%BE%93%E5%85%A5URI-%E6%8C%89%E4%B8%8B%E5%9B%9E%E8%BD%A6%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%9F/" target="_blank" rel="external">当我们按下url发生了什么</a></p>
+<h3 id="简单来说HTTP的工作原理是"><a href="#简单来说HTTP的工作原理是" class="headerlink" title="简单来说HTTP的工作原理是"></a>简单来说HTTP的工作原理是</h3><ul>
+<li>浏览器通过DNS服务器进行域名解析,把URL地址转换成IP地址。</li>
+<li>打包http请求</li>
+<li><p>发送http请求(通过TCP协议的三次握手)</p>
+<ul>
+<li>我想发一些数据可以吗？</li>
+<li>可以的，啥时候发</li>
+<li>现在就发，你接着把</li>
+</ul>
+</li>
+<li><p>服务器接收请求，交给相关进程处理。</p>
+</li>
+<li>相关进程处理请求后，发送给服务器，然后服务器将文件打包发送给浏览器</li>
+<li>浏览器接收响应，开始下载并且渲染，将页面呈现在我们面前。</li>
+</ul>
+<hr>
+<h3 id="URL的格式是什么？常见的协议有哪些？"><a href="#URL的格式是什么？常见的协议有哪些？" class="headerlink" title="URL的格式是什么？常见的协议有哪些？"></a>URL的格式是什么？常见的协议有哪些？</h3><p>URL 其实就是统一资源定位符，其实除了URL之外还有一个URN：统一资源名称,通过名字来进行定位。<br><img src="leanote://file/getImage?fileId=5740746c678db945dd000000" alt="图解HTTP"><br>一般URL组成：</p>
+<ul>
+<li>协议号:例如HTTP、HTTPS这种的</li>
+<li>登录信息：user:pass 这个一般被很多人忽略，如果用github clone远程库的时候，如果不是用SSH方式，而是用HTTP方式每次pull和push的时候就会要求输入账户和密码.也就是输入的这个</li>
+<li>服务器地址:这个就很好理解，一看就明白</li>
+<li>服务器端口号:这个与前面的协议号相对应，例如最基本的http协议的端口号就是8080,https的端口号就是443.</li>
+<li>带层次的文件路径</li>
+<li>查询字符串，例如百度的分页就是用查询字符串的方式</li>
+<li>片段标识符</li>
+</ul>
+<h4 id="常见的协议有哪些"><a href="#常见的协议有哪些" class="headerlink" title="常见的协议有哪些"></a>常见的协议有哪些</h4><p>一般来说常见的协议号有</p>
+<ul>
+<li>http:对应端口号8080</li>
+<li>https:对应端口号443</li>
+<li>ssh:对应端口号22</li>
+<li>ftp:对于的端口号21</li>
+</ul>
+<hr>
+<h3 id="HTTP-协议有几种和服务器交互的方法"><a href="#HTTP-协议有几种和服务器交互的方法" class="headerlink" title="HTTP 协议有几种和服务器交互的方法"></a>HTTP 协议有几种和服务器交互的方法</h3><p>一般来说HTTP协议和服务器的交互方式有：</p>
+<ul>
+<li><strong>get</strong>:这个是最常用的一个交互方式，一般用于向服务器请求什么数据</li>
+<li><strong>post</strong>:投递，或者发送数据，一般常见于登陆的时候验证表单</li>
+<li><strong>HEAD</strong>:HEAD和GET本质是一样的，区别在于HEAD不含有呈现数据，而仅仅是HTTP头信息。有的人可能觉得这个方法没什么用，其实不是这样的。想象一个业务情景：欲判断某个资源是否存在，我们通常使用GET，但这里用HEAD则意义更加明确。</li>
+<li><strong>put</strong>:这个方法比较少见， 一般HTML表单也不支持这个请求，和POST很相似都是向服务器发送请求，但有个区别就是:put可以指定资源的存放位置，而POST的存放位置由服务器决定</li>
+<li><strong>delete</strong>：删除某个资源</li>
+<li><strong>options</strong>这个方法很有有趣，不过基本上很少使用，主要用于获取当前URL所支持的方法，如果请求成功会在HTTP头中包含一个”Allow”的，显示所支持的方法如”GET,POST”</li>
+</ul>
+<hr>
+<h3 id="5-状态码200，301，304，403-404-500，503分别代表什么意思"><a href="#5-状态码200，301，304，403-404-500，503分别代表什么意思" class="headerlink" title="5.状态码200，301，304，403,404,500，503分别代表什么意思"></a>5.状态码200，301，304，403,404,500，503分别代表什么意思</h3><p>当服务器响应时，状态码的一些总结说明</p>
+<ul>
+<li><p>客户方错误</p>
+<ul>
+<li>100：表示客户端应该继续发生请求</li>
+<li>101：表示服务器已经理解了客户端的请求</li>
+</ul>
+</li>
+<li><p>成功</p>
+<ul>
+<li>200：一起正常</li>
+<li>201请求已经被实现</li>
+</ul>
+</li>
+<li><p>重定向</p>
+<ul>
+<li>300： 多条路径选择</li>
+<li>301：请求的文档已经永久转移</li>
+<li>302 :请求的文档已经被暂时放到一个地方去了</li>
+<li>304：文档内容无变化，使用本地缓存.</li>
+</ul>
+</li>
+<li><p>客户端错误</p>
+</li>
+<li>401：请求参数错误</li>
+<li>403：服务器已经理解请求，但由于服务器上文件或者目录导致拒绝这次请求.</li>
+<li><p>404:找不到资源</p>
+</li>
+<li><p>客户端方向错误</p>
+</li>
+<li>500：服务器出现错误，不能完成客户请求</li>
+<li>503：服务器临时维护或过载，无法处理请求</li>
+</ul>
+<hr>
+<h3 id="报文有哪些部分组成"><a href="#报文有哪些部分组成" class="headerlink" title="报文有哪些部分组成"></a>报文有哪些部分组成</h3><p>HTTP请求报文主要有<strong>请求行</strong>、<strong>请求头部</strong>、和<strong>请求数据</strong>三部分组成<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/7adfed0a-d46b-45ca-9cfe-68bdfdd6c217.png" alt="0_1463882727207_2012072810301161.png"><br><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">＜request-<span class="built_in">line</span>＞   请求行</span><br><span class="line"></span><br><span class="line">＜headers＞        请求头部</span><br><span class="line"></span><br><span class="line">＜blank <span class="built_in">line</span>＞      空格</span><br><span class="line"></span><br><span class="line">[＜request-body＞   请求数据</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="请求头的格式和作用"><a href="#请求头的格式和作用" class="headerlink" title="请求头的格式和作用"></a>请求头的格式和作用</h3><p>上面说过HTTP请求报文主要由<strong>请求行</strong>、<strong>请求头部</strong>和<strong>请求数据</strong>组成<br>其中 <strong>请头部</strong>,用我博客为例子<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/67396ec3-08b0-45a6-a301-7b3f8a733588" alt="0_1463884312403_upload-c2b4d43d-8ac7-4e3c-b093-bfecf0dae3cf"><br>这是一个请求头部.<br>其中：</p>
+<ul>
+<li>Accept:告诉服务器能够发送那些媒体类型。这里说可以是text/html类似的</li>
+<li>accept-Encoding:告诉服务器能够发送哪些字符串，这里告知可以发送：gzip, deflate, sdch这些字符串</li>
+<li>Accept-Language：浏览器支持的语言分别是中文和简体中文，优先支持简体中文。0&lt;q&lt;0.5趋向于前者，0.5&lt;q&lt;1趋向于后者</li>
+<li>Cache-control:告之浏览器在缓冲的规则。这里是没有缓存.</li>
+<li>Connection :询问浏览器和服务器是否保持联系，这里keep-alive为，保持</li>
+<li>cookie:客户端传递的字符串，可能和我的一些登陆信息有关</li>
+<li>host:服务器主机的域名，就是我们说的域名</li>
+<li>User—Agent：这里是检测我所使用的浏览器类型和版本号</li>
+</ul>
+<hr>
+<h3 id="关于首部的格式和作用"><a href="#关于首部的格式和作用" class="headerlink" title="关于首部的格式和作用"></a>关于首部的格式和作用</h3><p>这里以我的博客地址为例子<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/f354c53e-f24a-4712-adb7-a78f6df6ebed" alt="0_1463890974764_upload-7a345ebe-bdc6-4f31-964a-a8c25e737255"> </p>
+<ul>
+<li>age:响应了多长时间，这里显示是响应了56秒</li>
+<li>Cache-Control:管理缓存。这里显示缓存600之内就一直用这个</li>
+<li>Connection:服务器是否和客户端保持连接，这里表示是一直保持连接</li>
+<li>Date:创建HTTP报文的时间和日期,这里表明是2016年5月22号创建的。当然是美国时间</li>
+<li>Expires:资源失效时间;这里失效时间为2016年5月22号晚上02:21:50，当然如果存在Cache-Control,则优先使用Cache-Control。 </li>
+<li>Vary：属于响应协商首部，是一个首部列表，服务器会根据这些首部的内容挑出最适合的资源版本发给客户端。</li>
+</ul>
+<h3 id="Cache-Control与Expires的区别"><a href="#Cache-Control与Expires的区别" class="headerlink" title="Cache-Control与Expires的区别"></a><code>Cache-Control</code>与<code>Expires</code>的区别</h3><p>Expires = 时间，HTTP 1.0 版本，缓存的载止时间，允许客户端在这个时间之前不去检查（发请求）<br><code>max-age</code>= 秒，HTTP 1.1版本，资源在本地缓存多少秒。<br><strong>如果max-age和Expires同时存在，则被Cache-Control的max-age覆盖。</strong><br>Expires 的一个缺点就是，返回的到期时间是服务器端的时间，这样存在一个问题，如果客户端的时间与服务器的时间相差很大，那么误差就很大，所以在HTTP 1.1版开始，使用Cache-Control: <code>max-age</code>=秒替代。<br><code>Expires</code> =<code>max-age</code> +   “每次下载时的当前的request时间”<br>所以一旦重新下载的页面后，expires就重新计算一次，但<code>last-modified</code>不会变化 </p>
+<h3 id="主体的作用是什么？"><a href="#主体的作用是什么？" class="headerlink" title="主体的作用是什么？"></a>主体的作用是什么？</h3><p>实体的主体部分就是HTTP要传输的内容了，一般是图片、视频、HTML文档等。已博客为例，响应主体也就是HTML文档了。<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/b569112d-d951-4188-bf9a-87b3f768d35b" alt="0_1463892314994_upload-902bc859-f37c-465c-9291-512fa491b059"> </p>
+<hr>
+<h3 id="浏览器的缓存如何控制"><a href="#浏览器的缓存如何控制" class="headerlink" title="浏览器的缓存如何控制"></a>浏览器的缓存如何控制</h3><p>浏览器的缓存主要通过这几个方面控制：</p>
+<h4 id="1-Last-Modified"><a href="#1-Last-Modified" class="headerlink" title="1.Last-Modified"></a>1.Last-Modified</h4><p>当浏览器第一次请求一个URL的时候，请求成功，服务器的返回状态是200，内容是你请求的资源，同时会有一个<code>Last-Modified</code>的属性标记次文件在服务器端最后被修改的时间，格式例如：<br><code>Last-Modified:Tue, 24 Feb 2009 08:01:04 GMT</code><br>如果第二次请求同一个URL的时候，请求头部会有一个<code>if-Modified-Since</code>服务器收到后会和最后一次修改的时间对比，来判断客户端的页面是不是最新的。如果资源没有发生改变则返回304状态码。当服务器端代码发生改变或者重启服务器时，则重新发出资源，返回和第一次请求时类似。从而保证不向客户端重复发出资源，也保证当服务器有变化时，客户端能够得到最新的资源。</p>
+<hr>
+<h4 id="2-Etag"><a href="#2-Etag" class="headerlink" title="2.Etag"></a>2.Etag</h4><p>Etag作用和last-Modified类似，简而言之就是服务器响应时，给请求URL的一个标记，<br>如果下次再请求同一个URL的时候，请求表头会生成一个<code>If-None-Match</code>,服务器接收到后，会对比两次的Etag值，如果相同则返回304状态码。不同则返回新的内容</p>
+<hr>
+<h4 id="3-Expires"><a href="#3-Expires" class="headerlink" title="3.Expires"></a>3.Expires</h4><p>在服务器发回响应时候，会发送一个Expires,告之浏览器在过期时间之前访问时，浏览器都可以直接从浏览器缓存中访问数据，而无需在此请求</p>
+<hr>
+<h4 id="4-Cache-control"><a href="#4-Cache-control" class="headerlink" title="4.Cache-control"></a>4.Cache-control</h4><p>Cache-control为HTTP 1.1版本新增加的一个，同Expires类似，只是Expires=时间，Cache-Control: max-age=秒。</p>
+<p>当浏览器第一次请求的时候<br><img src="http://images.cnblogs.com/cnblogs_com/skynet/201211/201211281402437422.png" alt="浏览器"><br>大致就是这么一个过程<br>当浏览器第二次请求的时候</p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/ba02a717-5fe8-4854-8310-c66438bf1cd9.png" alt="浏览器"><br>总的来说，可以分为这几步<br>当浏览器第二次</p>
+<ul>
+<li>先根据(Cache-control/Expires)查看浏览器缓存是否过期。</li>
+<li>如果没有过期，直接调用浏览器缓存。</li>
+<li>若浏览器缓存过期，则再次向浏览器发送请求，服务器根据<code>if-Modified-Since</code>和<code>If-None-Match</code>来判断是否返回304，让浏览器从缓存中调取，还是返回200，发送响应请求。</li>
+<li>最后浏览器呈现页面在用户面前</li>
+</ul>
+<hr>
+<h3 id="最后一点"><a href="#最后一点" class="headerlink" title="最后一点"></a>最后一点</h3><p>最后用这个例子来具体说说各个参数代表什么意思？<br><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/ff57a0b4-53c3-4461-8093-789dc5743206" alt="0_1463900026516_upload-7ecb7d61-ceeb-4537-ad58-ef3332adf35a"> </p>
+</span>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/现代魔法/" rel="tag">#现代魔法</a>
+          
+            <a href="/tags/HTTP/" rel="tag">#HTTP</a>
+          
+            <a href="/tags/缓存/" rel="tag">#缓存</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/05/03/this/" rel="next" title="this">
+                <i class="fa fa-chevron-left"></i> this
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/05/22/面向对象思想/" rel="prev" title="面向对象思想">
+                面向对象思想 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+ </div>
+
+        
+
+        
+          <div class="comments" id="comments">
+            
+              <div class="ds-thread" data-thread-key="2016/05/22/管中窥豹——HTTP/"
+                   data-title="管中窥豹——HTTP" data-url="http://yoursite.com/2016/05/22/管中窥豹——HTTP/">
+              </div>
+            
+          </div>
+        
+      </div>
+
+      
+        
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" src="/images/toux.png" alt="Z-one" itemprop="image"/>
+          <p class="site-author-name" itemprop="name">Z-one</p>
+        </div>
+        <p class="site-description motion-element" itemprop="description">后来我终于知道，它并不是我的花，我只是恰好途经了它的盛放。</p>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">40</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          <div class="site-state-item site-state-categories">
+            <a href="/categories">
+              <span class="site-state-item-count">32</span>
+              <span class="site-state-item-name">分类</span>
+              </a>
+          </div>
+
+          <div class="site-state-item site-state-tags">
+            <a href="/tags">
+              <span class="site-state-item-count">41</span>
+              <span class="site-state-item-name">标签</span>
+              </a>
+          </div>
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/liruihaod" target="_blank">
+                  <i class="fa fa-github"></i> github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/3606967317/profile?rightmod=1&wvr=6&mod=personnumber&is_all=1" target="_blank">
+                  <i class="fa fa-weibo"></i> weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://www.zhihu.com/people/li-rui-71-16" target="_blank">
+                  <i class="fa fa-知乎"></i> 知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+            <p class="site-author-name">links</p>
+            
+              <span class="links-of-author-item">
+                <a href="" target="_blank">邮箱acornmemeda@gmail.com</a>
+              </span>
+            
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator"></div>
+          <div class="post-toc">
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#OSI七层模型指的是什么？"><span class="nav-number">1.</span> <span class="nav-text">OSI七层模型指的是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP的工作原理是什么"><span class="nav-number">2.</span> <span class="nav-text">HTTP的工作原理是什么</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单来说HTTP的工作原理是"><span class="nav-number">3.</span> <span class="nav-text">简单来说HTTP的工作原理是</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL的格式是什么？常见的协议有哪些？"><span class="nav-number">4.</span> <span class="nav-text">URL的格式是什么？常见的协议有哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常见的协议有哪些"><span class="nav-number">4.1.</span> <span class="nav-text">常见的协议有哪些</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-协议有几种和服务器交互的方法"><span class="nav-number">5.</span> <span class="nav-text">HTTP 协议有几种和服务器交互的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-状态码200，301，304，403-404-500，503分别代表什么意思"><span class="nav-number">6.</span> <span class="nav-text">5.状态码200，301，304，403,404,500，503分别代表什么意思</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#报文有哪些部分组成"><span class="nav-number">7.</span> <span class="nav-text">报文有哪些部分组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头的格式和作用"><span class="nav-number">8.</span> <span class="nav-text">请求头的格式和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于首部的格式和作用"><span class="nav-number">9.</span> <span class="nav-text">关于首部的格式和作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cache-Control与Expires的区别"><span class="nav-number">10.</span> <span class="nav-text">Cache-Control与Expires的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#主体的作用是什么？"><span class="nav-number">11.</span> <span class="nav-text">主体的作用是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器的缓存如何控制"><span class="nav-number">12.</span> <span class="nav-text">浏览器的缓存如何控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Last-Modified"><span class="nav-number">12.1.</span> <span class="nav-text">1.Last-Modified</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Etag"><span class="nav-number">12.2.</span> <span class="nav-text">2.Etag</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-Expires"><span class="nav-number">12.3.</span> <span class="nav-text">3.Expires</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-Cache-control"><span class="nav-number">12.4.</span> <span class="nav-text">4.Cache-control</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后一点"><span class="nav-number">13.</span> <span class="nav-text">最后一点</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator"></div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+      
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner"> <div class="copyright" >
+  
+  &copy;  2015 - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="icon-next-heart fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Z-one</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+ </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+    
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"liruihaod"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+    
+     
+
+
+    
+  
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+  <script type="text/javascript" src="/js/fancy-box.js?v=0.4.5.2"></script>
+
+
+  <script type="text/javascript" src="/js/helpers.js?v=0.4.5.2"></script>
+  
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/js/motion_global.js?v=0.4.5.2" id="motion.global"></script>
+
+
+
+
+  <script type="text/javascript" src="/js/nav-toggle.js?v=0.4.5.2"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+<script type="text/javascript" src="/js/bootstrap.scrollspy.js?v=0.4.5.2" id="bootstrap.scrollspy.custom"></script>
+
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 0.4 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    var $tocContent = $('.post-toc-content');
+    if (isDesktop() && CONFIG.sidebar === 'post') {
+      if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+        displaySidebar();
+      }
+    }
+  });
+</script>
+
+
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      if (CONFIG.sidebar === 'always') {
+        displaySidebar();
+      }
+      if (isMobile()) {
+        FastClick.attach(document.body);
+      }
+
+      motionIntegrator.bootstrap();
+    });
+  </script>
+
+  
+  
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/lazyload.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#posts").find('img').lazyload({
+        placeholder: "/images/loading.gif",
+        effect: "fadeIn"
+      });
+    });
+  </script>
+</body>
+</html>
