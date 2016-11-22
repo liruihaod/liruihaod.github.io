@@ -281,18 +281,12 @@
 
       
         
-          <span itemprop="articleBody">
-            
-              <h2 id="微信端二维码无法识别"><a href="#微信端二维码无法识别" class="headerlink" title="微信端二维码无法识别"></a>微信端二维码无法识别</h2><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/fb0f9acf-5403-4ccf-8cec-b32e91b7d5f9" alt="0_1479827054977_upload-03dd9aff-b07e-466f-896c-b03e30eba9a7"></p>
-<hr>
-<p>今天下午遇到的一个问题。在IOS下面长按图片无法识别二维码。<br>开始以为是用的<code>background-image</code>后面确认为<code>img</code>问题任然存在。</p>
-<h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><p>使用<code>background-image</code>和<code>img</code>结合起来。<br>例如：<br><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">html</span>:</span><br><span class="line"></span><br><span class="line">&lt;div class=<span class="string">"demo"</span>&gt;</span><br><span class="line">    &lt;img src=<span class="string">"xxxxx.png"</span> alt=<span class="string">"简单测试下啦"</span>/&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line"></span><br><span class="line">css:</span><br><span class="line">.demo&#123;</span><br><span class="line">  position:relative;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">250px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">250px</span>;</span><br><span class="line">  <span class="attribute">overflow</span>:hidden;</span><br><span class="line">  <span class="attribute">background</span>:url(<span class="string">"xxxx.png"</span>) no-repeat;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">img</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>:<span class="number">250px</span>;</span><br><span class="line">  <span class="attribute">height</span>:<span class="number">250px</span>;</span><br><span class="line">  <span class="attribute">position</span>:absolute;</span><br><span class="line">  <span class="attribute">top</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>:<span class="number">0</span>;</span><br><span class="line">  <span class="attribute">transform</span>:translate(-<span class="number">50%</span>,-<span class="number">50%</span>);</span><br><span class="line">  <span class="attribute">opacity</span>:<span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="这样就完成了。"><a href="#这样就完成了。" class="headerlink" title="这样就完成了。"></a>这样就完成了。</h3><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/5116e09e-6f96-4f74-8608-82774e1ad46f" alt="0_1479827906551_upload-1db3f13b-0cdf-4567-977f-d3c221d6a9f0"></p>
-<hr>
-<p>这样在IOS中也能长按识别二维码了。</p>
-
-            
-          </span>
+          <h2 id="微信端二维码无法识别"><a href="#微信端二维码无法识别" class="headerlink" title="微信端二维码无法识别"></a>微信端二维码无法识别</h2><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/fb0f9acf-5403-4ccf-8cec-b32e91b7d5f9" alt="0_1479827054977_upload-03dd9aff-b07e-466f-896c-b03e30eba9a7">
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/22/H5微信端无法识别二维码/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
