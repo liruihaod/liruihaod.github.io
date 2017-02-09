@@ -43,19 +43,19 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta name="description" content="说在开头工作接触移动端也有几个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="平时移动端的一些总结">
 <meta property="og:url" content="http://yoursite.com/2016/09/25/平时移动端的一些总结/index.html">
 <meta property="og:site_name" content="简明的现代魔法">
-<meta property="og:description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta property="og:description" content="说在开头工作接触移动端也有几个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
 <meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png">
 <meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/02074803-a621-4363-b3c6-8c14e8a7027c.png">
 <meta property="og:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/631ea458-f250-4fb7-8208-19b17208862a.png">
-<meta property="og:updated_time" content="2016-09-24T16:34:00.000Z">
+<meta property="og:updated_time" content="2017-02-09T13:30:58.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="平时移动端的一些总结">
-<meta name="twitter:description" content="说在开头工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
+<meta name="twitter:description" content="说在开头工作接触移动端也有几个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0">
 <meta name="twitter:image" content="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png">
 
 
@@ -269,7 +269,7 @@
       
 
       
-        <span itemprop="articleBody"><h1 id="说在开头"><a href="#说在开头" class="headerlink" title="说在开头"></a>说在开头</h1><p>工作接触移动端也有三个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0<br><a id="more"></a>    </p>
+        <span itemprop="articleBody"><h1 id="说在开头"><a href="#说在开头" class="headerlink" title="说在开头"></a>说在开头</h1><p>工作接触移动端也有几个月了。本人也比较懒，这里正好做个总结。方便平时坐地铁途中回顾0.0<br><a id="more"></a></p>
 <hr>
 <p>##移动端的一些适配<br>之前做移动端面对的适配问题很棘手。不过现在主流也就是这几种情况</p>
 <ul>
@@ -287,11 +287,11 @@
 </li>
 </ul>
 <hr>
-<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样只用知道 设计稿的原本大小，和元素的原本大小(px) </span><br><span class="line">然后用 </span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素高 对应 height Y <span class="comment">rem </span></span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素宽 对应 width X <span class="comment">rem </span></span><br><span class="line">然后就直接可以根据屏幕大小适配了。</span><br></pre></td></tr></table></figure>
+<figure class="highlight dos"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">这样只用知道 设计稿的原本大小，和元素的原本大小(px)</span><br><span class="line">然后用</span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素高 对应 height Y <span class="comment">rem</span></span><br><span class="line"><span class="number">10</span>/设计稿宽*原本元素宽 对应 width X <span class="comment">rem</span></span><br><span class="line">然后就直接可以根据屏幕大小适配了。</span><br></pre></td></tr></table></figure>
 <p>怎么说呢？比如我一个设计稿是750,一个元素<code>width</code>为100px;<br><code>height</code>为100px。<br>转换之后<br>width= 100px<em>10/750=1.34rem;<br>height=100px</em>10/750=1.34rem;<br>当然 如果是使用<code>sass</code>这样 用一个自定义方程计算，更好。</p>
 <hr>
 <h2 id="移动端的一些常用-meta"><a href="#移动端的一些常用-meta" class="headerlink" title="移动端的一些常用 meta"></a>移动端的一些常用 meta</h2><p>这一点没啥好说的。。。可能别处别我这边更为详细一点..不过我平时也就是使用这一些<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"</span> <span class="attr">name</span>=<span class="string">"viewport"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"yes"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-capable"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"black"</span> <span class="attr">name</span>=<span class="string">"apple-mobile-web-app-status-bar-style"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">content</span>=<span class="string">"telephone=no"</span> <span class="attr">name</span>=<span class="string">"format-detection"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="移动端的tap点击穿透"><a href="#移动端的tap点击穿透" class="headerlink" title="移动端的tap点击穿透"></a>移动端的<code>tap</code>点击穿透</h2><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png" alt="0_1474734469040_1474726441667_3.png"> </p>
+<h2 id="移动端的tap点击穿透"><a href="#移动端的tap点击穿透" class="headerlink" title="移动端的tap点击穿透"></a>移动端的<code>tap</code>点击穿透</h2><p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/90a4d782-9fbd-415c-883d-813fb88f106a.png" alt="0_1474734469040_1474726441667_3.png"></p>
 <p> <code>触发过程</code>：当网速良好的情况下，点击右上角抽奖.瞬间弹出模块框，然后回到首页按钮响应。页面发生跳转。回到首页</p>
 <hr>
 <p><code>解决办法</code>：</p>
@@ -307,10 +307,10 @@
 <h2 id="利用padding-top高度自适应占位"><a href="#利用padding-top高度自适应占位" class="headerlink" title="利用padding-top高度自适应占位"></a>利用<code>padding-top</code>高度自适应占位</h2><p><code>原理</code>:</p>
 <p>不管是<code>margin</code>还是<code>padding</code>如果百分比都是取的相对于父级的宽度。<br>例如<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"ct"</span>&gt;</span><br><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"content"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
 <p>然后设置<br><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">600px</span>;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-class">.ct</span>&#123;</span><br><span class="line">           <span class="attribute">width</span>:<span class="number">50%</span>;</span><br><span class="line">           <span class="attribute">background</span>:red;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="selector-class">.content</span>&#123;</span><br><span class="line">       <span class="comment">//这里相对于父级宽度,</span></span><br><span class="line">           <span class="attribute">padding-top</span>:<span class="number">100%</span>;</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/02074803-a621-4363-b3c6-8c14e8a7027c.png" alt="0_1474734504330_1474726440408_2.png"> </p>
+<p><img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/02074803-a621-4363-b3c6-8c14e8a7027c.png" alt="0_1474734504330_1474726440408_2.png"></p>
 <p>如果是如要上面装有图片。一个很好的一点就是.用浮动,利用伪类元素<code>padding-top:100%</code>撑开容器。然后设置img<code>position:absolute</code></p>
 <hr>
-<h2 id="ios-input框激活后不支持position-fixedbug"><a href="#ios-input框激活后不支持position-fixedbug" class="headerlink" title="ios input框激活后不支持position:fixedbug"></a>ios input框激活后不支持<code>position:fixed</code>bug</h2><p>就好比这个情况<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/631ea458-f250-4fb7-8208-19b17208862a.png" alt="0_1474734485151_1474731464942_2.png"> </p>
+<h2 id="ios-input框激活后不支持position-fixedbug"><a href="#ios-input框激活后不支持position-fixedbug" class="headerlink" title="ios input框激活后不支持position:fixedbug"></a>ios input框激活后不支持<code>position:fixed</code>bug</h2><p>就好比这个情况<img src="http://7xpvnv.com2.z0.glb.qiniucdn.com/631ea458-f250-4fb7-8208-19b17208862a.png" alt="0_1474734485151_1474731464942_2.png"></p>
 <hr>
 <p><code>触发过程</code><br>当用户使用<code>ios</code>系统点击激活input框时,此时浏览器会不在支持<code>fixed</code></p>
 <hr>
