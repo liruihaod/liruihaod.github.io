@@ -34,7 +34,7 @@
 
 
 
-  <meta name="keywords" content="闭包,Javascript," />
+  <meta name="keywords" content="前端,Es6," />
 
 
 
@@ -43,16 +43,16 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;作为一个JS的初学者，闭包和作用域感觉一直都很难弄。JavaScript高级程序设计上关于闭包的内容很少，这里参考前人的博客，对于JS中的闭包做一个理解。">
+<meta name="description" content="我理解的Promise什么是Promise一种异步编程的解决方案，相比传统的——回调函数和事件——更加优雅">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Js中闭包的理解">
-<meta property="og:url" content="http://yoursite.com/2016/02/22/JS中闭包的理解/index.html">
+<meta property="og:title" content="我理解的promise">
+<meta property="og:url" content="http://yoursite.com/2017/02/20/我理解的promise/index.html">
 <meta property="og:site_name" content="简明的现代魔法">
-<meta property="og:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;作为一个JS的初学者，闭包和作用域感觉一直都很难弄。JavaScript高级程序设计上关于闭包的内容很少，这里参考前人的博客，对于JS中的闭包做一个理解。">
-<meta property="og:updated_time" content="2016-04-11T06:42:12.000Z">
+<meta property="og:description" content="我理解的Promise什么是Promise一种异步编程的解决方案，相比传统的——回调函数和事件——更加优雅">
+<meta property="og:updated_time" content="2017-02-20T13:12:58.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Js中闭包的理解">
-<meta name="twitter:description" content="&amp;#160; &amp;#160; &amp;#160; &amp;#160;作为一个JS的初学者，闭包和作用域感觉一直都很难弄。JavaScript高级程序设计上关于闭包的内容很少，这里参考前人的博客，对于JS中的闭包做一个理解。">
+<meta name="twitter:title" content="我理解的promise">
+<meta name="twitter:description" content="我理解的Promise什么是Promise一种异步编程的解决方案，相比传统的——回调函数和事件——更加优雅">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -64,7 +64,7 @@
 
 
 
-  <title> Js中闭包的理解 | 简明的现代魔法 </title>
+  <title> 我理解的promise | 简明的现代魔法 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +210,7 @@
             
             
               
-                Js中闭包的理解
+                我理解的promise
               
             
           </h1>
@@ -219,8 +219,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-02-22T13:12:42+08:00" content="2016-02-22">
-              2016-02-22
+            <time itemprop="dateCreated" datetime="2017-02-20T21:12:19+08:00" content="2017-02-20">
+              2017-02-20
             </time>
           </span>
 
@@ -241,8 +241,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
+                  <a href="/categories/前端/JS/" itemprop="url" rel="index">
+                    <span itemprop="name">JS</span>
                   </a>
                 </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/02/22/JS中闭包的理解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/22/JS中闭包的理解/" itemprop="commentsCount"></span>
+                <a href="/2017/02/20/我理解的promise/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/20/我理解的promise/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -277,29 +277,15 @@
       
 
       
-        <span itemprop="articleBody"><p>&#160; &#160; &#160; &#160;作为一个JS的初学者，闭包和作用域感觉一直都很难弄。JavaScript高级程序设计上关于闭包的内容很少，这里参考前人的博客，对于JS中的闭包做一个理解。<a id="more"></a></p>
-<h3 id="什么是闭包"><a href="#什么是闭包" class="headerlink" title="什么是闭包"></a>什么是闭包</h3><p>提到闭包之前，我想先说一个作用域的问题。可以移步<strong><a href="http://liruihaod.github.io/2016/02/03/Javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E2%91%A0/" target="_blank" rel="external">作用域</a></strong>,<br>我认为JS很奇妙的一点就是，设定了作用域这么一个玩意，<br>我们都知道JS中变量分为全局变量和局部变量，局部作用域中可以访问全局作用域中的变量，而全局作用域中则不能访问局部作用域中的变量。举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arr</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b=a;</span><br><span class="line">    <span class="built_in">console</span>.log(b);<span class="comment">//输出1</span></span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">&#125;</span><br><span class="line">arr();</span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//输出undefined。</span></span><br><span class="line"><span class="keyword">var</span> b;<span class="comment">//这里涉及到变量提升。</span></span><br></pre></td></tr></table></figure></p>
-<p>上面这个例子中 就能看出在函数arr中，我们新建了一个变量b,把a的值赋给b,因为JS中存在<code>函数作用域</code>，在这个<code>局部作用</code>域中没有找到a,到他的上一层作用域(这里是<code>全局作用域</code>)找到a，并把值赋值给b，然后返回一直b，在控制台中输出b,<br>因为在全局作用域中b虽然定义了一个b,但是在<code>全局作用域</code>中无法访问<code>局部作用域</code>中的变量。</p>
+        <span itemprop="articleBody"><h2 id="我理解的Promise"><a href="#我理解的Promise" class="headerlink" title="我理解的Promise"></a>我理解的Promise</h2><h3 id="什么是Promise"><a href="#什么是Promise" class="headerlink" title="什么是Promise"></a>什么是Promise</h3><p>一种异步编程的解决方案，相比传统的——<code>回调函数和事件</code>——更加优雅    <a id="more"></a></p>
 <hr>
-<h3 id="闭包的作用"><a href="#闭包的作用" class="headerlink" title="闭包的作用"></a>闭包的作用</h3><p> 这里就不要运用到闭包的方法：<br> 比如这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">var</span> func=(<span class="function"><span class="keyword">function</span> <span class="title">arr</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">         b=a;</span><br><span class="line">        <span class="keyword">return</span> b;</span><br><span class="line">    &#125;</span><br><span class="line">     <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;)();<span class="comment">//自执行函数</span></span><br><span class="line">func();</span><br><span class="line"><span class="built_in">console</span>.log(b);<span class="comment">//输出b的值为1。</span></span><br><span class="line"><span class="keyword">var</span> b;</span><br></pre></td></tr></table></figure></p>
-<p>这里就用到了闭包的知识，简单来说闭包就是：</p>
-<ul>
-<li><p><strong>闭包就是在一个函数中创建一个新的函数，使得外界有权访问这个函数作用域中的参数和变量。（相当于使得我们能读取其他函数内部参数的一个函数。）</strong></p>
-<h3 id="闭包的弊端"><a href="#闭包的弊端" class="headerlink" title="闭包的弊端"></a>闭包的弊端</h3><p>因为这个F函数中的一个函数F1被return<code>推送</code>到全局作用域中，使得这个函数再全局中能被调用，而f1的能被执行是建立在F的条件下的。因为F1在全局作用域中，不会再执行结束后销毁，。就导致 F函数也不会被回收。</p>
-</li>
-<li><p>就好比，一个<code>麻袋</code>里面被我们迁出一个绳子,我们可以顺着绳子去从麻袋里面调用<code>东西</code>。因为绳子拴在着，<code>麻袋</code>也不会跑。</p>
-</li>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>一个简单的<code>promise</code><br><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> <span class="built_in">var</span> zone1 = setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (num &gt; <span class="number">6</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125; <span class="decorator"><span class="keyword">else</span></span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">5000</span>)</span><br><span class="line">    <span class="built_in">var</span> zone = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Promise(<span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (zone1) &#123;</span><br><span class="line">                resolve(<span class="built_in">console</span>.log(<span class="string">"zone1"</span>));</span><br><span class="line">            &#125; <span class="decorator"><span class="keyword">else</span></span> &#123;</span><br><span class="line">                reject(<span class="built_in">console</span>.log(<span class="string">"zone2"</span>));</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    zone(<span class="number">11</span>).then(setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="string">"hello promise"</span>)&#125;,<span class="number">2000</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这里promise 接受两个参数一个resolve,一个reject</span></span><br><span class="line">    其中两个状态，resolve 一个reject.</span><br><span class="line">    当接收到resolve 或reject 其中两个状态中一个。触发回调=&gt; 这里是一个定时函数。</span><br></pre></td></tr></table></figure></p>
+<p>这里的promise 相当于一个状态机，里面保存一个未来才会得到的结果(<code>resolve</code>和<code>reject</code>)。其中两者状态的改变只会从<code>pending</code>变成<code>resolve</code>或者<code>pending</code>变成<code>resolve</code>一旦这两种情况其中的一点发生，就不会再次改变</p>
+<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ul>
+<li>无法取消Promise 新建对象的时候立刻执行。</li>
 </ul>
-<p>所以闭包的第一个弊端就是：<strong>变量无法自动被回收，久而久之造成内存泄漏</strong>(不过这点在WEB端不容易体现。主要体现在node端。)</p>
-<h3 id="闭包的几个例子"><a href="#闭包的几个例子" class="headerlink" title="闭包的几个例子"></a>闭包的几个例子</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fnArr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">    fnArr[i] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log( fnArr[<span class="number">3</span>]() );<span class="comment">//10</span></span><br><span class="line"><span class="built_in">console</span>.log( fnArr[<span class="number">6</span>]() );<span class="comment">//10</span></span><br></pre></td></tr></table></figure>
-<p>这里有两种方法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fnArr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">    fnArr[i] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    	<span class="keyword">var</span> n=i;</span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      	<span class="keyword">return</span> n;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;();</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log( fnArr[<span class="number">3</span>]() );</span><br></pre></td></tr></table></figure></p>
-<hr>
-<p>第二种<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fnArr = [];</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i ++) &#123;</span><br><span class="line">	(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> n=i;</span><br><span class="line">		<span class="keyword">return</span> fnArr[i] =  <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;;</span><br><span class="line">	&#125;)()</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log( fnArr[<span class="number">3</span>]() );</span><br></pre></td></tr></table></figure></p>
-<p>两种方法都是利用自执行函数来创建一个闭包。</p>
-<blockquote>
-<p>参考：<a href="http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html" target="_blank" rel="external">阮一峰-JS闭包</a></p>
-</blockquote>
-</span>
+<h3 id="Promise-prototype-then用法"><a href="#Promise-prototype-then用法" class="headerlink" title="Promise.prototype.then用法"></a>Promise.prototype.then用法</h3><pre><code>上面已经说过`then`的用法。这里的`then`也支持链式调用.
+</code></pre></span>
       
     </div>
 
@@ -307,9 +293,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/闭包/" rel="tag">#闭包</a>
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
-            <a href="/tags/Javascript/" rel="tag">#Javascript</a>
+            <a href="/tags/Es6/" rel="tag">#Es6</a>
           
         </div>
       
@@ -318,17 +304,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/02/15/浅拷贝与深拷贝/" rel="next" title="浅拷贝与深拷贝">
-                <i class="fa fa-chevron-left"></i> 浅拷贝与深拷贝
+              <a href="/2017/02/20/Vue中的ios多次触发-click事件/" rel="next" title="Vue中的ios多次触发@click事件">
+                <i class="fa fa-chevron-left"></i> Vue中的ios多次触发@click事件
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/02/27/当我们输入URI-按下回车发生了什么？/" rel="prev" title="当我们输入URI，按下回车发生了什么？">
-                当我们输入URI，按下回车发生了什么？ <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -353,8 +335,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/02/22/JS中闭包的理解/"
-                   data-title="Js中闭包的理解" data-url="http://yoursite.com/2016/02/22/JS中闭包的理解/">
+              <div class="ds-thread" data-thread-key="2017/02/20/我理解的promise/"
+                   data-title="我理解的promise" data-url="http://yoursite.com/2017/02/20/我理解的promise/">
               </div>
             
           </div>
@@ -466,7 +448,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是闭包"><span class="nav-number">1.</span> <span class="nav-text">什么是闭包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的作用"><span class="nav-number">2.</span> <span class="nav-text">闭包的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的弊端"><span class="nav-number">3.</span> <span class="nav-text">闭包的弊端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#闭包的几个例子"><span class="nav-number">4.</span> <span class="nav-text">闭包的几个例子</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#我理解的Promise"><span class="nav-number">1.</span> <span class="nav-text">我理解的Promise</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Promise"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Promise</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何使用"><span class="nav-number">1.2.</span> <span class="nav-text">如何使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缺点"><span class="nav-number">1.2.1.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Promise-prototype-then用法"><span class="nav-number">1.3.</span> <span class="nav-text">Promise.prototype.then用法</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
