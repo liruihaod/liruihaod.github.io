@@ -34,7 +34,7 @@
 
 
 
-  <meta name="keywords" content="JQuery,现代魔法,造轮子," />
+  <meta name="keywords" content="前端,Vue," />
 
 
 
@@ -43,16 +43,16 @@
   <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.4.5.2" />
 
 
-<meta name="description" content="写的一个jquery的插件 stickup 和回到顶部。。。感觉还不会封装函数好蠢的样子。。。。">
+<meta name="description" content="最近用vue2写完几个项目,这里从头回顾下Vue整个技术栈">
 <meta property="og:type" content="article">
-<meta property="og:title" content="写的一个stickup插件">
-<meta property="og:url" content="http://yoursite.com/2016/04/01/写的一个stickup插件/index.html">
+<meta property="og:title" content="vue2入门——axios用法">
+<meta property="og:url" content="http://yoursite.com/2017/04/30/vue2入门——axios用法/index.html">
 <meta property="og:site_name" content="简明的现代魔法">
-<meta property="og:description" content="写的一个jquery的插件 stickup 和回到顶部。。。感觉还不会封装函数好蠢的样子。。。。">
-<meta property="og:updated_time" content="2016-05-03T15:54:50.000Z">
+<meta property="og:description" content="最近用vue2写完几个项目,这里从头回顾下Vue整个技术栈">
+<meta property="og:updated_time" content="2017-07-30T15:16:15.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="写的一个stickup插件">
-<meta name="twitter:description" content="写的一个jquery的插件 stickup 和回到顶部。。。感觉还不会封装函数好蠢的样子。。。。">
+<meta name="twitter:title" content="vue2入门——axios用法">
+<meta name="twitter:description" content="最近用vue2写完几个项目,这里从头回顾下Vue整个技术栈">
 
 
 <script type="text/javascript" id="hexo.configuration">
@@ -64,7 +64,7 @@
 
 
 
-  <title> 写的一个stickup插件 | 简明的现代魔法 </title>
+  <title> vue2入门——axios用法 | 简明的现代魔法 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -210,7 +210,7 @@
             
             
               
-                写的一个stickup插件
+                vue2入门——axios用法
               
             
           </h1>
@@ -219,8 +219,8 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2016-04-01T01:02:42+08:00" content="2016-04-01">
-              2016-04-01
+            <time itemprop="dateCreated" datetime="2017-04-30T22:57:53+08:00" content="2017-04-30">
+              2017-04-30
             </time>
           </span>
 
@@ -241,8 +241,8 @@
 
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/前端/jQuery/" itemprop="url" rel="index">
-                    <span itemprop="name">jQuery</span>
+                  <a href="/categories/前端/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
                   </a>
                 </span>
 
@@ -257,8 +257,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/01/写的一个stickup插件/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/01/写的一个stickup插件/" itemprop="commentsCount"></span>
+                <a href="/2017/04/30/vue2入门——axios用法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/30/vue2入门——axios用法/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -277,19 +277,21 @@
       
 
       
-        <span itemprop="articleBody"><p>写的一个jquery的插件 stickup 和回到顶部。。。感觉还不会封装函数好蠢的样子。。。。<a id="more"></a></p>
-<hr>
-<h3 id="stickup思路"><a href="#stickup思路" class="headerlink" title="stickup思路"></a>stickup思路</h3><p> stickup 给人感觉就是这个东西呗粘在了顶部。第一时间想到了绝对定位。顺着这个思路往下想就很简单了。</p>
-<ul>
-<li>先取得这个元素的坐标.即为offset()top，和left,以及宽高。</li>
-<li>然后在克隆一个元素出来，把他放在目标元素的前面(先隐藏)，这样目标元素固定定位，脱离文档流之后，再把这个元素显示出来，就不会使得后面的元素位置发生变化。</li>
-<li>然后给<code>window</code>设置一个<code>scorll</code>事件。当窗口垂直滚动的距离超过目标元素距离根元素的垂直距离，就让目标元素绝对定位，<code>left</code>就是<code>offset().left</code>,<code>top：0</code>，这时候有点要注意的事就是。<code>width</code>和<code>height</code>都要设置下。然后再把<code>clone</code>元素显示。</li>
-<li>如果当窗口垂直滚动的距离小于目标元素距离根元素的垂直距离时候，让目标元素回来原来的位置.这里可以用<code>$node.removeAttr(&quot;style&quot;)</code>来让元素回到原来位置，还是挺不错的，然后让<code>clone</code>元素隐藏</li>
+        <span itemprop="articleBody"><p>最近用vue2写完几个项目,这里从头回顾下Vue整个技术栈<a id="more"></a></p>
+<h3 id="axios的简单用法"><a href="#axios的简单用法" class="headerlink" title="axios的简单用法"></a><code>axios</code>的简单用法</h3><h4 id="我觉得只要是以前使用过JQ的ajax基本上对下面的几种用法不会陌生"><a href="#我觉得只要是以前使用过JQ的ajax基本上对下面的几种用法不会陌生" class="headerlink" title="我觉得只要是以前使用过JQ的ajax基本上对下面的几种用法不会陌生"></a>我觉得只要是以前使用过JQ的<code>ajax</code>基本上对下面的几种用法不会陌生</h4><ul>
+<li><p><code>get</code>请求</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">axios.get(<span class="string">'/detail'</span>,&#123;</span><br><span class="line">    <span class="attribute">params</span>:&#123;</span><br><span class="line">    <span class="attribute">name</span>:<span class="string">"zone"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//成功获取数据</span></span><br><span class="line">   <span class="built_in">console</span>.log(res);</span><br><span class="line"> &#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//请求错误</span></span><br><span class="line">   <span class="built_in">console</span>.log(err);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+<p>这里的then 和catch 和明显是ES6 promise的用法 也就是axios是基于promise的HTTP库,自然兼容性也就最多到IE9.这一点很关键,不废话下面看<code>post请求</code></p>
+</li>
+<li><p><code>post</code>请求</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'/add'</span>, &#123;</span><br><span class="line">   <span class="attribute">name</span>: <span class="string">'zone'</span>,</span><br><span class="line">   <span class="attribute">age</span>: <span class="number">23</span></span><br><span class="line">&#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">   <span class="comment">//请求成功</span></span><br><span class="line"> <span class="built_in">console</span>.log(res);</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</span><br><span class="line">   <span class="comment">//请求失败</span></span><br><span class="line"> <span class="built_in">console</span>.log(err);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
-<hr>
-<p>总体思路就是这些啦。下面是具体代码</p>
-<h3 id="stickup代码"><a href="#stickup代码" class="headerlink" title="stickup代码"></a>stickup代码</h3><figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> ($) &#123;</span><br><span class="line">$.fn.stickup=function(node)&#123;</span><br><span class="line">var $cur=$(this);//方便后面操作this。</span><br><span class="line">	var top=$cur.offset().top;//获取元素距离顶部的距离</span><br><span class="line">	var left=$cur.offset().left;//获取元素的水平位置</span><br><span class="line">	var width=$cur.width();//获取元素的宽度</span><br><span class="line">	var height=$cur.height();//获取元素的高度</span><br><span class="line">	</span><br><span class="line">	//克隆这个元素，这里opactiy和display:none 是双重保险.</span><br><span class="line">	var now=$cur.clone().css(<span class="string">"opacity"</span>,<span class="number">0</span>).insertBefore($cur).hide();</span><br><span class="line">	</span><br><span class="line">	$(window).on(<span class="string">"scroll"</span>,function()&#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">		var socrllTop=$(window).scrollTop();</span><br><span class="line">		if(socrllTop&gt;=top)&#123;</span><br><span class="line">			setStick();</span><br><span class="line">		&#125;else&#123;</span><br><span class="line">			unsetStick()</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	function setStick()&#123;</span><br><span class="line">		$cur.css(&#123;</span><br><span class="line">			<span class="string">"position"</span>:<span class="string">"fixed"</span>,</span><br><span class="line">			<span class="string">"left"</span>:left,</span><br><span class="line">			<span class="string">"top"</span>:<span class="number">0</span>,</span><br><span class="line">			<span class="string">"width"</span>:width,</span><br><span class="line">			<span class="string">"height"</span>:height,</span><br><span class="line">			<span class="string">"z-index"</span>:<span class="number">10</span></span><br><span class="line">		&#125;)</span><br><span class="line">		now.show();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	function unsetStick()&#123;</span><br><span class="line">		$cur.removeAttr(<span class="string">"style"</span>),</span><br><span class="line">		now.hide()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;)(jQuery);</span><br></pre></td></tr></table></figure>
-<p><a href="http://sdk.tools.sinacloud.com/index.php?appname=liruihaod&amp;version=1" target="_blank" rel="external"><strong>预览点我</strong></a></p>
+<p>这里注意的是。当<code>axios</code>发送<code>post</code>请求的时候,参数直接和JQ的写法一致就行。</p>
+<p>*多个请求并发的情况。<br><figure class="highlight scilab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getProfile</span><span class="params">()</span>&#123;</span></span><br><span class="line">    <span class="comment">//请求1</span></span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">'/profile'</span>);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">getUser</span><span class="params">()</span>&#123;</span></span><br><span class="line">    <span class="comment">//请求2</span></span><br><span class="line">    <span class="keyword">return</span> axios.get(<span class="string">'/user'</span>);</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//并发请求</span></span><br><span class="line"> axios.all([</span><br><span class="line">    getProfile(),</span><br><span class="line">    getUser()</span><br><span class="line"> ]).<span class="keyword">then</span>(axios.spread((res1, res2)=&gt;&#123;</span><br><span class="line">    <span class="comment">//两个请求现已完成</span></span><br><span class="line">   console.<span class="built_in">log</span>(res1);</span><br><span class="line">    console.<span class="built_in">log</span>(res2);</span><br><span class="line"> &#125;));</span><br></pre></td></tr></table></figure></p>
+<p>我们事先定义了两个方法  <code>getProfile()</code>  和  <code>getUser()</code> 帮我们实现get请求。</p>
+<p>有时候会遇到要同时发送两个请求，当这两个请求都请求完毕返回的时候才能做下一步的逻辑判断。这时候就可以使用这个<code>api</code>。其实<code>spread</code>的中文名字就是传播。暗示传播到下一步的方法了？我也不是很明白 不过记住这个<code>api</code>就好了 哈哈</p>
+<h3 id="最后说几句"><a href="#最后说几句" class="headerlink" title="最后说几句"></a>最后说几句</h3><p>其实我还是觉得VUE挺好入门的。下次有机会总结下 Vue平时项目遇到的一些问题.自己积累也有一阵时间了</p>
 </span>
       
     </div>
@@ -298,11 +300,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JQuery/" rel="tag">#JQuery</a>
+            <a href="/tags/前端/" rel="tag">#前端</a>
           
-            <a href="/tags/现代魔法/" rel="tag">#现代魔法</a>
-          
-            <a href="/tags/造轮子/" rel="tag">#造轮子</a>
+            <a href="/tags/Vue/" rel="tag">#Vue</a>
           
         </div>
       
@@ -311,17 +311,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/27/管中窥豹——jquery的ajax用法/" rel="next" title="管中窥豹——初识Jquery*ajax">
-                <i class="fa fa-chevron-left"></i> 管中窥豹——初识Jquery*ajax
+              <a href="/2017/04/03/MAC下抓不到HTTPS/" rel="next" title="MAC下抓包HTTPS">
+                <i class="fa fa-chevron-left"></i> MAC下抓包HTTPS
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/08/同源策略和跨域/" rel="prev" title="同源策略和跨域">
-                同源策略和跨域 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -346,8 +342,8 @@
         
           <div class="comments" id="comments">
             
-              <div class="ds-thread" data-thread-key="2016/04/01/写的一个stickup插件/"
-                   data-title="写的一个stickup插件" data-url="http://yoursite.com/2016/04/01/写的一个stickup插件/">
+              <div class="ds-thread" data-thread-key="2017/04/30/vue2入门——axios用法/"
+                   data-title="vue2入门——axios用法" data-url="http://yoursite.com/2017/04/30/vue2入门——axios用法/">
               </div>
             
           </div>
@@ -459,7 +455,7 @@
           <div class="post-toc">
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#stickup思路"><span class="nav-number">1.</span> <span class="nav-text">stickup思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#stickup代码"><span class="nav-number">2.</span> <span class="nav-text">stickup代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#axios的简单用法"><span class="nav-number">1.</span> <span class="nav-text">axios的简单用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#我觉得只要是以前使用过JQ的ajax基本上对下面的几种用法不会陌生"><span class="nav-number">1.1.</span> <span class="nav-text">我觉得只要是以前使用过JQ的ajax基本上对下面的几种用法不会陌生</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最后说几句"><span class="nav-number">2.</span> <span class="nav-text">最后说几句</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator"></div>
